@@ -12,7 +12,7 @@
     "noEmit": true,
     "jsx": "preserve",
     "allowJs": true,
-    "baseUrl": "src",
+    "baseUrl": ".",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
