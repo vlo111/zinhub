@@ -1,9 +1,10 @@
 'use client';
-
-import { AUTH_KEYS } from '@/helpers/constants';
-import { useLocalStorage } from '@/hooks/use-local-storage';
-import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { User, UserDetails } from '@/types/auth';
+import { AUTH_KEYS, PATHS } from '@/helpers/constants';
+import { usePathname, useRouter } from 'next/navigation';
+import { useLocalStorage } from '@/hooks/use-local-storage';
+
 interface AuthContextType {
   user: UserDetails | null;
   addUser: (user: UserDetails | null) => void;
@@ -15,7 +16,7 @@ type AuthProviderProps = {
   children: React.ReactNode;
 };
 
-export const AuthContext = createContext<AuthContextType>({
+const AuthContext = createContext<AuthContextType>({
   user: null,
   addUser: () => {
     return;
@@ -28,12 +29,15 @@ export const AuthContext = createContext<AuthContextType>({
   },
 });
 
+const isExceptedRoutes = (path: string) => path === PATHS.SIGN_IN || path === PATHS.SIGN_UP;
+
+const localStorageUser = typeof window !== 'undefined' && localStorage.getItem(AUTH_KEYS.USER);
+
 const AuthProvider = (props: AuthProviderProps) => {
-  const { getItem } = useLocalStorage();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [user, setUser] = useState<UserDetails | null>(() => (localStorageUser ? JSON.parse(localStorageUser) : null));
 
-  const item = getItem(AUTH_KEYS.USER);
-
-  const [user, setUser] = useState<UserDetails | null>(() => (item ? JSON.parse(item) : null));
   const { setItem, removeItem } = useLocalStorage();
 
   const addUser = useCallback(
@@ -70,15 +74,22 @@ const AuthProvider = (props: AuthProviderProps) => {
   }, [removeUser]);
 
   const providerValues = useMemo(() => ({ user, login, logout, addUser }), [addUser, login, logout, user]);
+
+  useEffect(() => {
+    if (user === null && !isExceptedRoutes(pathname)) {
+      router.push(PATHS.SIGN_IN);
+    }
+  }, [pathname, router, user]);
+
   return <AuthContext.Provider value={providerValues} {...props} />;
 };
 
-function useAuth() {
+const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error(`useAuth must be used within a AuthProvider`);
   }
   return context;
-}
+};
 
 export { AuthProvider, useAuth };

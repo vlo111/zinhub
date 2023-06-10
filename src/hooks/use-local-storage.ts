@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 
 export const useLocalStorage = () => {
@@ -10,6 +12,8 @@ export const useLocalStorage = () => {
 
   const getItem = (key: string) => {
     const value = localStorage.getItem(key);
+    // eslint-disable-next-line no-console
+    console.log(key, value);
     setValue(value);
     return value;
   };

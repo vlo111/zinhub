@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
   reactStrictMode: true,
   env: {
-    REACT_APP_BASE_URL: 'https://dev-apizinhub.analysed.ai/api/',
+    REACT_APP_BASE_URL: 'https://dev-apiaraks.analysed.ai/api/',
   },
 };
 

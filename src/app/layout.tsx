@@ -1,6 +1,10 @@
 import { ReactNode } from 'react';
-import Providers from '@/utils/provider';
 import './globals.css';
+import { AuthProvider } from '@/providers/auth';
+import QueryProvider from '@/providers/query';
+import { Noto_Sans_Armenian } from 'next/font/google';
+
+const armenianScript = Noto_Sans_Armenian({ subsets: ['armenian'] });
 
 export const metadata = {
   title: 'ZinHub',
@@ -9,8 +13,10 @@ export const metadata = {
 
 export default ({ children }: { children: ReactNode }) => (
   <html lang="en">
-    <body>
-      <Providers>{children}</Providers>
+    <body className={armenianScript.className}>
+      <AuthProvider>
+        <QueryProvider>{children}</QueryProvider>
+      </AuthProvider>
     </body>
   </html>
 );

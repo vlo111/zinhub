@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { useAuth } from '@/context/auth-context';
+import { useAuth } from '@/providers/auth';
 import { SignInForm, User } from '@/types/auth';
 
 import client from '../client';
