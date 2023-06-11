@@ -4,11 +4,11 @@
 
 @layer components {
     .btn {
-        @apply px-4 py-2 rounded-md font-bold
+        @apply h-10 rounded-md font-bold
     }
 
     .btn--primary {
-        @apply bg-primary-blue text-white
+        @apply bg-primary-blue text-white hover:!text-white
     }
 
     .btn--secondary {

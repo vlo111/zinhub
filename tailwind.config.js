@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import colors from 'tailwindcss/colors';
 
 module.exports = {
   content: [
@@ -43,7 +42,6 @@ module.exports = {
       'light-gray': '#444444',
       'davy-gray': '#545B5B',
       'dark-gray': '#333333',
-      ...colors,
     },
     fontSize: {
       xs: ['14px', { lineHeight: '24px', letterSpacing: '0' }],

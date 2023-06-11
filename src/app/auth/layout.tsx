@@ -5,6 +5,7 @@ import { PATHS } from '@/helpers/constants';
 import { useAuth } from '@/providers/auth';
 import Header from './header';
 import { default as BG } from '@/components/icons/bg.svg';
+import Container from '@/app/auth/container';
 
 export default ({ children }: { children: ReactNode }) => {
   const { push } = useRouter();
@@ -20,7 +21,7 @@ export default ({ children }: { children: ReactNode }) => {
       <aside className="fixed xs:scale-150">
         <BG />
       </aside>
-      {children}
+      <Container>{children}</Container>
     </div>
   );
 };
