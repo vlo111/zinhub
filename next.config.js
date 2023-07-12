@@ -1,4 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    webpack(config) {
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ['@svgr/webpack'],
+        });
 
-module.exports = nextConfig
+        return config;
+    },
+    reactStrictMode: true,
+    env: {
+        REACT_APP_BASE_URL: 'https://dev-apiaraks.analysed.ai/api/',
+    },
+};
+
+module.exports = nextConfig;
