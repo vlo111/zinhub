@@ -1,6 +1,6 @@
 'use client';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import FormItem from '@/components/form-item';
+import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import { registerAdditionalField, registerCustomField, registerEmailField, registerPasswordField } from './registers';
 import PhoneNumberInput from '@/components/input/phone-number-input';
@@ -34,23 +34,23 @@ const SignUp = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormItem label="Password" error={errors.password?.message}>
-        <Input register={register('password', registerPasswordField)} type="password" id="password" />
+      <FormItem label="Կազմակերպության անվանում" error={errors.additionalField?.message}>
+        <Input register={register('additionalField', registerAdditionalField)} errors={errors} />
       </FormItem>
-      <FormItem label="Repeat Password" error={errors.repeatPassword?.message}>
-        <Input register={register('repeatPassword', registerRepeatPasswordField)} type="password" id="repeatPassword" />
+      <FormItem label="ՀՎՀՀ" error={errors.customField?.message}>
+        <Input register={register('customField', registerCustomField)} errors={errors} />
       </FormItem>
       <FormItem label="Email" error={errors.email?.message}>
-        <Input register={register('email', registerEmailField)} type="email" id="email" />
+        <Input register={register('email', registerEmailField)} errors={errors} />
       </FormItem>
-      <FormItem label="Custom Field" error={errors.customField?.message}>
-        <Input register={register('customField', registerCustomField)} type="text" id="customField" />
-      </FormItem>
-      <FormItem label="Additional Field" error={errors.additionalField?.message}>
-        <Input register={register('additionalField', registerAdditionalField)} type="text" id="additionalField" />
-      </FormItem>
-      <FormItem label="Phone Number" error={errors.phone?.message}>
+      <FormItem label="Հեռախոսահամար" error={errors.phone?.message}>
         <PhoneNumberInput />
+      </FormItem>
+      <FormItem label="Գաղտնաբառ" error={errors.password?.message}>
+        <Input type="password" register={register('password', registerPasswordField)} errors={errors} />
+      </FormItem>
+      <FormItem label="Կրկնել գաղտնաբառը" error={errors.repeatPassword?.message}>
+        <Input type="password" register={register('repeatPassword', registerRepeatPasswordField)} errors={errors} />
       </FormItem>
       <button type="submit">Submit</button>
     </form>

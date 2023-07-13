@@ -11,45 +11,45 @@ export const registerNameField = {
 };
 
 export const registerEmailField = {
-  required: 'Email is required',
+  required: 'էլ․ հասցեն պարտադիր է',
   pattern: {
     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-    message: 'Invalid email address',
+    message: 'Անվավեր էլ․ հասցե',
   },
 };
 
 export const registerPasswordField = {
-  required: 'Password is required',
+  required: 'Գաղտնաբառը պարտադիր է',
   minLength: {
     value: 8,
-    message: 'Password must be at least 8 characters long',
+    message: 'Գաղտնաբառը պետք է լինի առնվազն 8 նիշ',
   },
   maxLength: {
     value: 60,
-    message: 'Password must not exceed 60 characters',
+    message: 'Գաղտնաբառը չպետք է գերազանցի 60 նիշը',
   },
   pattern: {
     value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\S]{8,}$/,
-    message: 'Password must contain at least one letter, one number, and cannot contain spaces',
+    message: 'Գաղտնաբառը պետք է պարունակի առնվազն մեկ տառ, մեկ թիվ և չի կարող պարունակել բացատներ',
   },
 };
 
 export const registerCustomField = {
-  required: 'Custom Field is required',
+  required: 'ՀՎՀՀ դաշտը պարտադիր է',
   pattern: {
     value: /^\d{8}$/,
-    message: 'Custom Field must be 8 numbers',
+    message: 'ՀՎՀՀ դաշտը պետք է լինի 8 թիվ',
   },
 };
 
 export const registerAdditionalField = {
-  required: 'Additional Field is required',
+  required: 'Կազմակերպության անվանումը պարտադիր է',
   minLength: {
     value: 2,
-    message: 'Additional Field must have a minimum of 2 characters',
+    message: 'Կազմակերպության անվանումը պետք է ունենա առնվազն 2 նիշ',
   },
   maxLength: {
     value: 50,
-    message: 'Additional Field must have a maximum of 50 characters',
+    message: 'Կազմակերպության անվանումը պետք է ունենա առավելագույնը 50 նիշ',
   },
 };

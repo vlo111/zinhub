@@ -13,7 +13,7 @@ const FormItem: React.FC<Props> = ({ label, children, error }) => {
         {label}:
       </label>
       {children}
-      {error && <div className="text-error mt-1">{error}</div>}
+      {error && <div className="text-error font-bold text-xs">{error}</div>}
     </div>
   );
 };
