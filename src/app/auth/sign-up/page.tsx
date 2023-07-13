@@ -1,63 +1,60 @@
 'use client';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import FormItem from '@/components/form-item';
-import Input from '@/components/input';
+import { Input } from '@/components/input';
+import { registerAdditionalField, registerCustomField, registerEmailField, registerPasswordField } from './registers';
+import PhoneNumberInput from '@/components/input/phone-number-input';
 
-type FormItems = {
+export type FormItems = {
   name: string;
   email: string;
   password: string;
+  repeatPassword: string;
+  customField: string;
+  additionalField: string;
+  phone: string;
 };
 
-const Home = () => {
+const SignUp = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm<FormItems>();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log('Data - ', data);
   };
 
-  0;
+  const registerRepeatPasswordField = {
+    required: 'Repeat Password is required',
+    validate: (value: string) => value === getValues('password') || 'Passwords do not match',
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormItem label="Password" error={errors.password?.message}>
-        <Input
-          register={register('password', {
-            required: 'Password is required',
-            minLength: {
-              value: 8,
-              message: 'Password must be at least 8 characters long',
-            },
-            maxLength: {
-              value: 60,
-              message: 'Password must not exceed 60 characters',
-            },
-            pattern: {
-              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\S]{8,}$/,
-              message: 'Password must contain at least one letter, one number, and cannot contain spaces',
-            },
-          })}
-          type="password"
-          id="password"
-        />
+        <Input register={register('password', registerPasswordField)} type="password" id="password" />
+      </FormItem>
+      <FormItem label="Repeat Password" error={errors.repeatPassword?.message}>
+        <Input register={register('repeatPassword', registerRepeatPasswordField)} type="password" id="repeatPassword" />
       </FormItem>
       <FormItem label="Email" error={errors.email?.message}>
-        <Input
-          register={register('email', {
-            required: 'Email is required',
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
-            },
-          })}
-        />
+        <Input register={register('email', registerEmailField)} type="email" id="email" />
+      </FormItem>
+      <FormItem label="Custom Field" error={errors.customField?.message}>
+        <Input register={register('customField', registerCustomField)} type="text" id="customField" />
+      </FormItem>
+      <FormItem label="Additional Field" error={errors.additionalField?.message}>
+        <Input register={register('additionalField', registerAdditionalField)} type="text" id="additionalField" />
+      </FormItem>
+      <FormItem label="Phone Number" error={errors.phone?.message}>
+        <PhoneNumberInput />
       </FormItem>
       <button type="submit">Submit</button>
     </form>
   );
 };
 
-export default Home;
+export default SignUp;

@@ -5,8 +5,6 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   register: UseFormRegisterReturn;
 };
 
-const Input: React.FC<Props> = ({ register, ...rest }) => {
-  return <input className="rounded-md border-gray h-10 px-3 py-2" {...register} {...rest} />;
+export const Input: React.FC<Props> = ({ register, ...rest }) => {
+  return <input className="rounded-md border border-gray h-10 outline-0 p-2 w-full" {...register} {...rest} />;
 };
-
-export default Input;

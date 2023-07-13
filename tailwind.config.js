@@ -29,6 +29,7 @@ module.exports = {
     colors: {
       white: '#ffffff',
       gray: '#9E9E9E',
+      error: '#ff0000',
       'secondary-orange': {
         light: '#FF882F88',
         DEFAULT: '#FF882F',
