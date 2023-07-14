@@ -1,15 +1,3 @@
-export const registerNameField = {
-  required: 'Name is required',
-  minLength: {
-    value: 2,
-    message: 'Name must have a minimum of 2 characters',
-  },
-  maxLength: {
-    value: 50,
-    message: 'Name must have a maximum of 50 characters',
-  },
-};
-
 export const registerEmailField = {
   required: 'էլ․ հասցեն պարտադիր է',
   pattern: {

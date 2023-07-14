@@ -28,8 +28,8 @@ const SignUp = () => {
   };
 
   const registerRepeatPasswordField = {
-    required: 'Repeat Password is required',
-    validate: (value: string) => value === getValues('password') || 'Passwords do not match',
+    required: 'Կրկնել գաղտնաբառը պարտադիր է',
+    validate: (value: string) => value === getValues('password') || 'Գաղտնաբառերը չեն համապատասխանում',
   };
 
   return (
