@@ -4,6 +4,7 @@ import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import { registerAdditionalField, registerCustomField, registerEmailField, registerPasswordField } from './registers';
 import PhoneNumberInput from '@/components/input/phone-number-input';
+import Button from '@/components/button';
 
 export type FormItems = {
   name: string;
@@ -24,6 +25,7 @@ const SignUp = () => {
   } = useForm<FormItems>();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    // eslint-disable-next-line no-console
     console.log('Data - ', data);
   };
 
@@ -33,7 +35,7 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
       <FormItem label="Կազմակերպության անվանում" error={errors.additionalField?.message}>
         <Input register={register('additionalField', registerAdditionalField)} errors={errors} />
       </FormItem>
@@ -52,7 +54,7 @@ const SignUp = () => {
       <FormItem label="Կրկնել գաղտնաբառը" error={errors.repeatPassword?.message}>
         <Input type="password" register={register('repeatPassword', registerRepeatPasswordField)} errors={errors} />
       </FormItem>
-      <button type="submit">Submit</button>
+      <Button value="Գրանցվել" />
     </form>
   );
 };

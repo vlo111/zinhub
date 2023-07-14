@@ -9,11 +9,11 @@ type Props = {
 const FormItem: React.FC<Props> = ({ label, children, error }) => {
   return (
     <div className="mb-3">
-      <label className="block mb-1" htmlFor={label}>
-        {label}:
+      <label className="block mb-1 text-item" htmlFor={label}>
+        {label}
       </label>
       {children}
-      {error && <div className="text-error font-bold text-xs">{error}</div>}
+      {error && <div className="text-error font-semibold text-xss">{error}</div>}
     </div>
   );
 };

@@ -4,11 +4,11 @@
 
 @layer components {
   .btn {
-    @apply h-10 rounded-md font-bold
+    @apply rounded-md font-bold px-3 py-2
   }
 
   .btn--primary {
-    @apply bg-primary-blue text-white hover:!text-white
+    @apply bg-primary-blue text-white
   }
 
   .btn--secondary {
@@ -17,5 +17,13 @@
 
   .btn--footer {
     @apply bg-white text-davy-gray
+  }
+
+  .text-title {
+    @apply lg:text-xsl md:text-xsl sm:text-lg xs:text-lg
+  }
+
+  .text-item {
+    @apply lg:text-sm md:text-sm sm:text-xs xs:text-xs
   }
 }
