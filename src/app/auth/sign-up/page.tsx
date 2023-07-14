@@ -2,9 +2,10 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
-import { registerAdditionalField, registerCustomField, registerEmailField, registerPasswordField } from './registers';
+import { registerAdditionalField, registerCustomField, registerPasswordField } from './registers';
 import PhoneNumberInput from '@/components/input/phone-number-input';
 import Button from '@/components/button';
+import { registerEmailField } from '@/helpers/registers';
 
 export type FormItems = {
   name: string;
@@ -16,7 +17,7 @@ export type FormItems = {
   phone: string;
 };
 
-const SignUp = () => {
+export default () => {
   const {
     register,
     handleSubmit,
@@ -58,5 +59,3 @@ const SignUp = () => {
     </form>
   );
 };
-
-export default SignUp;
