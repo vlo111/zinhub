@@ -20,3 +20,14 @@ export const registerAbout = {
     message: 'Ընկերության մասին դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
   },
 };
+
+export const registerValue = {
+  minLength: {
+    value: 3,
+    message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առնվազն 1 նիշ',
+  },
+  maxLength: {
+    value: 2048,
+    message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
+  },
+};
