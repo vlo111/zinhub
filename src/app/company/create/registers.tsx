@@ -1,11 +1,22 @@
-export const registerAdditionalField = {
-  required: 'Կազմակերպության անվանումը պարտադիր է',
+export const registerAddress = {
+  required: 'Գտնվելու վայրը պարտադիր է',
   minLength: {
-    value: 2,
-    message: 'Կազմակերպության անվանումը պետք է ունենա առնվազն 2 նիշ',
+    value: 3,
+    message: 'Գտնվելու վայրը պետք է ունենա առնվազն 3 նիշ',
   },
   maxLength: {
-    value: 50,
-    message: 'Կազմակերպության անվանումը պետք է ունենա առավելագույնը 50 նիշ',
+    value: 100,
+    message: 'Գտնվելու վայրը պետք է ունենա առավելագույնը 100 նիշ',
+  },
+};
+
+export const registerAbout = {
+  minLength: {
+    value: 3,
+    message: 'Ընկերության մասին դաշտը պետք է ունենա առնվազն 1 նիշ',
+  },
+  maxLength: {
+    value: 2048,
+    message: 'Ընկերության մասին դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
   },
 };
