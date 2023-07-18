@@ -1,28 +1,41 @@
+import Grid from '@/app/posts/course/components/flex/grid';
+import Row from '@/app/posts/course/components/flex/row';
+import { ZUploadImage } from '@/app/posts/uploadimage';
+import FormItem from '@/components/form/item';
 import { Textarea } from '@/components/texarea';
-import { ZUploadImage } from '@/components/upload-image';
 
 const JobDescription = () => {
   return (
-    <div className="grid grid-cols-3 gap-10 gap-x-10 mt-14">
-      <div className="col-span-2 ">
-        <Textarea name="description" label="Աշխատանքի նկարագրություն" />
-      </div>
-      <div className="col-span-2 ">
-        <Textarea name="responsibilities" label="Պարտականություններ" />
-      </div>
-      <div className="col-span-2 ">
-        <Textarea name="skills" label="Պահանջներ, հմտություներ" />
-      </div>
-      <div className="col-span-2 ">
-        <Textarea name="notes" label="Հավելյալ նշումներ" />
-      </div>
-      <div className="col-span-2 ">
-        <Textarea name="offer" label="Ինչ ենք մենք առաջարկում (Ընկերության մասին)" />
-      </div>
+    <Grid>
+      <Row>
+        <FormItem label="Աշխատանքի նկարագրություն" name="description">
+          <Textarea name="description" />
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem label="Պարտականություններ" name="responsibilities">
+          <Textarea name="responsibilities" />
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem label="Պահանջներ, հմտություներ" name="skills">
+          <Textarea name="skills" />
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem label="Հավելյալ նշումներ" name="notes">
+          <Textarea name="notes" />
+        </FormItem>
+      </Row>
+      <Row>
+        <FormItem label="Ինչ ենք մենք առաջարկում (Ընկերության մասին)" name="offer">
+          <Textarea name="offer" />
+        </FormItem>
+      </Row>
       <div className="col-span-2 w-[45%]">
         <ZUploadImage name="postImage" label="Կցել նկար հայտարարության համար " />
       </div>
-    </div>
+    </Grid>
   );
 };
 

@@ -9,7 +9,7 @@ import { Form } from '@/components/form';
 // import Grid from '../components/flex/grid';
 // import Row from '../components/flex/row';
 import GradientLine from '../../gradientLines';
-import Contacts from '../components/Contacts';
+import Contacts from '../components/contacts';
 import Information from '../components/Information';
 import Teacher from '../components/Teacher';
 import Modal from '@/components/modal';
@@ -17,7 +17,7 @@ import CourseDetails from '../components/courseDetails';
 import { SubmitButton } from '../components/SubmitButton';
 // import { ZSelect } from '@/components/select';
 import { useState } from 'react';
-import AboutCourse from '../components/AboutCourse';
+import AboutCourse from '../components/about_course';
 
 export type FormItems = {
   courseName: string;

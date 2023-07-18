@@ -15,7 +15,7 @@ const Information = () => {
   const onAddField = (): void => append({});
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-14">
       <div className="flex flex-row gap-14 w-full mt-14 mb-14">
         <div className="flex flex-col gap-16 w-3/4">
           <FormItem label="Email/գրանցման հղում" name="email1">
