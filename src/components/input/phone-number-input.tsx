@@ -58,14 +58,15 @@ const PhoneNumberInput: React.FC = () => {
   return (
     <Input
       onChange={handlePhoneNumberChange}
-      register={register('phone', {
-        required: 'Phone number is required',
-        pattern: {
-          value: /^[+]\d{3} [(]\d{2}[)] \d{2}-\d{2}-\d{2}$/,
-          message: 'Invalid phone number format',
-        },
-      })}
-      errors={errors}
+      name='phone'
+      // register={register('phone', {
+      //   required: 'Phone number is required',
+      //   pattern: {
+      //     value: /^[+]\d{3} [(]\d{2}[)] \d{2}-\d{2}-\d{2}$/,
+      //     message: 'Invalid phone number format',
+      //   },
+      // })}
+      // errors={errors}
     />
   );
 };

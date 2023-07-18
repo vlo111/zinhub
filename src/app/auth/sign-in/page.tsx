@@ -2,9 +2,7 @@
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
-import { registerPasswordField } from './registers';
 import Button from '@/components/button';
-import { registerEmailField } from '@/helpers/registers';
 
 export type FormItems = {
   name: string;
@@ -18,9 +16,7 @@ export type FormItems = {
 
 const SignIn = () => {
   const {
-    register,
     handleSubmit,
-    formState: { errors },
   } = useForm<FormItems>();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -29,11 +25,11 @@ const SignIn = () => {
 
   return (
     <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-      <FormItem label="Email" error={errors.email?.message}>
-        <Input register={register('email', registerEmailField)} errors={errors} />
+      <FormItem label="Email" name="email">
+        <Input name="email" />
       </FormItem>
-      <FormItem label="Գաղտնաբառ" error={errors.password?.message}>
-        <Input type="password" register={register('password', registerPasswordField)} errors={errors} />
+      <FormItem label="Գաղտնաբառ" name="password">
+        <Input name="password" />
       </FormItem>
       <Button value="Մուտք գործել" />
     </form>

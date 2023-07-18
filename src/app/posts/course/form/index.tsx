@@ -1,13 +1,27 @@
 'use client';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import FormItem from '@/components/form/item';
-import { Input } from '@/components/input';
-import { registerAbout, registerAddress, registerValue } from './registers';
-import PhoneNumberInput from '@/components/input/phone-number-input';
-import Button from '@/components/button';
-import { registerEmailField } from '@/helpers/registers';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { Form } from '@/components/form';
+// import Button from '@/components/button';
+// import { Textarea } from '@/components/texarea';
+// import { Input } from '@/components/input';
+// import FormItem from '@/components/form/item';
+// import PhoneNumberInput from '@/components/input/phone-number-input';
+// import Grid from '../components/flex/grid';
+// import Row from '../components/flex/row';
+import GradientLine from '../../gradientLines';
+import Contacts from '../components/Contacts';
+import Information from '../components/Information';
+import Teacher from '../components/Teacher';
+import Modal from '@/components/modal';
+import CourseDetails from '../components/courseDetails';
+import { SubmitButton } from '../components/SubmitButton';
+// import { ZSelect } from '@/components/select';
+import { useState } from 'react';
+import AboutCourse from '../components/AboutCourse';
 
 export type FormItems = {
+  courseName: string;
+
   phone: string;
   email: string;
   address: string;
@@ -16,50 +30,41 @@ export type FormItems = {
 };
 
 export default ({ id }: { id?: string }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormItems>();
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
     console.log('Data - ', data);
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  // const options = [
+  //   { value: 'volvo', label: 'Volvo' },
+  //   { value: 'saab', label: 'Saab' },
+  //   { value: 'Saab', label: 'Mercedes' },
+  //   { value: 'audi', label: 'Audi' },
+  // ];
+
   return (
-    <form className="flex flex-col gap-12 m-auto w-1/2 xs:w-full sm:w-full" onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-row gap-20">
-        <div className="w-full">
-          <FormItem label="Հեռախոսահամար" error={errors.phone?.message}>
-            <PhoneNumberInput />
-          </FormItem>
-          <FormItem label="Email" error={errors.email?.message}>
-            <Input register={register('email', registerEmailField)} errors={errors} />
-          </FormItem>
-          <FormItem label="Գտնվելու վայրը" error={errors.address?.message}>
-            <Input register={register('address', registerAddress)} errors={errors} />
-          </FormItem>
-        </div>
-        <div className="w-full">
-          <FormItem label="Հեռախոսահամար" error={errors.phone?.message}>
-            <PhoneNumberInput />
-          </FormItem>
-          <FormItem label="Email" error={errors.email?.message}>
-            <Input register={register('email', registerEmailField)} errors={errors} />
-          </FormItem>
-          <FormItem label="Գտնվելու վայրը" error={errors.address?.message}>
-            <Input register={register('address', registerAddress)} errors={errors} />
-          </FormItem>
-        </div>
-      </div>
-      <FormItem label="Ընկերության մասին" error={errors.about?.message}>
-        <Input register={register('about', registerAbout)} errors={errors} />
-      </FormItem>
-      <FormItem label="Ընկերության արժեքները" error={errors.value?.message}>
-        <Input register={register('value', registerValue)} errors={errors} />
-      </FormItem>
-      <Button className="ml-auto" value="Հաստատել և շարունակել" />
-    </form>
+    <Form onSubmit={onSubmit}>
+      <GradientLine />
+      <AboutCourse/>
+      <Contacts />
+      <GradientLine />
+      <Information />
+      <GradientLine />
+      <Teacher />
+      <SubmitButton openModal={openModal} />
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <CourseDetails />
+      </Modal>
+    </Form>
   );
 };

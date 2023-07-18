@@ -1,8 +1,14 @@
 'use client';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { ReactNode } from 'react';
-export default ({ onSubmit, children }: { children: ReactNode; onSubmit: SubmitHandler<FieldValues> }) => (
-  <form className="flex flex-col" onSubmit={useForm().handleSubmit(onSubmit)}>
-    {children}
-  </form>
-);
+
+export const Form = ({ onSubmit, children }: { children: ReactNode; onSubmit: SubmitHandler<FieldValues> }) => {
+  const methods = useForm();
+  return (
+    <FormProvider {...methods}>
+      <form className="flex flex-col" onSubmit={methods.handleSubmit(onSubmit)}>
+        {children}
+      </form>
+    </FormProvider>
+  );
+};
