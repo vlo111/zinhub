@@ -1,56 +1,74 @@
-export const registerAddress = {
-  required: 'Գտնվելու վայրը պարտադիր է',
-  minLength: {
-    value: 3,
-    message: 'Գտնվելու վայրը պետք է ունենա առնվազն 3 նիշ',
-  },
-  maxLength: {
-    value: 100,
-    message: 'Գտնվելու վայրը պետք է ունենա առավելագույնը 100 նիշ',
-  },
+// registers.tsx
+type Register = {
+  required?: string;
+  minLength?: {
+    value: number;
+    message: string;
+  };
+  maxLength?: {
+    value: number;
+    message: string;
+  };
+  pattern?: {
+    value: RegExp;
+    message: string;
+  };
 };
 
-export const registerAbout = {
-  minLength: {
-    value: 3,
-    message: 'Ընկերության մասին դաշտը պետք է ունենա առնվազն 1 նիշ',
-  },
-  maxLength: {
-    value: 2048,
-    message: 'Ընկերության մասին դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
-  },
+export type Registers = {
+  [key: string]: Register;
 };
 
-export const registerValue = {
-  minLength: {
-    value: 3,
-    message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առնվազն 1 նիշ',
+export const registers: Registers = {
+  address: {
+    required: 'Գտնվելու վայրը պարտադիր է',
+    minLength: {
+      value: 3,
+      message: 'Գտնվելու վայրը պետք է ունենա առնվազն 3 նիշ',
+    },
+    maxLength: {
+      value: 100,
+      message: 'Գտնվելու վայրը պետք է ունենա առավելագույնը 100 նիշ',
+    },
   },
-  maxLength: {
-    value: 2048,
-    message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
+  about: {
+    minLength: {
+      value: 3,
+      message: 'Ընկերության մասին դաշտը պետք է ունենա առնվազն 1 նիշ',
+    },
+    maxLength: {
+      value: 2048,
+      message: 'Ընկերության մասին դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
+    },
   },
-};
-
-export const registerCountOfWorkers = {
-  pattern: {
-    value: /^[1-9]\d{0,3}$/,
-    message: 'Աշխատակիցների քանակը պետք է ունենա առավելագույնը 4 նիշ',
+  value: {
+    minLength: {
+      value: 3,
+      message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առնվազն 1 նիշ',
+    },
+    maxLength: {
+      value: 2048,
+      message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
+    },
   },
-};
-
-export const registerTypeField = {
-  required: 'Ընկերության տեսակը պարտադիր է',
-  minLength: {
-    value: 1,
-    message: 'Ընկերության տեսակը պետք է ունենա առնվազն 1 նիշ',
+  countOfWorkers: {
+    pattern: {
+      value: /^[1-9]\d{0,3}$/,
+      message: 'Աշխատակիցների քանակը պետք է ունենա առավելագույնը 4 նիշ',
+    },
   },
-  maxLength: {
-    value: 120,
-    message: 'Ընկերության տեսակը պետք է ունենա առավելագույնը 120 նիշ',
+  type: {
+    required: 'Ընկերության տեսակը պարտադիր է',
+    minLength: {
+      value: 1,
+      message: 'Ընկերության տեսակը պետք է ունենա առնվազն 1 նիշ',
+    },
+    maxLength: {
+      value: 120,
+      message: 'Ընկերության տեսակը պետք է ունենա առավելագույնը 120 նիշ',
+    },
   },
-};
-
-export const registerCreatedField = {
-  required: 'Ընկերության տեսակը պարտադիր է',
+  created: {
+    required: 'Ընկերության տեսակը պարտադիր է',
+  },
 };

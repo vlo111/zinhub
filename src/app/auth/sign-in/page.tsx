@@ -1,8 +1,9 @@
 'use client';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import Button from '@/components/button';
+import { Form } from '@/components/form';
 
 export type FormItems = {
   name: string;
@@ -15,14 +16,12 @@ export type FormItems = {
 };
 
 const SignIn = () => {
-  const { handleSubmit } = useForm<FormItems>();
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log('Data - ', data);
   };
 
   return (
-    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={onSubmit}>
       <FormItem label="Email" name="email">
         <Input name="email" />
       </FormItem>
@@ -30,7 +29,7 @@ const SignIn = () => {
         <Input name="password" />
       </FormItem>
       <Button value="Մուտք գործել" />
-    </form>
+    </Form>
   );
 };
 
