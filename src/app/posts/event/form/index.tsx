@@ -1,31 +1,18 @@
 'use client';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import PhoneNumberInput from '@/components/input/phone-number-input';
-import { registerEmailField } from '@/helpers/registers';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
+import { registerAbout, registerAddress, registerValue } from './registers';
+import PhoneNumberInput from '@/components/input/phone-number-input';
 import Button from '@/components/button';
-import {
-  registerAbout,
-  registerAddress,
-  registerCountOfWorkers,
-  registerCreatedField,
-  registerTypeField,
-  registerValue,
-} from '../form/registers';
-import Header from '../components/header';
+import { registerEmailField } from '@/helpers/registers';
 
 export type FormItems = {
   phone: string;
-  state: string;
-  type: string;
-  countOfWorkers: string;
   email: string;
   address: string;
   about: string;
   value: string;
-  created: string;
-  site: string;
 };
 
 export default ({ id }: { id?: string }) => {
@@ -37,13 +24,12 @@ export default ({ id }: { id?: string }) => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
-    console.log('Data - ', data, id);
+    console.log('Data - ', data);
   };
 
   return (
-    <form className="flex flex-col gap-8 m-auto mt-10 mb-16 w-[90%]" onSubmit={handleSubmit(onSubmit)}>
-      <Header />
-      <div className="flex flex-row gap-20 xs:flex-col xs:gap-4">
+    <form className="flex flex-col gap-12 m-auto w-1/2 xs:w-full sm:w-full" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex flex-row gap-20">
         <div className="w-full">
           <FormItem label="Հեռախոսահամար" error={errors.phone?.message}>
             <PhoneNumberInput />
@@ -51,25 +37,19 @@ export default ({ id }: { id?: string }) => {
           <FormItem label="Email" error={errors.email?.message}>
             <Input register={register('email', registerEmailField)} errors={errors} />
           </FormItem>
-          <FormItem label="Մարզ">
-            <Input register={register('state')} />
-          </FormItem>
           <FormItem label="Գտնվելու վայրը" error={errors.address?.message}>
             <Input register={register('address', registerAddress)} errors={errors} />
           </FormItem>
         </div>
         <div className="w-full">
-          <FormItem label="Աշխատակիցների քանակ" error={errors.countOfWorkers?.message}>
-            <Input type="number" register={register('countOfWorkers', registerCountOfWorkers)} errors={errors} />
+          <FormItem label="Հեռախոսահամար" error={errors.phone?.message}>
+            <PhoneNumberInput />
           </FormItem>
-          <FormItem label="Ընկերության տեսակը">
-            <Input register={register('type', registerTypeField)} />
+          <FormItem label="Email" error={errors.email?.message}>
+            <Input register={register('email', registerEmailField)} errors={errors} />
           </FormItem>
-          <FormItem label="Ստեղծման տարեթիվը">
-            <Input register={register('created', registerCreatedField)} />
-          </FormItem>
-          <FormItem label="Կայքը">
-            <Input register={register('site')} />
+          <FormItem label="Գտնվելու վայրը" error={errors.address?.message}>
+            <Input register={register('address', registerAddress)} errors={errors} />
           </FormItem>
         </div>
       </div>

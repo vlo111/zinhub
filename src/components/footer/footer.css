@@ -1,0 +1,3 @@
+.content {
+   @apply flex items-start flex-col text-white text-xs hover:border-none 
+}

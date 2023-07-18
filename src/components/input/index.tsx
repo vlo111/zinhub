@@ -1,19 +1,19 @@
 import React, { InputHTMLAttributes } from 'react';
-import { UseFormRegisterReturn, FieldErrors } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
-  register: UseFormRegisterReturn;
-  errors?: FieldErrors;
+  name: string;
 };
 
-export const Input: React.FC<Props> = ({ register, errors, ...rest }) => {
-  const error = errors?.[register.name]?.message;
+export const Input: React.FC<Props> = ({ name, ...props }) => {
+  const { register, formState: { errors } } = useFormContext();
+  const error = errors?.[name]?.message;
 
   return (
     <input
       className={`rounded-md border ${!!error ? 'border-error' : 'border-gray'} h-10 outline-0 p-2 w-full`}
-      {...register}
-      {...rest}
+      {...register(name)}
+      {...props}
     />
   );
 };
