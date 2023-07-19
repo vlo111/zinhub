@@ -1,3 +1,4 @@
+'use client';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
 import FormItems from './form-items';
