@@ -43,6 +43,7 @@ module.exports = {
       'light-gray': '#444444',
       'davy-gray': '#545B5B',
       'dark-gray': '#333333',
+      'light-blue': '#1f82ff0a',
     },
     fontSize: {
       xss: ['12px', { lineHeight: 'normal', letterSpacing: '0' }],

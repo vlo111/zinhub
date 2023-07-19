@@ -6,6 +6,8 @@ import { Form } from '@/components/form';
 import { useState } from 'react';
 import JobDetails from '../components/jobDetails';
 import JobDescription from '../components/jobDesctiption';
+import Modal from '@/components/modal';
+import JobPreview from '../components/job_details';
 
 export type FormItems = {
   phone: string;
@@ -43,9 +45,9 @@ export default ({ id }: { id?: string }) => {
       <GradientLine />
       <JobDescription/>
       <SubmitButton openModal={openModal} />
-      {/* <Modal isOpen={isOpen} onClose={closeModal}>
-        <CourseDetails />
-      </Modal> */}
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <JobPreview />
+      </Modal>
     </Form>
   );
 };

@@ -13,11 +13,11 @@ import Contacts from '../components/contacts';
 import Information from '../components/Information';
 import Teacher from '../components/Teacher';
 import Modal from '@/components/modal';
-import CourseDetails from '../components/courseDetails';
 import { SubmitButton } from '../components/SubmitButton';
 // import { ZSelect } from '@/components/select';
 import { useState } from 'react';
 import AboutCourse from '../components/about_course';
+import CourseDetails from '../components/course_details';
 
 export type FormItems = {
   courseName: string;
