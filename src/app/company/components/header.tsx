@@ -10,7 +10,7 @@ export default () => {
         <UploadBGSVG />
         <span className="font-bold">Ավելացնել ետնանկար</span>
       </div>
-      <Image src={CompanyURL} alt="Picture of the company" />
+      <Image className="xs:h-[200px]" src={CompanyURL} alt="Picture of the company" />
       <div className="flex items-end gap-4 absolute mt-[-6rem] ml-[3.75rem]">
         <div className="flex justify-center bg-white items-center w-[12rem] h-[12rem] rounded border-[0.5px] border-gray cursor-pointer">
           <UploadSVG />
