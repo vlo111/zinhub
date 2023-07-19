@@ -1,33 +1,13 @@
-// export const registerEmailField = {
-//   required: 'էլ․ հասցեն պարտադիր է',
-//   pattern: {
-//     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-//     message: 'Անվավեր էլ․ հասցե',
-//   },
-// };
-
-// registers.tsx
-type Register = {
-  required?: string;
-  minLength?: {
-    value: number;
-    message: string;
-  };
-  maxLength?: {
-    value: number;
-    message: string;
-  };
-  pattern?: {
-    value: RegExp;
-    message: string;
-  };
-};
-
-export type Registers = {
-  [key: string]: Register;
-};
+import { Registers } from '@/types/registers';
 
 export const registers: Registers = {
+  email: {
+    required: 'էլ․ հասցեն պարտադիր է',
+    pattern: {
+      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+      message: 'Անվավեր էլ․ հասցե',
+    },
+  },
   address: {
     required: 'Գտնվելու վայրը պարտադիր է',
     minLength: {
@@ -78,5 +58,38 @@ export const registers: Registers = {
   },
   created: {
     required: 'Ընկերության տեսակը պարտադիր է',
+  },
+  hvhh: {
+    required: 'ՀՎՀՀ դաշտը պարտադիր է',
+    pattern: {
+      value: /^\d{8}$/,
+      message: 'ՀՎՀՀ դաշտը պետք է լինի 8 թիվ',
+    },
+  },
+  companyName: {
+    required: 'Կազմակերպության անվանումը պարտադիր է',
+    minLength: {
+      value: 2,
+      message: 'Կազմակերպության անվանումը պետք է ունենա առնվազն 2 նիշ',
+    },
+    maxLength: {
+      value: 50,
+      message: 'Կազմակերպության անվանումը պետք է ունենա առավելագույնը 50 նիշ',
+    },
+  },
+  password: {
+    required: 'Գաղտնաբառը պարտադիր է',
+    minLength: {
+      value: 8,
+      message: 'Գաղտնաբառը պետք է լինի առնվազն 8 նիշ',
+    },
+    maxLength: {
+      value: 60,
+      message: 'Գաղտնաբառը չպետք է գերազանցի 60 նիշը',
+    },
+    pattern: {
+      value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\S]{8,}$/,
+      message: 'Գաղտնաբառը պետք է պարունակի առնվազն մեկ տառ, մեկ թիվ և չի կարող պարունակել բացատներ',
+    },
   },
 };
