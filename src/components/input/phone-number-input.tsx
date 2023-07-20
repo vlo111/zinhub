@@ -4,9 +4,9 @@ import { Input } from '@/components/input';
 
 const PhoneNumberInput: React.FC = () => {
   const {
-    register,
+    // register,
     setValue,
-    formState: { errors },
+    // formState: { errors },
   } = useFormContext();
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ const PhoneNumberInput: React.FC = () => {
   return (
     <Input
       onChange={handlePhoneNumberChange}
-      name='phone'
+      name="phone"
       // register={register('phone', {
       //   required: 'Phone number is required',
       //   pattern: {

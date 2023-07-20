@@ -1,7 +1,7 @@
 'use client';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import FormItems from './items';
 import { Form } from '@/components/form';
-import FormItems from './form-items';
 
 export default () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
