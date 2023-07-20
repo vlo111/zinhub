@@ -25,7 +25,6 @@ const JobDetails = () => {
         </FormItem>
         <ZSelect name="duration" label="Տևողությունը" options={options} />
         <ZSelect name="courseRegion" label="Մակարդակ" options={options} />
-
         <FormItem label="Հասցե" name="address">
           <Input name="address" />
         </FormItem>
@@ -33,7 +32,6 @@ const JobDetails = () => {
           <Input name="salary" />
         </FormItem>
         <ZSelect name="employment" label="Զբաղվածություն" options={options} />
-       
         <ZSelect name="region" label="Մարզ" options={options} />
         <FormItem label="Email/գրանցման հղում" name="email">
           <Input name="email" />
@@ -47,12 +45,3 @@ const JobDetails = () => {
 };
 
 export default JobDetails;
-
-{
-  /* <FormItem label="Email/գրանցման հղում" name="email1">
-            <Input name="email1" />
-          </FormItem>
-          <FormItem label="Ծրագիր" name="courseProgram">
-            <Textarea name="coursePzrogram" />
-          </FormItem> */
-}

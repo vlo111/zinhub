@@ -1,4 +1,4 @@
-import { ZUploadImage } from '@/app/posts/uploadimage';
+import { ZUploadImage } from '@/app/posts/components/uploadimage';
 import Button from '@/components/button';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
@@ -49,4 +49,3 @@ const Information = () => {
 };
 
 export default Information;
-// {/* <ZInput name="companyName00" label="Ի՞նչ եք սովորելու" /> */}

@@ -1,7 +1,7 @@
 'use client';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { SubmitButton } from '../../course/components/SubmitButton';
-import GradientLine from '../../gradientLines';
+import GradientLine from '../../components/gradientLines';
 import { Form } from '@/components/form';
 import { useState } from 'react';
 import JobDetails from '../components/jobDetails';

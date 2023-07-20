@@ -14,7 +14,7 @@ const FormItem: React.FC<Props> = ({ name, label, children }) => {
 
   return (
     <div className="mb-3">
-      <label className="block mb-1 text-item" htmlFor={label}>
+      <label className="block mb-1 text-item text-davy-gray" htmlFor={label}>
         {label}
       </label>
       {children}

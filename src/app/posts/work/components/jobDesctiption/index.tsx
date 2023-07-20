@@ -1,6 +1,6 @@
 import Grid from '@/app/posts/course/components/flex/grid';
 import Row from '@/app/posts/course/components/flex/row';
-import { ZUploadImage } from '@/app/posts/uploadimage';
+import { ZUploadImage } from '@/app/posts/components/uploadimage';
 import FormItem from '@/components/form/item';
 import { Textarea } from '@/components/texarea';
 

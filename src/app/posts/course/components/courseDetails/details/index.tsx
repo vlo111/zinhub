@@ -1,4 +1,4 @@
-import GradientLine from '@/app/posts/gradientLines';
+import GradientLine from '@/app/posts/components/gradientLines';
 import './index.css';
 import InfoItem from './item';
 

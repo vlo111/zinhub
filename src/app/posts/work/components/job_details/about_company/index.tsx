@@ -1,5 +1,5 @@
-import GradientLine from '@/app/posts/gradientLines';
-import InfoItem from '../items';
+import GradientLine from '@/app/posts/components/gradientLines';
+import InfoItem from '../../../../components/items';
 
 const AboutCompany = () => {
   return (

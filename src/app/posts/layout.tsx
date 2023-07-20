@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import PostType from './checks';
+import PostType from './components/checks';
 // import PostType from './checks';
 
 type Props = {
