@@ -14,6 +14,8 @@ const Information = () => {
 
   const onAddField = (): void => append({});
 
+  console.log(fields, 'fields');
+
   return (
     <div className="flex flex-col mb-14">
       <div className="flex flex-row gap-14 w-full mt-14 mb-14">
@@ -30,14 +32,18 @@ const Information = () => {
         </div>
       </div>
       {fields.map(({ id, name }, index) => {
-        console.log(id,'<--id', name, '<--name', index, '<--index');
-        
         return (
           <div key={id}>
             <FormItem label="Ի՞նչ եք սովորելու" name={`skills[${index}].name`}>
               <Input name={`skills[${index}].name`} />
             </FormItem>
-            <button type="button" onClick={() => remove(index)}>
+            <button
+              type="button"
+              onClick={() => {
+                console.log(index, 'index');
+                remove(index);
+              }}
+            >
               Remove
             </button>
           </div>

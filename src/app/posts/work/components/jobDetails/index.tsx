@@ -1,12 +1,13 @@
+import { DatePicker } from '@/components/datepicker';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
-import { ZSelect } from '@/components/select';
+import { Select } from '@/components/select';
 
 const JobDetails = () => {
   const options = [
     { value: 'volvo', label: 'Volvo' },
     { value: 'saab', label: 'Saab' },
-    { value: 'Saab', label: 'Mercedes' },
+    { value: 'Mercedes', label: 'Mercedes' },
     { value: 'audi', label: 'Audi' },
   ];
 
@@ -21,18 +22,26 @@ const JobDetails = () => {
       </div>
       <div className="grid gap-x-12 gap-y-4 grid-cols-3 w-full">
         <FormItem label="Դիմելու վերջնաժամկետ" name="deadline">
-          <Input name="deadline" />
+          <DatePicker name="deadline" />
         </FormItem>
-        <ZSelect name="duration" label="Տևողությունը" options={options} />
-        <ZSelect name="courseRegion" label="Մակարդակ" options={options} />
+        <FormItem label="Տևողությունը" name="courseSector">
+          <Select name="duration" options={options} />
+        </FormItem>
+        <FormItem name="courseRegion" label="Մակարդակ">
+          <Select name="courseRegion" options={options} />
+        </FormItem>
         <FormItem label="Հասցե" name="address">
           <Input name="address" />
         </FormItem>
         <FormItem label="Աշխատավարձ" name="salary">
           <Input name="salary" />
         </FormItem>
-        <ZSelect name="employment" label="Զբաղվածություն" options={options} />
-        <ZSelect name="region" label="Մարզ" options={options} />
+        <FormItem name="employment" label="Զբաղվածություն">
+          <Select name="employment" options={options} />
+        </FormItem>
+        <FormItem name="region" label="Մարզ">
+          <Select name="region" options={options} />
+        </FormItem>
         <FormItem label="Email/գրանցման հղում" name="email">
           <Input name="email" />
         </FormItem>

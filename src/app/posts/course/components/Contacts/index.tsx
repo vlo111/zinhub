@@ -1,6 +1,7 @@
+import { DatePicker } from '@/components/datepicker';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
-import { ZSelect } from '@/components/select';
+import { Select } from '@/components/select';
 
 const Contacts = () => {
   const options = [
@@ -14,7 +15,7 @@ const Contacts = () => {
     <div className="flex flex-col gap-4 w-full my-14 ">
       <div className="grid gap-x-12 gap-y-4 grid-cols-3 w-full">
         <FormItem label="Դասընթացի մեկնարկը" name="courseStart">
-          <Input name="courseStart" />
+          <DatePicker name="courseStart"/>
         </FormItem>
         <FormItem label="Դասընթացի Տևողությունը" name="courseDuration">
           <Input name="courseDuration" />
@@ -22,10 +23,18 @@ const Contacts = () => {
         <FormItem label="Դասաժամեր" name="classTimes">
           <Input name="classTimes" />
         </FormItem>
-        <ZSelect name="courseLevel" label="Դասընթացի Մակարդակ" options={options} />
-        <ZSelect name="courseLanguage" label="Դասընթացի անցկացման Լեզու" options={options} />
-        <ZSelect name="courseFormatr" label="Ձևաչափ" options={options} />
-        <ZSelect name="courseRegion" label="Մարզ" options={options} />
+        <FormItem label="Դասընթացի Մակարդակ" name="courseSector">
+          <Select name="courseLevel" options={options} />
+        </FormItem>
+        <FormItem label="Դասընթացի անցկացման Լեզու" name="courseSector">
+          <Select name="courseLanguage" options={options} />
+        </FormItem>
+        <FormItem name="courseFormatr" label="Ձևաչափ">
+          <Select name="courseFormatr" options={options} />
+        </FormItem>
+        <FormItem name="courseRegion" label="Մարզ">
+          <Select name="courseRegion" options={options} />
+        </FormItem>
         <FormItem label="Հասցե" name="courseAddress">
           <Input name="courseAddress" />
         </FormItem>
