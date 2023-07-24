@@ -13,7 +13,7 @@ const FormItem: React.FC<Props> = ({ name, label, children }) => {
   const error = errors?.[name]?.message as string;
 
   return (
-    <div className="mb-3">
+    <div className="mb-3 w-full ">
       <label className="block mb-1 text-item text-davy-gray" htmlFor={label}>
         {label}
       </label>

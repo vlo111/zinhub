@@ -12,8 +12,5 @@ export default ({ children }: Props) => {
       <PostType />
       {children}
     </div>
-    // <div className='px-20 pt-10 pb-14'>
-    //  <PostType />
-    // </div>
   );
 };
