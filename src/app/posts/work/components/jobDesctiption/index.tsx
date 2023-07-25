@@ -14,22 +14,22 @@ const JobDescription = () => {
       </Row>
       <Row>
         <FormItem label="Պարտականություններ" name="responsibilities">
-          <CKEditorComponent name={'responsibilities'}/>
+          <CKEditorComponent name='responsibilities'/>
         </FormItem>
       </Row>
       <Row>
         <FormItem label="Անհրաժեշտ հմտություններ" name="skills">
-          <CKEditorComponent name={'skills'}/>
+          <CKEditorComponent name='skills'/>
         </FormItem>
       </Row>
       <Row>
-        <FormItem label="Հավելյալ նշումներ" name="notes">
-          <Textarea name="notes" />
+        <FormItem label="Հավելյալ նշումներ" name="additionalNotes">
+          <Textarea name="additionalNotes" />
         </FormItem>
       </Row>
       <Row>
-        <FormItem label="Ինչ ենք մենք առաջարկում (Ընկերության մասին)" name="offer">
-          <Textarea name="offer" />
+        <FormItem label="Ինչ ենք մենք առաջարկում (Ընկերության մասին)" name="whatWeOffer">
+          <Textarea name="whatWeOffer" />
         </FormItem>
       </Row>
     </Grid>

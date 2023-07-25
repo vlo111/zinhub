@@ -24,7 +24,7 @@ export const Select: React.FC<ISelect> = ({ name, options }) => {
           <ReactSelect
             options={options}
             {...field}
-            onChange={(value) => field.onChange(value?.value)}
+            onChange={(value) => field.onChange(value)}
             onBlur={field.onBlur}
             value={options.find((option) => option.value === field.value)}
             instanceId={field.name}

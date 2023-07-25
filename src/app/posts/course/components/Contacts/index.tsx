@@ -14,32 +14,32 @@ const Contacts = () => {
   return (
     <div className="flex flex-col gap-4 w-full my-14 ">
       <div className="grid gap-x-12 gap-y-4 grid-cols-3 w-full">
-        <FormItem label="Դասընթացի մեկնարկը" name="courseStart">
-          <DatePicker name="courseStart"/>
+        <FormItem label="Դասընթացի մեկնարկը" name="startDate">
+          <DatePicker name="startDate" />
         </FormItem>
         <FormItem label="Դասընթացի Տևողությունը" name="courseDuration">
           <Input name="courseDuration" />
         </FormItem>
-        <FormItem label="Դասաժամեր" name="classTimes">
-          <Input name="classTimes" />
+        <FormItem label="Դասաժամեր" name="classHours">
+          <Input name="classHours" />
         </FormItem>
-        <FormItem label="Դասընթացի Մակարդակ" name="courseSector">
-          <Select name="courseLevel" options={options} />
+        <FormItem label="Դասընթացի Մակարդակ" name="levelId">
+          <Select name="levelId" options={options} />
         </FormItem>
-        <FormItem label="Դասընթացի անցկացման Լեզու" name="courseSector">
-          <Select name="courseLanguage" options={options} />
+        <FormItem label="Դասընթացի անցկացման Լեզու" name="languageId">
+          <Select name="languageId" options={options} />
         </FormItem>
-        <FormItem name="courseFormatr" label="Ձևաչափ">
-          <Select name="courseFormatr" options={options} />
+        <FormItem label="Ձևաչափ" name="formatId">
+          <Select name="formatId" options={options} />
         </FormItem>
-        <FormItem name="courseRegion" label="Մարզ">
-          <Select name="courseRegion" options={options} />
+        <FormItem label="Մարզ" name="regionId">
+          <Select name="regionId" options={options} />
         </FormItem>
-        <FormItem label="Հասցե" name="courseAddress">
-          <Input name="courseAddress" />
+        <FormItem label="Հասցե" name="location">
+          <Input name="location" />
         </FormItem>
-        <FormItem label="Հեռախոս" name="phoneNumber">
-          <Input name="phoneNumber" />
+        <FormItem label="Հեռախոս" name="phone">
+          <Input name="phone" />
         </FormItem>
       </div>
     </div>

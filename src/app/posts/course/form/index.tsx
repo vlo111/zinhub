@@ -22,6 +22,7 @@ export type FormItems = {
 };
 
 export default ({ id }: { id?: string }) => {
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
     console.log('Data - ', data);
@@ -40,7 +41,7 @@ export default ({ id }: { id?: string }) => {
   return (
     <Form onSubmit={onSubmit}>
       <GradientLine />
-      <AboutCourse/>
+      <AboutCourse />
       <Contacts />
       <GradientLine />
       <Information />

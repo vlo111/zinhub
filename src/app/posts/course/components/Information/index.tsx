@@ -1,4 +1,4 @@
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import Button from '@/components/button';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
@@ -8,10 +8,10 @@ import Grid from '../flex/grid';
 import { default as DeleteIcon } from '@/components/icons/delete.svg';
 
 const Information = () => {
-  const { control } = useForm();
+  const { control } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
-    name: 'skills',
+    name: 'topics',
   });
 
   const onAddField = (): void => append({});
@@ -20,13 +20,13 @@ const Information = () => {
     <div className="flex flex-col mb-14">
       <Grid>
         <Row>
-          <FormItem label="Email/գրանցման հղում" name="email1">
-            <Input name="email1" />
+          <FormItem label="Email/գրանցման հղում" name="registrationLink">
+            <Input name="registrationLink" />
           </FormItem>
         </Row>
         <Row>
-          <FormItem label="Ծրագիր" name="courseProgram">
-            <Textarea name="coursePzrogram" />
+          <FormItem label="Ծրագիր" name="program">
+            <Textarea name="program" />
           </FormItem>
         </Row>
       </Grid>
@@ -34,11 +34,11 @@ const Information = () => {
         {fields.map(({ id, name }, index) => {
           return (
             <div key={id} className="flex flex-row gap-2 w-full">
-              <FormItem label="Ի՞նչ եք սովորելու" name={`skills[${index}].name`}>
-                <Input name={`skills[${index}].name`} />
+              <FormItem label="Ի՞նչ եք սովորելու" name={`topics[${index}].name`}>
+                <Input name={`topics[${index}].name`} />
               </FormItem>
               <button
-                className="mt-3"
+                className="mt-[14px]"
                 type="button"
                 onClick={() => {
                   remove(index);
@@ -50,7 +50,9 @@ const Information = () => {
           );
         })}
       </div>
-      <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className='w-[20%]'/>
+      {fields.length <= 15 ? (
+        <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[20%]" />
+      ) : null}
     </div>
   );
 };

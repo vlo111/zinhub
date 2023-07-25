@@ -22,25 +22,22 @@ const AboutCourse = () => {
   return (
     <Grid>
       <Row>
-        <FormItem label="Դասընթացի Անվանումը" name="courseName">
-          <Input name="courseName" />
+        <FormItem label="Դասընթացի Անվանումը" name="title">
+          <Input name="title" />
         </FormItem>
       </Row>
       <Row>
-        <FormItem label="Ոլորտ" name="courseSector">
-          <Select name="courseSector" options={options} />
+        <FormItem label="Ոլորտ" name="filedStudyId">
+          <Select name="filedStudyId" options={options} />
         </FormItem>
       </Row>
       <Row>
-        <FormItem label="Դասընթացի մասին" name="aboutCourse">
-          <Textarea name="aboutCourse" />
+        <FormItem label="Դասընթացի մասին" name="description">
+          <Textarea name="description" />
         </FormItem>
       </Row>
     </Grid>
   );
 };
-<FormItem label="Nor LABEL" name="aboutCourse">
-  <Textarea name="aboutCourse" />
-</FormItem>;
 
 export default AboutCourse;
