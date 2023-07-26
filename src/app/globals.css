@@ -2,6 +2,12 @@
 @tailwind utilities;
 @tailwind components;
 
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
 @layer components {
   .btn {
     @apply rounded-md font-bold px-3 py-2
