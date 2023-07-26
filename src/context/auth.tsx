@@ -1,18 +1,12 @@
 'use client';
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import client from '@/api/client';
 import { AUTH_KEYS } from '@/helpers/constants';
-
-// Define the user object type
-interface User {
-  id: string;
-  name: string;
-}
+import { UserDetails } from '@/api/types';
 
 // Define the AuthContext data type
 interface AuthContextData {
-  user: User | null;
-  login: (username: string, password: string) => Promise<void>;
+  user: UserDetails | null;
+  login: ({ user, token }: { user: UserDetails; token: string }) => Promise<void>;
   logout: VoidFunction;
   isAuthenticated: boolean;
 }
@@ -36,31 +30,12 @@ interface AuthProviderProps {
 
 // Create the AuthProvider component
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserDetails | null>(null);
   const isAuthenticated = !!user;
 
   // Simulate login action (replace this with your actual login logic)
-  const login = async (username: string, password: string) => {
+  const login = async ({ user, token }: { user: UserDetails; token: string }) => {
     try {
-      // Your login logic here (e.g., API calls, authentication)
-      // Replace this with your actual authentication endpoint
-      // const response = await fetch('/api/login', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({ username, password }),
-      // });
-
-      const response: Response = await client.post('auth/sign-in', JSON.stringify({ username, password }));
-
-      if (!response.ok) {
-        throw new Error('Invalid credentials');
-      }
-
-      const data = await response.json();
-      const { token, user } = data;
-
       // Save the token in localStorage (you can also use cookies for more security)
       localStorage.setItem(AUTH_KEYS.TOKEN, token);
 
@@ -89,7 +64,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Replace this with your actual token validation logic
       // Example: validateToken(token).then((user) => setUser(user)).catch(logout);
       // For this example, let's assume the token is valid.
-      setUser({ id: 'user_id_here', name: 'user_name_here' });
+      setUser(null);
     }
   }, []);
 
