@@ -4,7 +4,7 @@ import './globals.css';
 import { Noto_Sans_Armenian } from 'next/font/google';
 import { Header } from '@/components/header';
 import { AuthProvider } from '@/providers/auth';
-import { QueryProvider } from '@/providers/query';
+// import { QueryProvider } from '@/providers/query';
 
 const armenianScript = Noto_Sans_Armenian({ subsets: ['armenian'] });
 
