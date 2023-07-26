@@ -17,7 +17,6 @@ export const Textarea: React.FC<Props> = ({ name, ...props }) => {
       id="message"
       rows={4}
       className={`rounded-md border ${!!error ? 'border-error' : 'border-gray'} outline-0 p-2 w-full`}
-      placeholder="Write your thoughts here..."
       {...register(name)}
       {...props}
     />
