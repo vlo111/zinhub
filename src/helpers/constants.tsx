@@ -7,5 +7,5 @@ export const PATHS = {
 export const navigationItems = [
   { label: 'Ուսուցում', href: '/' },
   { label: 'Աշխատանք', href: '/work' },
-  { label: 'Ընկերություններ', href: '/company' },
+  { label: 'Ընկերություններ', href: '/company/create' },
 ];
