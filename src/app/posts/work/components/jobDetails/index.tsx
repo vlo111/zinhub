@@ -1,3 +1,5 @@
+import Grid from '@/app/posts/course/components/flex/grid';
+import Row from '@/app/posts/course/components/flex/row';
 import { DatePicker } from '@/components/datepicker';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
@@ -13,19 +15,24 @@ const JobDetails = () => {
 
   return (
     <div className="flex flex-col gap-4 w-full my-14 ">
-      <div className="grid grid-cols-3 gap-4 gap-x-10 ">
-        <div className="col-span-2 ">
+      <Grid>
+        <Row>
           <FormItem label="Հայտարարության վերնագիրը" name="title">
             <Input name="title" />
           </FormItem>
-        </div>
-      </div>
-      <div className="grid gap-x-12 gap-y-4 grid-cols-3 w-full">
+        </Row>
+        <Row>
+          <FormItem name="filedStudyId" label="Ոլորտ">
+            <Select name="filedStudyId" options={options} />
+          </FormItem>
+        </Row>
+      </Grid>
+      <div className="grid gap-x-12 gap-y-4 grid-cols-3 w-full mt-8">
         <FormItem label="Դիմելու վերջնաժամկետ" name="applicationDeadline">
           <DatePicker name="applicationDeadline" />
         </FormItem>
         <FormItem label="Տևողությունը" name="duration">
-          <Select name="duration" options={options} />
+          <Input name="duration" />
         </FormItem>
         <FormItem name="levelId" label="Մակարդակ">
           <Select name="levelId" options={options} />
@@ -39,7 +46,7 @@ const JobDetails = () => {
         <FormItem name="employmentId" label="Զբաղվածություն">
           <Select name="employmentId" options={options} />
         </FormItem>
-        <FormItem name="regionId" label="Մարզ">
+        <FormItem name="regionId" label="Գտնվելու վայրը (Մարզ)">
           <Select name="regionId" options={options} />
         </FormItem>
         <FormItem label="Email/գրանցման հղում" name="registrationLink">

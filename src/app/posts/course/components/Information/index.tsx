@@ -6,15 +6,20 @@ import { Textarea } from '@/components/texarea';
 import Row from '../flex/row';
 import Grid from '../flex/grid';
 import { default as DeleteIcon } from '@/components/icons/delete.svg';
+import { useEffect } from 'react';
 
 const Information = () => {
-  const { control } = useFormContext();
+  const { control, setValue } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
     name: 'topics',
   });
 
   const onAddField = (): void => append({});
+
+  useEffect(() => {
+    setValue('topics', [{}]);
+  }, [setValue]);
 
   return (
     <div className="flex flex-col mb-14">
@@ -37,15 +42,17 @@ const Information = () => {
               <FormItem label="Ի՞նչ եք սովորելու" name={`topics[${index}].name`}>
                 <Input name={`topics[${index}].name`} />
               </FormItem>
-              <button
-                className="mt-[14px]"
-                type="button"
-                onClick={() => {
-                  remove(index);
-                }}
-              >
-                <DeleteIcon />
-              </button>
+              {
+               fields.length > 1 ? <button
+                  className="mt-[14px]"
+                  type="button"
+                  onClick={() => {
+                    remove(index);
+                  }}
+                >
+                  <DeleteIcon />
+                </button> : null
+              }
             </div>
           );
         })}

@@ -10,27 +10,19 @@ import { SubmitButton } from '../components/SubmitButton';
 import { useState } from 'react';
 import AboutCourse from '../components/about_course';
 import CourseDetails from '../components/course_details';
-
-export type FormItems = {
-  courseName: string;
-
-  phone: string;
-  email: string;
-  address: string;
-  about: string;
-  value: string;
-};
+import { OpenModalType } from '../types';
 
 export default ({ id }: { id?: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({});
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
     console.log('Data - ', data);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
+  const openModal: OpenModalType = (data) => {
+    setFormData({ ...data });
     setIsOpen(true);
   };
 
@@ -48,8 +40,8 @@ export default ({ id }: { id?: string }) => {
       <GradientLine />
       <Teacher />
       <SubmitButton openModal={openModal} />
-      <Modal isOpen={isOpen} onClose={closeModal}>
-        <CourseDetails />
+      <Modal isOpen={isOpen} onClose={closeModal} >
+        <CourseDetails formData={formData}/>
       </Modal>
     </Form>
   );

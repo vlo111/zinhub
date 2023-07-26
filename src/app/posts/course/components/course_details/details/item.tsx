@@ -1,7 +1,7 @@
 import './index.css';
 
 interface IInfoItem {
-  label: string;
+  label: string | undefined;
   value: string;
 }
 

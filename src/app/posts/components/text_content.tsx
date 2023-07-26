@@ -1,6 +1,6 @@
 interface ITextContent {
   title: string;
-  description: string;
+  description: string | undefined;
 }
 
 const TextContent: React.FC<ITextContent> = ({ title, description }) => {

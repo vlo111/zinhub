@@ -1,8 +1,9 @@
 import GradientLine from '@/app/posts/components/gradientLines';
 import './index.css';
 import InfoItem from './item';
+import { IDetails } from '../../../types';
 
-const Details = () => {
+const Details: React.FC<IDetails> = ({ formData }) => {
   return (
     <>
       <div className="flex-col w-full grid grid-cols-3 gap-4">
@@ -13,30 +14,25 @@ const Details = () => {
               className="w-52 h-52 rounded-md"
             />
             <div className="flex flex-col gap-4">
-              <p className="text-xl font-medium">UI/UX դիզայնի դասընթաց սկսնակների համար</p>
+              <p className="text-xl font-medium">{formData?.title}</p>
               <p className="text-xs font-normal first-letter text-primary-blue">Բիզնես Դեվելոփմենթ Գրուպ</p>
             </div>
           </div>
-          <p className="text-sm font-medium text-davy-gray">
-            UI/UX դիզայնի վերաբերյալ դասընթացների ընթացքում կծանոթանաք դիզայն համակարգերին (Design system) կծանոթանաք UI
-            (User Interface) էլեմենտներին UX-ի (User Experience) հիմունքներին՝ ձեռք բերելով «դիզայն մտածելակերպ»
-            Կկարողանաք կիրառել ձեռք բերված գիտելիքները պրակտիկ աշխատանքներում Դասընթացների ավարտին կունենաք նաև սեփական
-            պորտֆոլիո
-          </p>
+          <p className="text-sm font-medium text-davy-gray">{formData?.description}</p>
         </div>
         <div className="flex flex-col w-full p-8 bg-light-blue rounded-md gap-4">
           <p className="text-lg font-bold">Դասընթացի մանրամասները</p>
           <div className="flex flex-col gap-2">
-            <InfoItem label={'Տեսակը'} value={'լսարանային'} />
-            <InfoItem label={'Գտնվելու վայրը'} value={'Երևան'} />
-            <InfoItem label={'Հասցե'} value={'Արմենակ Արմենակյան 1'} />
-            <InfoItem label={'Հեռախոս'} value={'011 20 20 20'} />
+            <InfoItem label={'Ձևաչափը'} value={formData?.formatId?.label ?? ''} />
+            <InfoItem label={'Գտնվելու մարզը'} value={formData?.regionId?.label ?? ''} />
+            <InfoItem label={'Հասցե'} value={formData?.location ?? ''} />
+            <InfoItem label={'Հեռախոս'} value={formData?.phone ?? ''} />
             <GradientLine />
-            <InfoItem label={'Երբ'} value={'26․02․2023'} />
-            <InfoItem label={'Տևողությունը'} value={'2 ամիս'} />
-            <InfoItem label={'Դասաժամեր'} value={'6 ժամ / շաբաթ'} />
-            <InfoItem label={'Դասընթացի Մակարդակ'} value={'Սկսնակ'} />
-            <InfoItem label={'Դասընթացի Լեզու'} value={'Հայերեն'} />
+            <InfoItem label={'Դասընթացի մեկնարկը'} value={formData?.startDate ?? ''} />
+            <InfoItem label={'Տևողությունը'} value={formData?.courseDuration ?? ''} />
+            <InfoItem label={'Դասաժամեր'} value={formData?.classHours ?? ''} />
+            <InfoItem label={'Դասընթացի Մակարդակ'} value={formData?.levelId?.label ?? ''} />
+            <InfoItem label={'Դասընթացի Լեզու'} value={formData?.languageId?.label ?? ''} />
           </div>
         </div>
       </div>

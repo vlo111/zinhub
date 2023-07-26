@@ -36,7 +36,7 @@ const EventContent = () => {
         <FormItem label="Հասցե" name="location">
           <Input name="location" />
         </FormItem>
-        <FormItem name="regionId" label="Գտնվելու վայրը">
+        <FormItem name="regionId" label="Գտնվելու վայրը/Մարզ">
           <Select name="regionId" options={options} />
         </FormItem>
       </div>

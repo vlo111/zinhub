@@ -1,10 +1,9 @@
-import { BaseSyntheticEvent } from "react";
 
 export type Props = {
   type?: 'primary' | 'secondary';
   value: string;
   className?: string;
-  onClick?: (e?: BaseSyntheticEvent<object> | undefined) => Promise<void>;
+  onClick?: () => void;
 };
 
 export default ({ type = 'primary', value, className, ...props }: Props) => (

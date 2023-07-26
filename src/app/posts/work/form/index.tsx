@@ -1,6 +1,5 @@
 'use client';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { SubmitButton } from '../../course/components/SubmitButton';
 import GradientLine from '../../components/gradientLines';
 import { Form } from '@/components/form';
 import { useState } from 'react';
@@ -8,6 +7,8 @@ import JobDetails from '../components/jobDetails';
 import JobDescription from '../components/jobDesctiption';
 import Modal from '@/components/modal';
 import JobPreview from '../components/job_details';
+import { SubmitButton } from '../components/SubmitButton';
+import { OpenModalType } from '../types';
 
 export type FormItems = {
   phone: string;
@@ -19,13 +20,16 @@ export type FormItems = {
 
 export default ({ id }: { id?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFortData] = useState({});
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormItems>();
 
-  const openModal = () => {
+  const openModal: OpenModalType = (data) => {
+    setFortData({...data})
     setIsOpen(true);
   };
 
@@ -46,7 +50,7 @@ export default ({ id }: { id?: string }) => {
       <JobDescription/>
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal}>
-        <JobPreview />
+        <JobPreview formData={formData}/>
       </Modal>
     </Form>
   );
