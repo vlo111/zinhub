@@ -1,0 +1,7 @@
+.customStyleEditor .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar{
+    @apply rounded-tr-md rounded-tl-md border-t border-l border-r border-gray;
+}
+.customStyleEditor .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+    @apply rounded-bl-md rounded-br-md border border-gray;
+}
+

@@ -1,52 +1,60 @@
-import { ZUploadImage } from '@/app/posts/uploadimage';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import Button from '@/components/button';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import { Textarea } from '@/components/texarea';
-import { useFieldArray, useForm } from 'react-hook-form';
+import Row from '../flex/row';
+import Grid from '../flex/grid';
+import { default as DeleteIcon } from '@/components/icons/delete.svg';
 
 const Information = () => {
-  const { control } = useForm();
+  const { control } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
-    name: 'skills',
+    name: 'topics',
   });
 
   const onAddField = (): void => append({});
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-row gap-14 w-full mt-14 mb-14">
-        <div className="flex flex-col gap-16 w-3/4">
-          <FormItem label="Email/գրանցման հղում" name="email1">
-            <Input name="email1" />
+    <div className="flex flex-col mb-14">
+      <Grid>
+        <Row>
+          <FormItem label="Email/գրանցման հղում" name="registrationLink">
+            <Input name="registrationLink" />
           </FormItem>
-          <FormItem label="Ծրագիր" name="courseProgram">
-            <Textarea name="coursePzrogram" />
+        </Row>
+        <Row>
+          <FormItem label="Ծրագիր" name="program">
+            <Textarea name="program" />
           </FormItem>
-        </div>
-        <div className="flex flex-col gap-4 w-1/3">
-          <ZUploadImage name="companyName00" label="Ի՞նչ եք սովորելու" />
-        </div>
+        </Row>
+      </Grid>
+      <div className="grid gap-y-4 gap-x-12 grid-cols-3 w-full mb-6">
+        {fields.map(({ id, name }, index) => {
+          return (
+            <div key={id} className="flex flex-row gap-2 w-full">
+              <FormItem label="Ի՞նչ եք սովորելու" name={`topics[${index}].name`}>
+                <Input name={`topics[${index}].name`} />
+              </FormItem>
+              <button
+                className="mt-[14px]"
+                type="button"
+                onClick={() => {
+                  remove(index);
+                }}
+              >
+                <DeleteIcon />
+              </button>
+            </div>
+          );
+        })}
       </div>
-      {fields.map(({ id, name }, index) => {
-        console.log(id,'<--id', name, '<--name', index, '<--index');
-        
-        return (
-          <div key={id}>
-            <FormItem label="Ի՞նչ եք սովորելու" name={`skills[${index}].name`}>
-              <Input name={`skills[${index}].name`} />
-            </FormItem>
-            <button type="button" onClick={() => remove(index)}>
-              Remove
-            </button>
-          </div>
-        );
-      })}
-      <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} />
+      {fields.length <= 15 ? (
+        <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[20%]" />
+      ) : null}
     </div>
   );
 };
 
 export default Information;
-// {/* <ZInput name="companyName00" label="Ի՞նչ եք սովորելու" /> */}

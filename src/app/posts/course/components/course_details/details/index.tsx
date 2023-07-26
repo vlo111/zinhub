@@ -6,7 +6,7 @@ const Details = () => {
   return (
     <>
       <div className="flex-col w-full grid grid-cols-3 gap-4">
-        <div className="flex flex-col gap-4 col-span-2 ">
+        <div className="flex flex-col gap-6 col-span-2 ">
           <div className="flex flex-row gap-4">
             <img
               src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
@@ -24,7 +24,7 @@ const Details = () => {
             պորտֆոլիո
           </p>
         </div>
-        <div className="flex flex-col w-full p-8 bg-background-info gap-4">
+        <div className="flex flex-col w-full p-8 bg-light-blue rounded-md gap-4">
           <p className="text-lg font-bold">Դասընթացի մանրամասները</p>
           <div className="flex flex-col gap-2">
             <InfoItem label={'Տեսակը'} value={'լսարանային'} />
@@ -40,11 +40,6 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <img
-        className=" w-full h-72 rounded-xl"
-        src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-        alt="sar"
-      />
     </>
   );
 };

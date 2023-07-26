@@ -1,5 +1,5 @@
 import { Input } from '@/components/input';
-import { ZSelect } from '@/components/select';
+import { Select } from '@/components/select';
 import { Textarea } from '@/components/texarea';
 import { useForm } from 'react-hook-form';
 import { FormItems } from '../../form';
@@ -16,29 +16,28 @@ const AboutCourse = () => {
   const options = [
     { value: 'volvo', label: 'Volvo' },
     { value: 'saab', label: 'Saab' },
-    { value: 'Saab', label: 'Mercedes' },
+    { value: 'mercedes', label: 'Mercedes' },
     { value: 'audi', label: 'Audi' },
   ];
   return (
     <Grid>
       <Row>
-        <FormItem label="Դասընթացի Անվանումը" name="courseName">
-          <Input name="courseName" />
+        <FormItem label="Դասընթացի Անվանումը" name="title">
+          <Input name="title" />
         </FormItem>
       </Row>
       <Row>
-        <ZSelect name="courseSector" label="Ոլորտ" options={options} />
+        <FormItem label="Ոլորտ" name="filedStudyId">
+          <Select name="filedStudyId" options={options} />
+        </FormItem>
       </Row>
       <Row>
-        <FormItem label="Դասընթացի մասին" name="aboutCourse">
-          <Textarea name="aboutCourse" />
+        <FormItem label="Դասընթացի մասին" name="description">
+          <Textarea name="description" />
         </FormItem>
       </Row>
     </Grid>
   );
 };
-<FormItem label="Nor LABEL" name="aboutCourse">
-  <Textarea name="aboutCourse" />
-</FormItem>;
 
 export default AboutCourse;

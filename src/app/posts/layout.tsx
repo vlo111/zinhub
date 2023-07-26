@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import PostType from './components/checks';
 // import PostType from './checks';
 
 type Props = {
@@ -6,9 +7,10 @@ type Props = {
 };
 
 export default ({ children }: Props) => {
-  return (<>{children}</>
-    // <div className='px-20 pt-10 pb-14'>
-    //  <PostType />
-    // </div>
+  return (
+    <div className='p-20'>
+      <PostType />
+      {children}
+    </div>
   );
 };
