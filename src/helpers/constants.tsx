@@ -9,3 +9,8 @@ export const navigationItems = [
   { label: 'Աշխատանք', href: '/work' },
   { label: 'Ընկերություններ', href: '/company/create' },
 ];
+
+export const AUTH_KEYS = {
+  USER: 'zinhub-user',
+  TOKEN: 'zinhub-token',
+};
