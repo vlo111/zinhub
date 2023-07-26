@@ -19,3 +19,8 @@ export interface UserDetails {
   updated_at: string;
   username?: string;
 }
+
+export interface User {
+  user: UserDetails;
+  access_token?: string;
+}
