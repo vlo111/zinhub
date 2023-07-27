@@ -32,7 +32,7 @@ type ReturnData = {
 
 type Options = UseQueryOptions<AxiosResponse<ReturnData>, Error>;
 
-export const useGetCompany = (id?: string, options?: Options): { company: ICompanyForm; loading: boolean } => {
+export const useGetCompanyProfile = (id?: string, options?: Options): { company: ICompanyForm; loading: boolean } => {
   const urlNodes = GET_COMPANY.replace(':id', id || '');
   const result: UseQueryResult<AxiosResponse<ReturnData>, Error> = useQuery<AxiosResponse<ReturnData>, Error>(
     [urlNodes],

@@ -20,16 +20,16 @@ export const Items = () => {
           <FormItem label="Email" name="email">
             <Input name="email" />
           </FormItem>
-          <FormItem label="Մարզ" name="state">
-            <Select name="state" options={regions} />
+          <FormItem label="Մարզ" name="regionId">
+            <Select name="regionId" options={regions} />
           </FormItem>
-          <FormItem label="Գտնվելու վայրը" name="address">
-            <Input name="address" />
+          <FormItem label="Գտնվելու վայրը" name="location">
+            <Input name="location" />
           </FormItem>
         </div>
         <div className="w-full">
-          <FormItem label="Աշխատակիցների քանակ" name="countOfWorkers">
-            <Input name="countOfWorkers" />
+          <FormItem label="Աշխատակիցների քանակ" name="numberOfEmployees">
+            <Input name="numberOfEmployees" />
           </FormItem>
           <FormItem label="Ընկերության տեսակը" name="type">
             <Input name="type" />
@@ -37,16 +37,16 @@ export const Items = () => {
           <FormItem label="Ստեղծման տարեթիվը" name="creationDate">
             <DatePicker name="creationDate" />
           </FormItem>
-          <FormItem label="Կայքը" name="site">
-            <Input name="site" />
+          <FormItem label="Կայքը" name="website">
+            <Input name="website" />
           </FormItem>
         </div>
       </div>
-      <FormItem label="Ընկերության մասին" name="about">
-        <Textarea name="about" />
+      <FormItem label="Ընկերության մասին" name="description">
+        <Textarea name="description" />
       </FormItem>
-      <FormItem label="Ընկերության արժեքները" name="value">
-        <Textarea name="value" />
+      <FormItem label="Ընկերության արժեքները" name="companyValues">
+        <Textarea name="companyValues" />
       </FormItem>
       <Button className="ml-auto block" value="Հաստատել և շարունակել" />
     </div>

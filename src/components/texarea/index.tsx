@@ -17,7 +17,10 @@ export const Textarea: React.FC<Props> = ({ name, ...props }) => {
     <textarea
       id="message"
       rows={4}
-      className={`rounded-md border ${!!error ? 'border-error' : 'border-gray'} outline-0 p-2 w-full min-h-[100px]`}
+      className={`
+      focus:border-[1px] focus:${error ? 'border-error' : 'border-primary-blue'}
+      rounded-md border ${!!error ? 'border-error' : 'border-gray'} outline-0 p-2 w-full min-h-[100px]
+      `}
       {...register(name, registers[name])}
       {...props}
     />

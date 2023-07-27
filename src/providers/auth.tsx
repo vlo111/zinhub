@@ -9,10 +9,14 @@ export enum ROLE {
   ADMIN = 'ADMIN',
   COMPANY = 'COMPANY',
 }
+const initVoid = () => {
+  return;
+};
 
 interface AuthContextType {
   user: ICompanyUserDetails | null;
   role: ROLE;
+  updateUser: (name: string) => void;
   addUser: (user: ICompanyUserDetails | null) => void;
   login: (user: ICompanyUserDetails) => void;
   logout: () => void;
@@ -24,16 +28,11 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
+  updateUser: initVoid,
   role: ROLE.USER,
-  addUser: () => {
-    return;
-  },
-  login: () => {
-    return;
-  },
-  logout: () => {
-    return;
-  },
+  addUser: initVoid,
+  login: initVoid,
+  logout: initVoid,
 });
 
 const localStorageUser = localStorage.getItem(AUTH_KEYS.USER);
@@ -51,6 +50,13 @@ function AuthProvider(props: AuthProviderProps) {
     (user: ICompanyUserDetails | null) => {
       setItem(AUTH_KEYS.USER, JSON.stringify(user));
       setUser(user);
+    },
+    [setItem]
+  );
+
+  const updateUser = useCallback(
+    (name: string) => {
+      if (user) setUser({ ...user, name: name });
     },
     [setItem]
   );
@@ -80,7 +86,10 @@ function AuthProvider(props: AuthProviderProps) {
     removeUser();
   }, [removeUser]);
 
-  const providerValues = useMemo(() => ({ user, login, logout, addUser, role }), [addUser, login, logout, user, role]);
+  const providerValues = useMemo(
+    () => ({ user, login, logout, addUser, updateUser, role }),
+    [addUser, updateUser, login, logout, user, role]
+  );
 
   return <AuthContext.Provider value={providerValues} {...props} />;
 }
