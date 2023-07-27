@@ -2,21 +2,23 @@
 import { SubmitHandler } from 'react-hook-form';
 import FormItems from './items';
 import { Form } from '@/components/form';
+import { useSignUp } from '@/api/auth/use-sign-up';
 
 type FormData = {
-  name: string;
+  taxAccount: string;
+  companyName: string;
+  phone: string;
   email: string;
   password: string;
   repeatPassword: string;
-  customField: string;
-  companyName: string;
-  phone: string;
 };
 
 export default () => {
+  const { mutate } = useSignUp();
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     // eslint-disable-next-line no-console
     console.log('Data - ', data);
+    mutate(data);
   };
 
   return (
