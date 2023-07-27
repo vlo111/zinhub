@@ -6,6 +6,7 @@ import { ICompanyUserDetails } from '@/api/types';
 
 interface AuthContextType {
   user: ICompanyUserDetails | null;
+  isAuth: boolean; // New variable to indicate authentication status
   addUser: (user: ICompanyUserDetails | null) => void;
   login: (user: ICompanyUserDetails) => void;
   logout: () => void;
@@ -17,6 +18,7 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
+  isAuth: false,
   addUser: () => {
     return;
   },
@@ -34,6 +36,9 @@ function AuthProvider(props: AuthProviderProps) {
   const [user, setUser] = useState<ICompanyUserDetails | null>(() =>
     localStorageUser ? JSON.parse(localStorageUser) : null
   );
+
+  const isAuth = !!user;
+
   const { setItem, removeItem } = useLocalStorage();
 
   const addUser = useCallback(
@@ -69,7 +74,10 @@ function AuthProvider(props: AuthProviderProps) {
     removeUser();
   }, [removeUser]);
 
-  const providerValues = useMemo(() => ({ user, login, logout, addUser }), [addUser, login, logout, user]);
+  const providerValues = useMemo(
+    () => ({ user, login, logout, addUser, isAuth }),
+    [addUser, login, logout, user, isAuth]
+  );
 
   return <AuthContext.Provider value={providerValues} {...props} />;
 }

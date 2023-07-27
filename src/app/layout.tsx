@@ -5,6 +5,7 @@ import { Noto_Sans_Armenian } from 'next/font/google';
 import { Header } from '@/components/header';
 import { AuthProvider } from '@/providers/auth';
 import { QueryProvider } from '@/providers/query';
+import { Footer } from '@/components/footer';
 
 const armenianScript = Noto_Sans_Armenian({ subsets: ['armenian'] });
 
@@ -20,6 +21,7 @@ export default ({ children }: { children: ReactNode }) => (
         <QueryProvider>
           <Header />
           {children}
+          <Footer />
         </QueryProvider>
       </AuthProvider>
     </body>
