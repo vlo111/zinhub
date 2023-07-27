@@ -4,9 +4,15 @@ import { AUTH_KEYS } from '@/helpers/constants';
 import { useLocalStorage } from '@/hooks/use-local-storage';
 import { ICompanyUserDetails } from '@/api/types';
 
+export enum ROLE {
+  USER = 'USER',
+  ADMIN = 'ADMIN',
+  COMPANY = 'COMPANY',
+}
+
 interface AuthContextType {
   user: ICompanyUserDetails | null;
-  isAuth: boolean; // New variable to indicate authentication status
+  role: ROLE;
   addUser: (user: ICompanyUserDetails | null) => void;
   login: (user: ICompanyUserDetails) => void;
   logout: () => void;
@@ -18,7 +24,7 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  isAuth: false,
+  role: ROLE.USER,
   addUser: () => {
     return;
   },
@@ -37,7 +43,7 @@ function AuthProvider(props: AuthProviderProps) {
     localStorageUser ? JSON.parse(localStorageUser) : null
   );
 
-  const isAuth = !!user;
+  const role: ROLE = !!user ? (user?.role === ROLE.COMPANY ? ROLE.COMPANY : ROLE.ADMIN) : ROLE.USER;
 
   const { setItem, removeItem } = useLocalStorage();
 
@@ -74,10 +80,7 @@ function AuthProvider(props: AuthProviderProps) {
     removeUser();
   }, [removeUser]);
 
-  const providerValues = useMemo(
-    () => ({ user, login, logout, addUser, isAuth }),
-    [addUser, login, logout, user, isAuth]
-  );
+  const providerValues = useMemo(() => ({ user, login, logout, addUser, role }), [addUser, login, logout, user, role]);
 
   return <AuthContext.Provider value={providerValues} {...props} />;
 }
