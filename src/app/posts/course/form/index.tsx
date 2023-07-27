@@ -2,7 +2,6 @@
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
 import GradientLine from '../../components/gradientLines';
-import Contacts from '../components/contacts';
 import Information from '../components/Information';
 import Teacher from '../components/Teacher';
 import Modal from '@/components/modal';
@@ -10,6 +9,7 @@ import { SubmitButton } from '../components/SubmitButton';
 import { useState } from 'react';
 import AboutCourse from '../components/about_course';
 import CourseDetails from '../components/course_details';
+import Contacts from '../components/Contacts';
 
 export type FormItems = {
   courseName: string;
@@ -21,8 +21,7 @@ export type FormItems = {
   value: string;
 };
 
-export default ({ id }: { id?: string }) => {
-
+export default () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
     console.log('Data - ', data);

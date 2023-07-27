@@ -20,7 +20,7 @@ const Teacher = () => {
   return (
     <div className="grid grid-cols-3 gap-4 gap-x-10 mt-14">
       <div className="col-span-2 ">
-        {fields.map(({ id, name }, index) => {
+        {fields.map(({ id }, index) => {
           return (
             <div key={id} className="flex flex-row gap-2 w-full">
               <FormItem label="Ընտրել դասավանդող" name={`teacherId[${index}]`}>

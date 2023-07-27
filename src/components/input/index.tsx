@@ -16,7 +16,9 @@ export const Input: React.FC<Props> = ({ name, validation, ...props }) => {
 
   return (
     <input
-      className={`rounded-md border ${error ? 'border-error' : 'border-gray'} h-10 outline-0 p-2 w-full`}
+      className={`rounded-md border ${
+        error ? 'border-error' : 'border-gray'
+      } h-10 outline-0 p-2 w-full focus:border-[2px] focus:${error ? 'border-error' : 'border-primary-blue'}`}
       {...(validation || register(name, registers[name]))}
       {...props}
     />

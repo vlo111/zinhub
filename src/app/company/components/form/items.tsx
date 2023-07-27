@@ -4,6 +4,10 @@ import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import Button from '@/components/button';
 import { Textarea } from '@/components/texarea';
+import React from 'react';
+import { regions } from '@/helpers/constants';
+import { Select } from '@/components/select';
+import { DatePicker } from '@/components/datepicker';
 
 export const Items = () => {
   return (
@@ -17,7 +21,7 @@ export const Items = () => {
             <Input name="email" />
           </FormItem>
           <FormItem label="Մարզ" name="state">
-            <Input name="state" />
+            <Select name="state" options={regions} />
           </FormItem>
           <FormItem label="Գտնվելու վայրը" name="address">
             <Input name="address" />
@@ -30,8 +34,8 @@ export const Items = () => {
           <FormItem label="Ընկերության տեսակը" name="type">
             <Input name="type" />
           </FormItem>
-          <FormItem label="Ստեղծման տարեթիվը" name="created">
-            <Input name="created" />
+          <FormItem label="Ստեղծման տարեթիվը" name="creationDate">
+            <DatePicker name="creationDate" />
           </FormItem>
           <FormItem label="Կայքը" name="site">
             <Input name="site" />
