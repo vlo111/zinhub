@@ -2,7 +2,6 @@
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
 import GradientLine from '../../components/gradientLines';
-import Contacts from '../components/contacts';
 import Information from '../components/Information';
 import Teacher from '../components/Teacher';
 import Modal from '@/components/modal';
@@ -14,6 +13,7 @@ import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
 import CreatePosts from '@/api/create_post';
 import { IOptions } from '@/types/global';
+import Contacts from '../components/contacts';
 
 export default ({ id }: { id?: string }) => {
   const [isOpen, setIsOpen] = useState(false);

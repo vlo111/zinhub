@@ -1,7 +1,7 @@
 'use client';
-import { default as Logo } from '@/components/icons/logo.svg';
 import './footer.css';
 import { ReactNode } from 'react';
+import { Logo } from '@/components/logo';
 
 export const FooterLayout = ({ children }: { children?: ReactNode }) => {
   return (

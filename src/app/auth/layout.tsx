@@ -6,7 +6,7 @@ import { useAuth } from '@/providers/auth';
 import { redirect } from 'next/navigation';
 
 export default ({ children }: { children: ReactNode }) => {
-  if (useAuth().isAuth) redirect('/');
+  if (useAuth().user !== null) redirect('/');
   return (
     <div>
       <aside className="fixed xs:scale-150">
