@@ -1,26 +1,14 @@
-export type SignInForm = {
+export interface ISignInForm {
   email: string;
   password: string;
-};
-
-export interface User {
-  user: UserDetails;
-  access_token?: string;
 }
 
-export interface UserDetails {
-  avatar?: string;
-  bio?: string;
-  created_at: string;
+export interface ICompanyUserDetails {
   email: string;
-  first_name: string;
   id: string;
-  last_name: string;
-  updated_at: string;
-  username?: string;
-}
-
-export interface User {
-  user: UserDetails;
-  access_token?: string;
+  name: string;
+  permission: string;
+  role: string;
+  status: string;
+  accessToken?: string;
 }

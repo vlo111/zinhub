@@ -19,7 +19,7 @@ export default () => {
         <Input name="companyName" />
       </FormItem>
       <FormItem label="ՀՎՀՀ" name="hvhh">
-        <Input name="hvhh" />
+        <Input name="taxAccount" />
       </FormItem>
       <FormItem label="Email" name="email">
         <Input name="email" />

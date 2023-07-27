@@ -2,7 +2,7 @@
 import { SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
 import FormItems from './form-items';
-// import { useSignIn } from '@/api/auth/use-sign-in';
+import { useSignIn } from '@/api/auth/use-sign-in';
 
 type FormData = {
   email: string;
@@ -10,9 +10,9 @@ type FormData = {
 };
 
 export default () => {
-  // const { mutate } = useSignIn();
+  const { mutate } = useSignIn();
 
-  const onSubmit: SubmitHandler<FormData> = async (values) => ''; //mutate(values);
+  const onSubmit: SubmitHandler<FormData> = async (values) => mutate(values);
 
   return (
     <Form<FormData> onSubmit={onSubmit}>

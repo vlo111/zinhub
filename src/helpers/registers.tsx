@@ -59,7 +59,7 @@ export const registers: Registers = {
   created: {
     required: 'Ընկերության տեսակը պարտադիր է',
   },
-  hvhh: {
+  taxAccount: {
     required: 'ՀՎՀՀ դաշտը պարտադիր է',
     pattern: {
       value: /^\d{8}$/,

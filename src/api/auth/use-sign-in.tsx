@@ -1,21 +1,22 @@
 import { useMutation } from '@tanstack/react-query';
 import client from '../client';
 import { useAuth } from '@/providers/auth';
-import { SignInForm, User } from '@/api/types';
+import { ICompanyUserDetails, ISignInForm } from '@/api/types';
 
-const url = 'auth/sign-in';
+const url = 'api/auth/sign-in';
+
+type ReturnData = {
+  result: ICompanyUserDetails;
+};
 
 export const useSignIn = () => {
   const { login } = useAuth();
-  const mutation = useMutation<User, unknown, SignInForm>({
-    mutationFn: (values: SignInForm) => {
+  const mutation = useMutation<ReturnData, unknown, ISignInForm>({
+    mutationFn: (values) => {
       return client.post(url, values);
     },
-    onSuccess: (data) => {
-      login({
-        user: data.user,
-        access_token: data.access_token,
-      });
+    onSuccess: ({ result }) => {
+      login(result);
     },
   });
   return mutation;
