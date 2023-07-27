@@ -9,6 +9,8 @@ import Modal from '@/components/modal';
 import JobPreview from '../components/job_details';
 import { SubmitButton } from '../components/SubmitButton';
 import { OpenModalType } from '../types';
+import GetSelectData from '@/api/statics';
+import CreatePosts from '@/api/create_post';
 
 export type FormItems = {
   phone: string;
@@ -23,13 +25,25 @@ export default ({ id }: { id?: string }) => {
   const [formData, setFortData] = useState({});
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormItems>();
+    data: { result },
+    isLoading,
+  } = GetSelectData('WORK');
+
+  const { mutate: createPostsFn } = CreatePosts({
+    onSuccess: (options: any) => {
+      console.log(options, 'onSuccess');
+    },
+    onError: (e: {
+      response: {
+        data: { message: string };
+      };
+    }) => {
+      console.log(e?.response?.data?.message, 'onError');
+    },
+  });
 
   const openModal: OpenModalType = (data) => {
-    setFortData({...data})
+    setFortData({ ...data });
     setIsOpen(true);
   };
 
@@ -40,17 +54,29 @@ export default ({ id }: { id?: string }) => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
     console.log('Data - ', data);
+    createPostsFn({
+      type: 'WORK',
+      statementData: {
+        ...data,
+        employmentId: data.employmentId?.value,
+        filedWorkId: data.filedWorkId?.value,
+        levelId: data.levelId?.value,
+        regionId: data.regionId?.value,
+        responsibilities: { html: data.responsibilities },
+        skills: { html: data.skills },
+      },
+    });
   };
 
   return (
     <Form onSubmit={onSubmit}>
       <GradientLine />
-      <JobDetails/>
+      <JobDetails options={result} />
       <GradientLine />
-      <JobDescription/>
+      <JobDescription />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal}>
-        <JobPreview formData={formData}/>
+        <JobPreview formData={formData} />
       </Modal>
     </Form>
   );

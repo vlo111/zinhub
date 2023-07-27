@@ -1,16 +1,7 @@
+import { ISelect } from '@/types/global';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import ReactSelect from 'react-select';
-
-export interface IOption {
-  value: string;
-  label: string;
-}
-
-export interface ISelect {
-  name: string;
-  options: IOption[];
-}
 
 export const Select: React.FC<ISelect> = ({ name, options }) => {
   const { control } = useFormContext();
@@ -26,7 +17,7 @@ export const Select: React.FC<ISelect> = ({ name, options }) => {
             {...field}
             onChange={(value) => field.onChange(value)}
             onBlur={field.onBlur}
-            value={options.find((option) => option.value === field.value)}
+            value={options?.find((option) => option?.value === field?.value)}
             instanceId={field.name}
           />
         )}

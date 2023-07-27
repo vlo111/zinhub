@@ -4,15 +4,9 @@ import { DatePicker } from '@/components/datepicker';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import { Select } from '@/components/select';
+import { IJobDetails } from '../../types';
 
-const JobDetails = () => {
-  const options = [
-    { value: 'volvo', label: 'Volvo' },
-    { value: 'saab', label: 'Saab' },
-    { value: 'Mercedes', label: 'Mercedes' },
-    { value: 'audi', label: 'Audi' },
-  ];
-
+const JobDetails: React.FC<IJobDetails> = ({ options }) => {
   return (
     <div className="flex flex-col gap-4 w-full my-14 ">
       <Grid>
@@ -22,8 +16,8 @@ const JobDetails = () => {
           </FormItem>
         </Row>
         <Row>
-          <FormItem name="filedStudyId" label="Ոլորտ">
-            <Select name="filedStudyId" options={options} />
+          <FormItem name="filedWorkId" label="Ոլորտ">
+            <Select name="filedWorkId" options={options?.filedOfWork} />
           </FormItem>
         </Row>
       </Grid>
@@ -35,7 +29,7 @@ const JobDetails = () => {
           <Input name="duration" />
         </FormItem>
         <FormItem name="levelId" label="Մակարդակ">
-          <Select name="levelId" options={options} />
+          <Select name="levelId" options={options?.workLevel} />
         </FormItem>
         <FormItem label="Հասցե" name="location">
           <Input name="location" />
@@ -44,10 +38,10 @@ const JobDetails = () => {
           <Input name="salary" />
         </FormItem>
         <FormItem name="employmentId" label="Զբաղվածություն">
-          <Select name="employmentId" options={options} />
+          <Select name="employmentId" options={options?.employment} />
         </FormItem>
         <FormItem name="regionId" label="Գտնվելու վայրը (Մարզ)">
-          <Select name="regionId" options={options} />
+          <Select name="regionId" options={options?.regions} />
         </FormItem>
         <FormItem label="Email/գրանցման հղում" name="registrationLink">
           <Input name="registrationLink" />

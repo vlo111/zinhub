@@ -1,7 +1,4 @@
-interface IOptions {
-  value: string;
-  label: string;
-}
+import { IOptions } from '@/types/global';
 
 export interface IFormData {
   additionalNotes?: string;
@@ -21,13 +18,22 @@ export interface IFormData {
   whatWeOffer?: string;
 }
 export interface IJobPreview {
-    formData: IFormData
+  formData: IFormData;
 }
 export interface IAboutCompany {
-    formData: IFormData
+  formData: IFormData;
 }
 export interface IJobContent {
-    formData: IFormData
+  formData: IFormData;
+}
+export interface IJobDetailsSelectData {
+  employment: IOptions[];
+  filedOfWork: IOptions[];
+  regions: IOptions[];
+  workLevel: IOptions[];
+}
+export interface IJobDetails {
+  options: IJobDetailsSelectData;
 }
 
 export type OpenModalType = (data: IFormData) => void;

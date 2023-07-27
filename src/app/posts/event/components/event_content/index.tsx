@@ -1,3 +1,4 @@
+import GetSelectData from '@/api/statics';
 import Grid from '@/app/posts/course/components/flex/grid';
 import Row from '@/app/posts/course/components/flex/row';
 import { DatePicker } from '@/components/datepicker';
@@ -7,12 +8,9 @@ import { Select } from '@/components/select';
 import { Textarea } from '@/components/texarea';
 
 const EventContent = () => {
-  const options = [
-    { value: 'volvo', label: 'Volvo' },
-    { value: 'saab', label: 'Saab' },
-    { value: 'Saab', label: 'Mercedes' },
-    { value: 'audi', label: 'Audi' },
-  ];
+  const {
+    data: { result },
+  } = GetSelectData('WORK');
 
   return (
     <div className="flex flex-col gap-4 w-full ">
@@ -37,7 +35,7 @@ const EventContent = () => {
           <Input name="location" />
         </FormItem>
         <FormItem name="regionId" label="Գտնվելու վայրը/Մարզ">
-          <Select name="regionId" options={options} />
+          <Select name="regionId" options={result?.regions} />
         </FormItem>
       </div>
       <div className="grid grid-cols-3 gap-4 gap-x-10">

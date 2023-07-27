@@ -11,14 +11,51 @@ import { useState } from 'react';
 import AboutCourse from '../components/about_course';
 import CourseDetails from '../components/course_details';
 import { OpenModalType } from '../types';
+import GetSelectData from '@/api/statics';
+import CreatePosts from '@/api/create_post';
+import { IOptions } from '@/types/global';
 
 export default ({ id }: { id?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({});
 
+  const {
+    data: { result },
+    isLoading,
+  } = GetSelectData('COURSE');
+
+  const { mutate: createPostsFn } = CreatePosts({
+    onSuccess: (options: any) => {
+      console.log(options, 'onSuccess');
+    },
+    onError: (e: {
+      response: {
+        data: { message: string };
+      };
+    }) => {
+      console.log(e?.response?.data?.message, 'onError');
+    },
+  });
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
-    console.log('Data - ', data);
+    console.log(data, 'Data - ');
+    const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
+    const topicsArr = data.topics.map((item: { name: string }) => item.name);
+
+    createPostsFn({
+      type: 'TRINING',
+      statementData: {
+        ...data,
+        filedStudyId: data.filedStudyId?.value,
+        formatId: data.formatId?.value,
+        languageId: data.languageId?.value,
+        levelId: data.levelId?.value,
+        regionId: data.regionId?.value,
+        teacherIds: teachersArr,
+        topics: topicsArr,
+      },
+    });
   };
 
   const openModal: OpenModalType = (data) => {
@@ -33,15 +70,15 @@ export default ({ id }: { id?: string }) => {
   return (
     <Form onSubmit={onSubmit}>
       <GradientLine />
-      <AboutCourse />
-      <Contacts />
+      <AboutCourse options={result?.filedOfStudy} />
+      <Contacts options={result} />
       <GradientLine />
       <Information />
       <GradientLine />
-      <Teacher />
+      <Teacher options={result?.teachers} />
       <SubmitButton openModal={openModal} />
-      <Modal isOpen={isOpen} onClose={closeModal} >
-        <CourseDetails formData={formData}/>
+      <Modal isOpen={isOpen} onClose={closeModal}>
+        <CourseDetails formData={formData} />
       </Modal>
     </Form>
   );

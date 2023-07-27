@@ -1,11 +1,8 @@
+import { IOptions } from "@/types/global"
+
 interface IDynamicForm {
     name: string
 }
-interface IOptions {
-    value: string
-    label: string
-}
-
 export interface IFormData {
     classHours?: string
     courseDuration?: string
@@ -36,6 +33,22 @@ export interface IProgram{
 }
 export interface IDetails{
     formData: IFormData
+}
+export interface IAboutCourse{
+    options: IOptions[]
+}
+export interface IContactsSelectData{
+    courseFormat: IOptions[]
+    courseLanguage: IOptions[]
+    courseLevel: IOptions[]
+    regions: IOptions[]
+    teachers: IOptions[]
+}
+export interface IContacts{
+    options: IContactsSelectData
+}
+export interface ITeacher{
+    options: IOptions[]
 }
 
 export type OpenModalType = (data: IFormData) => void
