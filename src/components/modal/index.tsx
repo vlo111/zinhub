@@ -11,7 +11,9 @@ const Modal: React.FC<IModal> = ({ isOpen, onClose, children }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
+    const handleOutsideClick: EventListenerOrEventListenerObject = (event) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       if (modalRef.current && !modalRef?.current?.contains(event.target)) {
         onClose();
       }

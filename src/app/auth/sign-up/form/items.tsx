@@ -5,18 +5,8 @@ import { Input } from '@/components/input';
 import PhoneNumberInput from '@/components/input/phone-number-input';
 import Button from '@/components/button';
 
-export type FormItems = {
-  name: string;
-  email: string;
-  password: string;
-  repeatPassword: string;
-  customField: string;
-  companyName: string;
-  phone: string;
-};
-
 export default () => {
-  const { register, getValues } = useFormContext<FormItems>();
+  const { register, getValues } = useFormContext();
 
   const registerRepeatPasswordField = {
     required: 'Կրկնել գաղտնաբառը պարտադիր է',
