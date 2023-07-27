@@ -1,7 +1,7 @@
-import { default as Logo } from '@/components/icons/logo.svg';
 import { Navigation } from './components/navigation';
 import { navigationItems } from '@/helpers/constants';
-import Link from 'next/link';
+import { Logo } from '@/components/logo';
+import { LoginButtons } from '@/components/button/login-buttons';
 
 export const UserHeader = () => {
   return (
@@ -10,14 +10,7 @@ export const UserHeader = () => {
       <div className="flex gap-8 items-center">
         <Navigation navigationItems={navigationItems} />
       </div>
-      <div className="flex gap-8 items-center">
-        <Link href="/auth/sign-in" className="btn btn--primary">
-          Մուտք
-        </Link>
-        <Link href="/auth/sign-up" className="btn btn--secondary">
-          Գրանցել ընկերություն
-        </Link>
-      </div>
+      <LoginButtons />
     </header>
   );
 };

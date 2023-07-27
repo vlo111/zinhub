@@ -1,6 +1,6 @@
-import { default as Logo } from '@/components/icons/logo.svg';
 import { useAuth } from '@/providers/auth';
 import { HeaderProfile } from '@/components/header/components/Header-profile';
+import { Logo } from '@/components/logo';
 
 export const CompanyHeader = () => {
   const { user } = useAuth();

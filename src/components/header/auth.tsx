@@ -1,6 +1,6 @@
-import { default as Logo } from '@/components/icons/logo.svg';
 import { usePathname, useRouter } from 'next/navigation';
 import { PATHS } from '@/helpers/constants';
+import { Logo } from '@/components/logo';
 
 export const AuthHeader = () => {
   const pathname = usePathname();

@@ -21,7 +21,7 @@ export const registers: Registers = {
   },
   about: {
     minLength: {
-      value: 3,
+      value: 1,
       message: 'Ընկերության մասին դաշտը պետք է ունենա առնվազն 1 նիշ',
     },
     maxLength: {
@@ -31,7 +31,7 @@ export const registers: Registers = {
   },
   value: {
     minLength: {
-      value: 3,
+      value: 1,
       message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առնվազն 1 նիշ',
     },
     maxLength: {

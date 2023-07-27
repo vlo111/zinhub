@@ -6,6 +6,7 @@ import { Input } from '@/components/input';
 import Button from '@/components/button';
 import Header from '../components/header';
 import { Form } from '@/components/form';
+import { Textarea } from '@/components/texarea';
 
 export default ({ id }: { id?: string }) => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -49,12 +50,12 @@ export default ({ id }: { id?: string }) => {
             </div>
           </div>
           <FormItem label="Ընկերության մասին" name="about">
-            <Input name="about" />
+            <Textarea name="about" />
           </FormItem>
           <FormItem label="Ընկերության արժեքները" name="value">
-            <Input name="value" />
+            <Textarea name="value" />
           </FormItem>
-          <Button className="ml-auto" value="Հաստատել և շարունակել" />
+          <Button className="ml-auto block" value="Հաստատել և շարունակել" />
         </div>
       </Form>
     </div>
