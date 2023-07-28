@@ -19,7 +19,7 @@ export const registers: Registers = {
       message: 'Գտնվելու վայրը պետք է ունենա առավելագույնը 100 նիշ',
     },
   },
-  about: {
+  description: {
     minLength: {
       value: 1,
       message: 'Ընկերության մասին դաշտը պետք է ունենա առնվազն 1 նիշ',
@@ -29,7 +29,7 @@ export const registers: Registers = {
       message: 'Ընկերության մասին դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
     },
   },
-  value: {
+  companyValues: {
     minLength: {
       value: 1,
       message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առնվազն 1 նիշ',
@@ -39,7 +39,7 @@ export const registers: Registers = {
       message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
     },
   },
-  countOfWorkers: {
+  numberOfEmployees: {
     pattern: {
       value: /^[1-9]\d{0,3}$/,
       message: 'Աշխատակիցների քանակը պետք է ունենա առավելագույնը 4 նիշ',
@@ -90,6 +90,12 @@ export const registers: Registers = {
     pattern: {
       value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\S]{8,}$/,
       message: 'Գաղտնաբառը պետք է պարունակի առնվազն մեկ տառ, մեկ թիվ և չի կարող պարունակել բացատներ',
+    },
+  },
+  website: {
+    pattern: {
+      value: /^(?:(?:https?|ftp):\/\/)?(?:www\.)?([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(?:\/[^\s]*)?$/,
+      message: 'Անվավեր կայքի հասցե ',
     },
   },
 };

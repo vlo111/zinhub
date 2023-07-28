@@ -3,6 +3,8 @@ import { SubmitHandler } from 'react-hook-form';
 import FormItems from './items';
 import { Form } from '@/components/form';
 import { useSignUp } from '@/api/auth/use-sign-up';
+import { useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
 
 type FormData = {
   taxAccount: string;
@@ -14,11 +16,11 @@ type FormData = {
 };
 
 export default () => {
+  const router = useRouter();
   const { mutate } = useSignUp();
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    // eslint-disable-next-line no-console
-    console.log('Data - ', data);
     mutate(data);
+    router.push(PATHS.SIGN_IN);
   };
 
   return (

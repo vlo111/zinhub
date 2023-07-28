@@ -39,6 +39,7 @@ module.exports = {
         light: '#1F82FF88',
         DEFAULT: '#1F82FF',
         dark: '#1F82FF',
+        light_hover: 'rgba(31, 130, 255, 0.02)',
       },
       'light-gray': '#444444',
       'davy-gray': '#545B5B',

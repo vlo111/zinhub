@@ -2,6 +2,8 @@ export const PATHS = {
   ROOT: '/',
   SIGN_IN: '/auth/sign-in',
   SIGN_UP: '/auth/sign-up',
+  COMPANY_PROFILE: '/company/profile',
+  COMPANY_PROFILE_PREVIEW: '/company/profile/preview',
 };
 
 export const navigationItems = [

@@ -12,6 +12,7 @@ interface ICompany {
   description: string;
   phone: string;
   photo: string;
+  type: string;
   backgroundPhoto: string;
   taxAccount: number;
   numberOfEmployees: number;
@@ -19,7 +20,7 @@ interface ICompany {
   location: string;
   website: string;
   companyValues: string;
-  region: string;
+  regionId: string;
   user: {
     emailVerified: boolean;
     email: string;
@@ -32,7 +33,7 @@ type ReturnData = {
 
 type Options = UseQueryOptions<AxiosResponse<ReturnData>, Error>;
 
-export const useGetCompany = (id?: string, options?: Options): { company: ICompanyForm; loading: boolean } => {
+export const useGetCompanyProfile = (id?: string, options?: Options): { company: ICompanyForm; loading: boolean } => {
   const urlNodes = GET_COMPANY.replace(':id', id || '');
   const result: UseQueryResult<AxiosResponse<ReturnData>, Error> = useQuery<AxiosResponse<ReturnData>, Error>(
     [urlNodes],
@@ -46,7 +47,7 @@ export const useGetCompany = (id?: string, options?: Options): { company: ICompa
   const returnData: ICompanyForm = {
     ...company,
     email: company?.user.email,
-    regionId: company?.region,
+    regionId: company?.regionId,
     phone: formatPhoneNumber(company?.phone),
   };
 
