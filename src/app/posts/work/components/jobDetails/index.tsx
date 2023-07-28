@@ -8,11 +8,11 @@ import { IJobDetails } from '../../types';
 
 const JobDetails: React.FC<IJobDetails> = ({ options }) => {
   return (
-    <div className="flex flex-col gap-4 w-full my-14 ">
+    <div className="flex flex-col gap-4 w-full mb-14 ">
       <Grid>
         <Row>
-          <FormItem label="Հայտարարության վերնագիրը" name="title">
-            <Input name="title" />
+          <FormItem label="Հայտարարության վերնագիրը" name="companyName">
+            <Input name="companyName" />
           </FormItem>
         </Row>
         <Row>
@@ -35,7 +35,7 @@ const JobDetails: React.FC<IJobDetails> = ({ options }) => {
           <Input name="location" />
         </FormItem>
         <FormItem label="Աշխատավարձ" name="salary">
-          <Input name="salary" />
+          <Input name="salary" type='number'/>
         </FormItem>
         <FormItem name="employmentId" label="Զբաղվածություն">
           <Select name="employmentId" options={options?.employment} />
@@ -43,8 +43,8 @@ const JobDetails: React.FC<IJobDetails> = ({ options }) => {
         <FormItem name="regionId" label="Գտնվելու վայրը (Մարզ)">
           <Select name="regionId" options={options?.regions} />
         </FormItem>
-        <FormItem label="Email/գրանցման հղում" name="registrationLink">
-          <Input name="registrationLink" />
+        <FormItem label="Email/գրանցման հղում" name="email">
+          <Input name="email" />
         </FormItem>
         <FormItem label="Հեռախոս" name="phone">
           <Input name="phone" />

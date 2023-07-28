@@ -21,20 +21,19 @@ export default ({ id }: { id?: string }) => {
 
   const {
     data: { result },
-    isLoading,
-  } = GetSelectData('COURSE');
+  } = GetSelectData('TRINING');
 
   const { mutate: createPostsFn } = CreatePosts({
-    onSuccess: (options: any) => {
-      console.log(options, 'onSuccess');
-    },
-    onError: (e: {
-      response: {
-        data: { message: string };
-      };
-    }) => {
-      console.log(e?.response?.data?.message, 'onError');
-    },
+    // onSuccess: (options: any) => {
+    //   console.log(options, 'onSuccess');
+    // },
+    // onError: (e: {
+    //   response: {
+    //     data: { message: string };
+    //   };
+    // }) => {
+    //   console.log(e?.response?.data?.message, 'onError');
+    // },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -46,7 +45,15 @@ export default ({ id }: { id?: string }) => {
     createPostsFn({
       type: 'TRINING',
       statementData: {
-        ...data,
+        title: data.courseName,
+        classHours: data.classHours,
+        duration: data.duration,
+        location: data.location,
+        phone: data.phone,
+        program: data.program,
+        startDate: data.startDate,
+        description: data.courseDescription,
+        registrationLink: data.email,
         filedStudyId: data.filedStudyId?.value,
         formatId: data.formatId?.value,
         languageId: data.languageId?.value,

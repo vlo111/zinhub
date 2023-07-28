@@ -11,7 +11,7 @@ export interface IFormData {
   regionId?: IOptions;
   registrationLink?: string;
   startDate?: string;
-  title?: string;
+  courseName?: string;
   whatWeOffer?: string;
 }
 

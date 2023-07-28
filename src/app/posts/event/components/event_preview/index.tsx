@@ -16,7 +16,7 @@ const EventPreview: React.FC<{ formData: IFormData }> = ({ formData }) => {
               className="w-52 h-52 rounded-md"
             />
             <div className="flex flex-col gap-4">
-              <p className="text-xl font-medium">{formData?.title}</p>
+              <p className="text-xl font-medium">{formData?.courseName}</p>
               <p className="text-xs font-normal first-letter text-primary-blue">
                 Հոգեսոցիալական կարգավորման կենտրոն Psychosocial Recovery Center
               </p>

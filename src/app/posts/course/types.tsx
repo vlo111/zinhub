@@ -6,7 +6,7 @@ interface IDynamicForm {
 export interface IFormData {
     classHours?: string
     courseDuration?: string
-    description?: string
+    courseDescription?: string
     filedStudyId?: IOptions
     formatId?: IOptions
     languageId?: IOptions
@@ -15,9 +15,9 @@ export interface IFormData {
     phone?: string
     program?: string | undefined
     regionId?: IOptions
-    registrationLink?: string
+    email?: string
     startDate?: string
-    title?: string
+    courseName?: string
     teacherId?:IOptions[]
     topics?: IDynamicForm[]
 }

@@ -17,8 +17,8 @@ const AboutCourse: React.FC<IAboutCourse> = ({ options }) => {
   return (
     <Grid>
       <Row>
-        <FormItem label="Դասընթացի Անվանումը" name="title">
-          <Input name="title" />
+        <FormItem label="Դասընթացի Անվանումը" name="courseName">
+          <Input name="courseName" />
         </FormItem>
       </Row>
       <Row>
@@ -27,8 +27,8 @@ const AboutCourse: React.FC<IAboutCourse> = ({ options }) => {
         </FormItem>
       </Row>
       <Row>
-        <FormItem label="Դասընթացի մասին" name="description">
-          <Textarea name="description" />
+        <FormItem label="Դասընթացի մասին" name="courseDescription">
+          <Textarea name="courseDescription" />
         </FormItem>
       </Row>
     </Grid>

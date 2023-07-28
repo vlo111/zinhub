@@ -5,7 +5,7 @@ import TextContentByHtml from '@/app/posts/components/text_content_by_html';
 const JobContent: React.FC<IJobContent> = ({ formData }) => {
   return (
     <div className="flex flex-col gap-14 w-[60%]">
-      <TextContent title="Աշխատանքի նկարագրություն" description={formData?.description} />
+      <TextContent title="Աշխատանքի նկարագրություն" description={formData?.workDescription} />
       <TextContentByHtml title="Պարտականություններ" description={formData?.responsibilities} />
       <TextContentByHtml title="Անհրաժեշտ հմտություններ" description={formData?.skills} />
       <TextContent title="Հավելյալ նշումներ" description={formData?.additionalNotes} />

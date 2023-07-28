@@ -1,0 +1,11 @@
+  .text_content_by_html {
+    @apply text-sm font-medium text-davy-gray;
+  }
+
+  ol, ul {
+    list-style: disc !important;
+    padding-left: 20px;
+  }
+  ol, ul ::marker {
+    color: #1F82FF !important;
+  }

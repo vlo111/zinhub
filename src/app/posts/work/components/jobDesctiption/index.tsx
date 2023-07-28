@@ -8,8 +8,8 @@ const JobDescription = () => {
   return (
     <Grid>
       <Row>
-        <FormItem label="Աշխատանքի նկարագրություն" name="description">
-          <Textarea name="description" />
+        <FormItem label="Աշխատանքի նկարագրություն" name="workDescription">
+          <Textarea name="workDescription" />
         </FormItem>
       </Row>
       <Row>

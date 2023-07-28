@@ -14,11 +14,11 @@ const Details: React.FC<IDetails> = ({ formData }) => {
               className="w-52 h-52 rounded-md"
             />
             <div className="flex flex-col gap-4">
-              <p className="text-xl font-medium">{formData?.title}</p>
+              <p className="text-xl font-medium">{formData?.courseName}</p>
               <p className="text-xs font-normal first-letter text-primary-blue">Բիզնես Դեվելոփմենթ Գրուպ</p>
             </div>
           </div>
-          <p className="text-sm font-medium text-davy-gray">{formData?.description}</p>
+          <p className="text-sm font-medium text-davy-gray">{formData?.courseDescription}</p>
         </div>
         <div className="flex flex-col w-full p-8 bg-light-blue rounded-md gap-4">
           <p className="text-lg font-bold">Դասընթացի մանրամասները</p>

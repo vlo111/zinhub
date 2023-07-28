@@ -1,0 +1,6 @@
+.reactSelect .css-13cymwt-control {
+    @apply !border !border-gray
+}
+.error .css-13cymwt-control {
+    @apply !border !border-error
+}

@@ -3,7 +3,7 @@ import { IOptions } from '@/types/global';
 export interface IFormData {
   additionalNotes?: string;
   applicationDeadline?: string;
-  description?: string;
+  workDescription?: string;
   duration?: string;
   employmentId?: IOptions;
   levelId?: IOptions;

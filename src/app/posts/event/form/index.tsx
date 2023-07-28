@@ -47,11 +47,17 @@ export default ({ id }: { id?: string }) => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // eslint-disable-next-line no-console
     console.log('Data - ', data);
-
     createPostsFn({
       type: 'OTHER',
       statementData: {
-        ...data,
+        title: data.courseName,
+        applicationDeadline: data.applicationDeadline,
+        location: data.location,
+        registrationLink: data.email,
+        startDate: data.startDate,
+        phone: data.phone,
+        program: data.program,
+        whatWeOffer: data.whatWeOffer,
         regionId: data.regionId?.value,
       },
     });

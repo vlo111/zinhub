@@ -16,8 +16,8 @@ const EventContent = () => {
     <div className="flex flex-col gap-4 w-full ">
       <Grid>
         <Row>
-          <FormItem label="Հայտարարության վերնագիրը" name="title">
-            <Input name="title" />
+          <FormItem label="Հայտարարության վերնագիրը" name="courseName">
+            <Input name="courseName" />
           </FormItem>
         </Row>
       </Grid>
@@ -40,8 +40,8 @@ const EventContent = () => {
       </div>
       <div className="grid grid-cols-3 gap-4 gap-x-10">
         <Row>
-          <FormItem label="Email/գրանցման հղում" name="registrationLink">
-            <Input name="registrationLink" />
+          <FormItem label="Email/գրանցման հղում" name="email">
+            <Input name="email" />
           </FormItem>
         </Row>
         <Row>

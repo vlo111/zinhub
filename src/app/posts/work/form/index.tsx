@@ -1,5 +1,5 @@
 'use client';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
 import GradientLine from '../../components/gradientLines';
 import { Form } from '@/components/form';
 import { useState } from 'react';
@@ -26,20 +26,19 @@ export default ({ id }: { id?: string }) => {
 
   const {
     data: { result },
-    isLoading,
   } = GetSelectData('WORK');
 
   const { mutate: createPostsFn } = CreatePosts({
-    onSuccess: (options: any) => {
-      console.log(options, 'onSuccess');
-    },
-    onError: (e: {
-      response: {
-        data: { message: string };
-      };
-    }) => {
-      console.log(e?.response?.data?.message, 'onError');
-    },
+    // onSuccess: (options: any) => {
+    //   console.log(options, 'onSuccess');
+    // },
+    // onError: (e: {
+    //   response: {
+    //     data: { message: string };
+    //   };
+    // }) => {
+    //   console.log(e?.response?.data?.message, 'onError');
+    // },
   });
 
   const openModal: OpenModalType = (data) => {
@@ -57,7 +56,16 @@ export default ({ id }: { id?: string }) => {
     createPostsFn({
       type: 'WORK',
       statementData: {
-        ...data,
+        title: data.companyName,
+        whatWeOffer: data.whatWeOffer,
+        salary: data.salary,
+        location: data.location,
+        additionalNotes: data.additionalNotes,
+        applicationDeadline: data.applicationDeadline,
+        duration: data.duration,
+        registrationLink: data.email,
+        phone: data.phone,
+        description: data.workDescription,
         employmentId: data.employmentId?.value,
         filedWorkId: data.filedWorkId?.value,
         levelId: data.levelId?.value,

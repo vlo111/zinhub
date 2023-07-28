@@ -25,8 +25,8 @@ const Information = () => {
     <div className="flex flex-col mb-14">
       <Grid>
         <Row>
-          <FormItem label="Email/գրանցման հղում" name="registrationLink">
-            <Input name="registrationLink" />
+          <FormItem label="Email/գրանցման հղում" name="email">
+            <Input name="email" />
           </FormItem>
         </Row>
         <Row>
@@ -36,7 +36,7 @@ const Information = () => {
         </Row>
       </Grid>
       <div className="grid gap-y-4 gap-x-12 grid-cols-3 w-full mb-6">
-        {fields.map(({ id, name }, index) => {
+        {fields.map(({ id }, index) => {
           return (
             <div key={id} className="flex flex-row gap-2 w-full">
               <FormItem label="Ի՞նչ եք սովորելու" name={`topics[${index}].name`}>
