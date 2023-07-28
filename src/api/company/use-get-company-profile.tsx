@@ -12,6 +12,7 @@ interface ICompany {
   description: string;
   phone: string;
   photo: string;
+  type: string;
   backgroundPhoto: string;
   taxAccount: number;
   numberOfEmployees: number;
@@ -19,7 +20,7 @@ interface ICompany {
   location: string;
   website: string;
   companyValues: string;
-  region: string;
+  regionId: string;
   user: {
     emailVerified: boolean;
     email: string;
@@ -46,7 +47,7 @@ export const useGetCompanyProfile = (id?: string, options?: Options): { company:
   const returnData: ICompanyForm = {
     ...company,
     email: company?.user.email,
-    regionId: company?.region,
+    regionId: company?.regionId,
     phone: formatPhoneNumber(company?.phone),
   };
 

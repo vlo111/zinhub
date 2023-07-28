@@ -1,6 +1,7 @@
 export interface ICompanyForm {
   id?: string;
   name: string;
+  type: string;
   description: string;
   regionId:
     | {
