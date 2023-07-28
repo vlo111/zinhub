@@ -12,7 +12,7 @@ export interface ICompanyForm {
   phone: string;
   backgroundPhoto: string;
   numberOfEmployees: number;
-  creationDate: string;
+  creationDate: string | Date;
   location: string;
   email: string;
   website: string;

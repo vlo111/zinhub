@@ -11,11 +11,13 @@ export const useUpdateCompanyProfile = () => {
 
   const mutation = useMutation<{ data: ICompanyForm }, unknown, ICompanyForm>({
     mutationFn: (values: ICompanyForm) => {
-      const { name, description, type, regionId, numberOfEmployees, location, website, companyValues } = values;
+      const { name, description, type, creationDate, regionId, numberOfEmployees, location, website, companyValues } =
+        values;
 
       return client.put(url.replace(':id', values.id ?? ''), {
         name: name ?? undefined,
         type: type ?? undefined,
+        creationDate,
         description: description ?? undefined,
         regionId: typeof regionId !== 'string' ? regionId?.value ?? undefined : regionId,
         numberOfEmployees: Number(numberOfEmployees) ?? 0,
