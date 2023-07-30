@@ -26,7 +26,7 @@ export const useUpdateCompanyProfile = () => {
         companyValues: companyValues ?? undefined,
       });
     },
-    onSuccess: () => router.push(PATHS.COMPANY_PROFILE_PREVIEW),
+    onSuccess: () => router.push(PATHS.COMPANY_PROFILE),
   });
   return mutation;
 };

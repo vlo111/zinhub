@@ -3,7 +3,8 @@ export const PATHS = {
   SIGN_IN: '/auth/sign-in',
   SIGN_UP: '/auth/sign-up',
   COMPANY_PROFILE: '/company/profile',
-  COMPANY_PROFILE_PREVIEW: '/company/profile/preview',
+  COMPANY_POSTS: '/company/posts',
+  COMPANY_PROFILE_UPDATE: '/company/profile/update',
 };
 
 export const navigationItems = [
