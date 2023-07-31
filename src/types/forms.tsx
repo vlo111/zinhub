@@ -18,6 +18,6 @@ export interface ICompanyForm {
   email: string;
   website: string;
   companyValues: string;
-  backgroundPhotoItem: FileList;
-  photoItem: FileList;
+  backgroundPhotoItem?: FileList;
+  photoItem?: FileList;
 }
