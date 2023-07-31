@@ -1,10 +1,9 @@
-import CompanyURL from '../icons/company-default-bg.png';
 import { default as UploadBGSVG } from '../icons/company-upload-bg.svg';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { FileInput } from '@/components/input/file-input';
 
-export const BackgroundImage = () => {
+export const BackgroundImage = ({ defaultImage }: { defaultImage: string }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -34,7 +33,13 @@ export const BackgroundImage = () => {
           alt="Background Profile Preview"
         />
       ) : (
-        <Image className="xs:h-[200px] max-h-[400px]" src={CompanyURL} alt="Picture of the company" />
+        <Image
+          width={900}
+          height={400}
+          className="xs:h-[200px] max-h-[400px] w-full object-cover"
+          src={defaultImage}
+          alt="Picture of the company"
+        />
       )}
     </>
   );

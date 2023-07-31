@@ -3,7 +3,7 @@ import { default as UploadSVG } from '../icons/company-upload.svg';
 import Image from 'next/image';
 import { FileInput } from '@/components/input/file-input';
 
-export const ProfileImage = () => {
+export const ProfileImage = ({ defaultImage }: { defaultImage: string | null }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -28,6 +28,14 @@ export const ProfileImage = () => {
               height={192}
               className="object-cover h-[192px] rounded"
               src={preview}
+              alt="Profile Preview"
+            />
+          ) : defaultImage ? (
+            <Image
+              width={192}
+              height={192}
+              className="object-cover h-[192px] rounded"
+              src={defaultImage}
               alt="Profile Preview"
             />
           ) : (

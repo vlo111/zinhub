@@ -11,13 +11,15 @@ const CompanyProfileForm: React.FC<{ defaultValues: ICompanyForm }> = ({ default
   const { mutate: updateProfile } = useUpdateCompanyProfile();
 
   const onSubmit: SubmitHandler<ICompanyForm> = async (data) => {
-    const backgroundPhoto = await convertFileToBase64(data.backgroundPhotoItem[0]);
-    const photo = await convertFileToBase64(data.photoItem[0]);
+    const convertToBase64 = async (file?: File) => (file ? await convertFileToBase64(file) : undefined);
+
+    const backgroundPhoto = await convertToBase64(data.backgroundPhotoItem?.[0]);
+    const photo = await convertToBase64(data.photoItem?.[0]);
 
     updateProfile({
       ...data,
-      backgroundPhoto: backgroundPhoto ?? data.backgroundPhoto,
-      photo: photo ?? data.photo,
+      backgroundPhoto,
+      photo,
     });
   };
 

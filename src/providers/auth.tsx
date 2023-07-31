@@ -7,6 +7,7 @@ import { ICompanyUserDetails } from '@/api/types';
 export enum ROLE {
   USER = 'USER',
   ADMIN = 'ADMIN',
+  SUPER_ADMIN = 'SUPER_ADMIN',
   COMPANY = 'COMPANY',
 }
 const initVoid = () => {
@@ -42,7 +43,7 @@ function AuthProvider(props: AuthProviderProps) {
     localStorageUser ? JSON.parse(localStorageUser) : null
   );
 
-  const role: ROLE = !!user ? (user?.role === ROLE.COMPANY ? ROLE.COMPANY : ROLE.ADMIN) : ROLE.USER;
+  const role: ROLE = !!user ? (user?.role === ROLE.COMPANY ? ROLE.COMPANY : ROLE.SUPER_ADMIN) : ROLE.USER;
 
   const { setItem, removeItem } = useLocalStorage();
 
