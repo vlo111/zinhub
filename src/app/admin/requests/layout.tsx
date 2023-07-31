@@ -1,13 +1,13 @@
 'use client';
 import { ReactNode, useState } from 'react';
-import { active_transition, transition } from '@/helpers/class-names';
+import { transition } from '@/helpers/class-names';
 
 const MODES = {
   INACTIVE: 'inactive',
   REJECTED: 'rejected',
 };
 
-const isActive = `${active_transition} border-b-2 text-primary-blue border-b-primary-blue`;
+const isActive = `-translate-y-1 scale-x-110 border-b-2 text-primary-blue border-b-primary-blue`;
 
 export default function MyComponent({ rejected, inactive }: { rejected: ReactNode; inactive: ReactNode }) {
   const [mode, setMode] = useState(MODES.INACTIVE);
