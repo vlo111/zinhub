@@ -7,7 +7,7 @@ import { Textarea } from '@/components/texarea';
 import React from 'react';
 import { regions } from '@/helpers/constants';
 import { Select } from '@/components/select';
-import { DatePicker } from '@/components/datepicker';
+import { DatePickerYear } from '@/components/datepicker/year-picker';
 
 export const Items = () => {
   return (
@@ -35,7 +35,7 @@ export const Items = () => {
             <Input name="type" />
           </FormItem>
           <FormItem label="Ստեղծման տարեթիվը" name="creationDate">
-            <DatePicker name="creationDate" />
+            <DatePickerYear name="creationDate" />
           </FormItem>
           <FormItem label="Կայքը" name="website">
             <Input name="website" />

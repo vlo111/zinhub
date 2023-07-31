@@ -49,6 +49,7 @@ export const useGetCompanyProfile = (id?: string, options?: Options): { company:
     email: company?.user.email,
     regionId: company?.regionId,
     phone: formatPhoneNumber(company?.phone),
+    creationDate: new Date(company?.creationDate),
   };
 
   return { loading: isInitialLoading, company: isSuccess ? returnData : ({} as ICompanyForm) };

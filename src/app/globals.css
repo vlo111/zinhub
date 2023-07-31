@@ -8,6 +8,21 @@ body {
   min-height: 100vh;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+  background-color: #F9F9F9;
+  padding: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1F82FF;
+  border-radius: 3.5px;
+  padding: 5px;
+  width: 12px;
+}
+
+
 @layer components {
   .btn {
     @apply rounded-md font-bold px-3 py-2

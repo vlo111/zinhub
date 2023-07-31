@@ -1,3 +1,4 @@
+'use client';
 import { useAuth } from '@/providers/auth';
 import { HeaderProfile } from '@/components/header/components/Header-profile';
 import { Logo } from '@/components/logo';

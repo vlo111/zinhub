@@ -20,20 +20,12 @@ export const registers: Registers = {
     },
   },
   description: {
-    minLength: {
-      value: 1,
-      message: 'Ընկերության մասին դաշտը պետք է ունենա առնվազն 1 նիշ',
-    },
     maxLength: {
       value: 2048,
       message: 'Ընկերության մասին դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
     },
   },
   companyValues: {
-    minLength: {
-      value: 1,
-      message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առնվազն 1 նիշ',
-    },
     maxLength: {
       value: 2048,
       message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առավելագույնը 2048 նիշ',

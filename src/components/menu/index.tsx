@@ -1,16 +1,18 @@
+'use client';
 import { MenuItem } from '@/components/menu/item';
-import { default as DataSvg } from './icons/data.svg';
-import { default as ApplicationsSvg } from './icons/applications.svg';
-import { default as AnnouncementSvg } from './icons/announcement.svg';
+import { usePathname } from 'next/navigation';
+import { ReactNode } from 'react';
 
-export const Menu = () => {
+export const Menu = ({ items }: { items: { navigate: string; label: string; icon: ReactNode }[] }) => {
+  const pathname = usePathname();
+
   return (
-    <div className="w-1/3 bg-white flex flex-col gap-10">
+    <div className="w-1/3 bg-white flex flex-col gap-10 xs:w-full">
       <div className="">search</div>
       <div className="h-full">
-        <MenuItem item="Տվյալներ" icon={<DataSvg />} />
-        <MenuItem item="Հայտարարություն" icon={<ApplicationsSvg />} />
-        <MenuItem item="Դասավանդողներ" icon={<AnnouncementSvg />} />
+        {items.map(({ navigate, label, icon }) => (
+          <MenuItem key={label} navigate={navigate} active={pathname === navigate} item={label} icon={icon} />
+        ))}
       </div>
     </div>
   );
