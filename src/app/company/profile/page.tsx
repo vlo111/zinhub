@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { PATHS } from '@/helpers/constants';
 import { useGetProfile } from '@/app/company/profile/hooks/use-get-company-profile';
 import React from 'react';
+import { MenuItems } from '@/app/company/components/utils';
 
 export default () => {
   const {
@@ -17,10 +18,11 @@ export default () => {
     loading,
   } = useGetProfile();
   if (loading) return <div>loading...</div>;
+
   return (
     <div className="mb-20">
       <div className="flex px-20 pt-10 gap-10 h-full lg:px-10 md:px-3 sm:px-3 xs:px-3 xs:flex-col">
-        <Menu />
+        <Menu items={MenuItems} />
         <div className="bg-white w-full">
           <div className="w-full relative">
             <Image className="xs:h-[200px] xs:hidden" src={CompanyURL} alt="Picture of the company" />
