@@ -13,6 +13,7 @@ export const DatePicker: React.FC<IDatePicker> = ({ name }) => {
   const {
     control,
     formState: { errors },
+    setError,
   } = useFormContext();
   const error = errors?.[name]?.message;
 
@@ -26,9 +27,12 @@ export const DatePicker: React.FC<IDatePicker> = ({ name }) => {
           <ReactDatePicker
             {...field}
             id={name}
-            value={field.value}
-            selected={field.value}
-            onChange={(date) => field.onChange(date)}
+            selected={field.value ? new Date(field.value) : null}
+            onChange={(date) => {
+              
+              setError(name, {});
+              field.onChange(date);
+            }}
             onBlur={field.onBlur}
             dateFormat="yyyy-MM-dd"
             placeholderText="YYYY-MM-DD"
