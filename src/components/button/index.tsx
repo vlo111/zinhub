@@ -1,10 +1,13 @@
 import { HTMLProps } from 'react';
+interface IProps extends HTMLProps<HTMLButtonElement> {
+  submit?: boolean;
+}
 
-export default ({ type = 'primary', value, className, ...props }: HTMLProps<HTMLButtonElement>) => (
+export default ({ type = 'primary', value, className, submit, ...props }: IProps) => (
   <button
     {...props}
     className={`btn ${className} ${type === 'primary' ? 'btn--primary' : 'btn--secondary'}`}
-    type="submit"
+    type={!!submit ? 'submit' : 'button'}
   >
     {value}
   </button>

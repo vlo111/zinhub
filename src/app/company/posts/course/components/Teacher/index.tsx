@@ -48,7 +48,7 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
           );
         })}
         {fields.length < 5 ? (
-          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" />
+          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" submit={false}/>
         ) : null}
       </div>
     </div>

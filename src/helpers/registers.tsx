@@ -200,7 +200,7 @@ export const registers: Registers = {
       message: 'Ծրագիր դաշտը պետք է ունենա առավելագույնը 1024 նիշ',
     },
   },
-  dynamicInput: {
+  learn: {
     required: 'Ի՞նչ եք սովորելու դաշտը պարտադիր է',
     minLength: {
       value: 1,
