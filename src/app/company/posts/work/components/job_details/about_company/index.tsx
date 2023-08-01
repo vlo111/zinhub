@@ -1,9 +1,8 @@
 import GradientLine from '@/app/company/posts/components/gradientLines';
 import InfoItem from '../../../../components/items';
 import { IAboutCompany } from '../../../types';
-import dayjs from 'dayjs';
 
-const AboutCompany:React.FC<IAboutCompany> = ({ formData }) => {
+const AboutCompany: React.FC<IAboutCompany> = ({ formData }) => {
   return (
     <div className="flex-col w-full grid grid-cols-3 gap-4">
       <div className="flex flex-col gap-4 col-span-2 ">
@@ -26,7 +25,10 @@ const AboutCompany:React.FC<IAboutCompany> = ({ formData }) => {
           <InfoItem label={'Աշխատավարձ'} value={formData?.salary ?? ''} />
           <InfoItem label={'Հեռախոս'} value={formData?.phone ?? ''} />
           <GradientLine />
-          <InfoItem label={'Դիմելու վերջնաժամկետ'} value={dayjs(formData?.applicationDeadline).format('MM.DD.YYYY') ?? ''} />
+          <InfoItem
+            label={'Դիմելու վերջնաժամկետ'}
+            value={new Date(formData?.applicationDeadline ?? '').toLocaleDateString() ?? ''}
+          />
           <InfoItem label={'Աշխ․ պայման'} value={'Մշտական'} />
           <InfoItem label={'Զբաղվածություն'} value={formData?.duration ?? ''} />
           <InfoItem label={'Մակարդակ'} value={formData?.levelId?.label ?? ''} />

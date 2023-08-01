@@ -13,16 +13,17 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
     name: 'teacherIds',
   });
   const onAddField = (): void => append({});
+  const teacherOptions = options?.map((teacher) => {
+    return {
+      label: teacher?.fullName,
+      value: teacher?.id,
+      icon: teacher?.photo,
+    };
+  });
 
   useEffect(() => {
     setValue('teacherIds', [{}]);
   }, [setValue]);
-  // const option = [
-  //   { value: '8058d060-2c7a-11ee-be56-0242ac120002', label: 'Volvo' },
-  //   { value: '862034c0-2c7a-11ee-be56-0242ac120002', label: 'Saab' },
-  //   { value: '8e953100-2c7a-11ee-be56-0242ac120002', label: 'Mercedes' },
-  //   { value: '93e7db26-2c7a-11ee-be56-0242ac120002', label: 'Audi' },
-  // ];
 
   return (
     <div className="grid grid-cols-3 gap-4 gap-x-10 mt-14">
@@ -31,7 +32,7 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
           return (
             <div key={id} className="flex flex-row gap-2 w-full">
               <FormItem label="Ընտրել դասավանդող" name={`teacherIds[${index}]`}>
-                <Select name={`teacherIds[${index}]`} options={options} />
+                <Select name={`teacherIds[${index}]`} options={teacherOptions} />
               </FormItem>
               {fields.length > 1 ? (
                 <button
@@ -48,7 +49,7 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
           );
         })}
         {fields.length < 5 ? (
-          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" submit={false}/>
+          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" submit={false} />
         ) : null}
       </div>
     </div>

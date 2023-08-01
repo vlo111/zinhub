@@ -10,7 +10,8 @@ import JobPreview from '../components/job_details';
 import { SubmitButton } from '../components/SubmitButton';
 import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
-import CreatePosts from '@/api/create_post';
+import CreatePosts from '@/api/create-post';
+import PostType from '../../components/checks';
 
 export type FormItems = {
   phone: string;
@@ -51,8 +52,6 @@ export default ({ id }: { id?: string }) => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // eslint-disable-next-line no-console
-    console.log('Data - ', data);
     createPostsFn({
       type: 'WORK',
       statementData: {
@@ -78,6 +77,7 @@ export default ({ id }: { id?: string }) => {
 
   return (
     <Form onSubmit={onSubmit}>
+      <PostType />
       <GradientLine />
       <JobDetails options={result} />
       <GradientLine />

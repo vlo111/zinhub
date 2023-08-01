@@ -8,8 +8,9 @@ import EventPreview from '../components/event_preview';
 import Modal from '@/components/modal';
 import { OpenModalType } from '../types';
 import { SubmitButton } from '../components/SubmitButton';
-import CreatePosts from '@/api/create_post';
+import CreatePosts from '@/api/create-post';
 import GetSelectData from '@/api/statics';
+import PostType from '../../components/checks';
 
 export type FormItems = {
   phone: string;
@@ -69,8 +70,9 @@ export default ({ id }: { id?: string }) => {
 
   return (
     <Form onSubmit={onSubmit}>
+      <PostType />
       <GradientLine />
-      <EventContent regions={result?.regions}/>
+      <EventContent regions={result?.regions} />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal}>
         <EventPreview formData={formData} />

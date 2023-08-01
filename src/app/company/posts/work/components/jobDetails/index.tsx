@@ -3,8 +3,7 @@ import { DatePicker } from '@/components/datepicker';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import { Select } from '@/components/select';
-import { IJobDetails } from '../../types';
-import Grid from '../../../course/components/flex/grid';
+import { IJobDetails } from '../../types';import Grid from '../../../course/components/flex/grid';
 import Row from '../../../course/components/flex/row';
 
 const JobDetails: React.FC<IJobDetails> = ({ options }) => {

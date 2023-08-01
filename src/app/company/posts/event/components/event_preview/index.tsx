@@ -3,7 +3,6 @@ import GradientLine from '../../../components/gradientLines';
 import InfoItem from '../../../components/items';
 import TextContent from '../../../components/text_content';
 import { IFormData } from '../../types';
-import dayjs from 'dayjs';
 
 const EventPreview: React.FC<{ formData: IFormData }> = ({ formData }) => {
   return (
@@ -30,20 +29,17 @@ const EventPreview: React.FC<{ formData: IFormData }> = ({ formData }) => {
             <InfoItem label={'Հասցե'} value={formData?.location ?? ''} />
             <InfoItem label={'Հեռախոս'} value={formData?.phone ?? ''} />
             <GradientLine />
-            <InfoItem label={'Դիմելու վերջնաժամկետ'} value={dayjs(formData?.applicationDeadline).format('MM.DD.YYYY') ?? ''} />
-            <InfoItem label={'Անցկացման օր'} value={dayjs(formData?.applicationDeadline).format('MM.DD.YYYY') ?? ''} />
+            <InfoItem
+              label={'Դիմելու վերջնաժամկետ'}
+              value={new Date(formData?.applicationDeadline ?? '').toLocaleDateString() ?? ''}
+            />
+            <InfoItem label={'Անցկացման օր'} value={new Date(formData?.startDate ?? '').toLocaleDateString() ?? ''} />
           </div>
         </div>
       </div>
       <div className=" flex flex-col w-[60%] gap-14">
-        <TextContent
-          title="Ծրագիր"
-          description={formData?.program}
-        />
-        <TextContent
-          title="Ի՞նչ ենք մենք առաջարկում (Ընկերության մասին)"
-          description={formData?.whatWeOffer}
-        />
+        <TextContent title="Ծրագիր" description={formData?.program} />
+        <TextContent title="Ի՞նչ ենք մենք առաջարկում (Ընկերության մասին)" description={formData?.whatWeOffer} />
       </div>
     </div>
   );

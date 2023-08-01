@@ -1,18 +1,9 @@
-import { Menu } from '@/components/menu';
+'use client';
+// import GetCompanyPosts from '@/api/company/use-get-company-posts';
 import React from 'react';
-import { MenuItems } from '@/app/company/components/utils';
-import CourseCard from './components/card';
-import PostsHeader from './components/posts_header/Index';
 
 export default () => {
-  return (
-    <div className="mb-20">
-      <div className="flex px-20 pt-10 gap-10 h-full lg:px-10 md:px-3 sm:px-3 xs:px-3 xs:flex-col">
-        <Menu items={MenuItems} />
-        <div className="bg-white w-full flex flex-col gap-10">
-          <PostsHeader/>
-          <CourseCard/></div>
-      </div>
-    </div>
-  );
+  // const { data } = GetCompanyPosts({ limit: 50, offset: 0 });
+
+  return <div className="mb-20">ALL posts</div>;
 };

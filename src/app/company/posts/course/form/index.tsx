@@ -11,9 +11,10 @@ import AboutCourse from '../components/about_course';
 import CourseDetails from '../components/course_details';
 import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
-import CreatePosts from '@/api/create_post';
+import CreatePosts from '@/api/create-post';
 import { IOptions } from '@/types/global';
 import Contacts from '../components/contacts';
+import PostType from '../../components/checks';
 
 export default ({ id }: { id?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,8 +38,6 @@ export default ({ id }: { id?: string }) => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data, 'Data - ');
     const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
     const topicsArr = data.topics.map((item: { name: string }) => item.name);
 
@@ -65,7 +64,7 @@ export default ({ id }: { id?: string }) => {
     });
   };
 
-  const openModal: OpenModalType = (data) => {
+  const openModal: OpenModalType = (data) => {    
     setFormData({ ...data });
     setIsOpen(true);
   };
@@ -76,6 +75,7 @@ export default ({ id }: { id?: string }) => {
 
   return (
     <Form onSubmit={onSubmit}>
+      <PostType /> 
       <GradientLine />
       <AboutCourse options={result?.filedOfStudy} />
       <Contacts options={result} />

@@ -28,7 +28,10 @@ const Details: React.FC<IDetails> = ({ formData }) => {
             <InfoItem label={'Հասցե'} value={formData?.location ?? ''} />
             <InfoItem label={'Հեռախոս'} value={formData?.phone ?? ''} />
             <GradientLine />
-            <InfoItem label={'Դասընթացի մեկնարկը'} value={formData?.startDate ?? ''} />
+            <InfoItem
+              label={'Դասընթացի մեկնարկը'}
+              value={new Date(formData?.startDate ?? '').toLocaleDateString() ?? ''}
+            />
             <InfoItem label={'Տևողությունը'} value={formData?.courseDuration ?? ''} />
             <InfoItem label={'Դասաժամեր'} value={formData?.classHours ?? ''} />
             <InfoItem label={'Դասընթացի Մակարդակ'} value={formData?.levelId?.label ?? ''} />

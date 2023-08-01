@@ -12,3 +12,14 @@ export interface ICompanyUserDetails {
   status: string;
   accessToken?: string;
 }
+
+export interface IData {
+  id: string
+  status: string;
+  companyPhoto: string
+  companyName: string
+  statementTitle: string
+  statementLocation: string
+  statementFiled: string
+  type: string
+}

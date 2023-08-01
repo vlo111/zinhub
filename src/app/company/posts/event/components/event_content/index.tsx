@@ -3,9 +3,9 @@ import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import { Select } from '@/components/select';
 import { Textarea } from '@/components/texarea';
+import { IOptions } from '@/types/global';
 import Grid from '../../../course/components/flex/grid';
 import Row from '../../../course/components/flex/row';
-import { IOptions } from '@/types/global';
 
 const EventContent: React.FC<{ regions: IOptions[] }> = ({ regions }) => {
   return (

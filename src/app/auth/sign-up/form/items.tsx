@@ -37,7 +37,7 @@ export default () => {
           validation={register('repeatPassword', registerRepeatPasswordField)}
         />
       </FormItem>
-      <Button value="Գրանցվել" />
+      <Button value="Գրանցվել" submit={true}/>
     </>
   );
 };

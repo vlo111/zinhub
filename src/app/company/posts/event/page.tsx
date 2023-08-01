@@ -1,1 +1,1 @@
-export default () => <div>work get all</div>;
+export default () => <div>event get all</div>;

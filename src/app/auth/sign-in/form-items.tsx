@@ -19,7 +19,7 @@ export default () => {
       <FormItem label="Գաղտնաբառ" name="password">
         <Input name="password" validation={register('password', registerPasswordField)} />
       </FormItem>
-      <Button value="Մուտք գործել" />
+      <Button value="Մուտք գործել" submit={true}/>
     </>
   );
 };
