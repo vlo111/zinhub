@@ -1,3 +1,9 @@
+import DataTable from '@/app/admin/requests/@inactive/data-table';
+
 export default () => {
-  return <div className="bg-[red] h-full">comp page</div>;
+  return (
+    <div className="h-full w-full">
+      <DataTable />
+    </div>
+  );
 };
