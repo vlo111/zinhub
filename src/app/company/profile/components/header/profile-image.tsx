@@ -2,8 +2,11 @@ import { useRef, useState } from 'react';
 import { default as UploadSVG } from '../icons/company-upload.svg';
 import Image from 'next/image';
 import { FileInput } from '@/components/input/file-input';
+import { DefaultCompanyImageUrl } from '@/helpers/constants';
+import { useFormContext } from 'react-hook-form';
 
-export const ProfileImage = () => {
+export const ProfileImage = ({ defaultImage }: { defaultImage: string | null }) => {
+  const { watch } = useFormContext();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -30,11 +33,19 @@ export const ProfileImage = () => {
               src={preview}
               alt="Profile Preview"
             />
-          ) : (
+          ) : defaultImage === DefaultCompanyImageUrl ? (
             <UploadSVG />
+          ) : (
+            <Image
+              src={defaultImage ?? ''}
+              width={192}
+              height={192}
+              className="object-cover h-[192px] rounded"
+              alt="Profile Preview"
+            />
           )}
         </div>
-        <span className="text-sm text-davy-gray">Armenian Code Academy</span>
+        <span className="text-sm text-davy-gray">{watch('name')}</span>
       </div>
     </>
   );

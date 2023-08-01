@@ -14,7 +14,7 @@ type Props = {
 export default ({ children }: Props) => {
   const { role } = useAuth();
 
-  if (role !== ROLE.COMPANY) notFound();
+  if (role !== ROLE.SUPER_ADMIN) notFound();
 
   return (
     <>

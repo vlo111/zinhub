@@ -8,11 +8,11 @@ export const registers: Registers = {
       message: 'Անվավեր էլ․ հասցե',
     },
   },
-  address: {
+  location: {
     required: 'Գտնվելու վայրը պարտադիր է',
     minLength: {
-      value: 3,
-      message: 'Գտնվելու վայրը պետք է ունենա առնվազն 3 նիշ',
+      value: 9,
+      message: 'Գտնվելու վայրը պետք է ունենա առնվազն 9 նիշ',
     },
     maxLength: {
       value: 100,
@@ -20,12 +20,20 @@ export const registers: Registers = {
     },
   },
   description: {
+    minLength: {
+      value: 1,
+      message: 'Ընկերության տեսակը պետք է ունենա առնվազն 1 նիշ',
+    },
     maxLength: {
       value: 2048,
       message: 'Ընկերության մասին դաշտը պետք է ունենա առավելագույնը 2048 նիշ',
     },
   },
   companyValues: {
+    minLength: {
+      value: 1,
+      message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առնվազն 1 նիշ',
+    },
     maxLength: {
       value: 2048,
       message: 'Ընկերության արժեքներ դաշտը պետք է ունենա առավելագույնը 2048 նիշ',

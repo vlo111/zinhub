@@ -8,6 +8,14 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'apizinhub.analysed.ai',
+      },
+    ],
+  },
   reactStrictMode: true,
   env: {
     REACT_APP_BASE_URL: 'https://apizinhub.analysed.ai/',

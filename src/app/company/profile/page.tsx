@@ -1,7 +1,5 @@
 'use client';
 import { Menu } from '@/components/menu';
-import CompanyURL from './components/icons/company-default-bg.png';
-import { default as ProfileSVG } from './components/icons/company-defailt-profile-bg.svg';
 import Image from 'next/image';
 import { default as LocationSVG } from './components/icons/location.svg';
 import { default as PhoneSVG } from './components/icons/phone.svg';
@@ -14,7 +12,19 @@ import { MenuItems } from '@/app/company/components/utils';
 
 export default () => {
   const {
-    company: { name, location, numberOfEmployees, website, phone, email, creationDate, description, companyValues },
+    company: {
+      name,
+      backgroundPhoto,
+      location,
+      numberOfEmployees,
+      website,
+      phone,
+      email,
+      creationDate,
+      description,
+      companyValues,
+      photo,
+    },
     loading,
   } = useGetProfile();
   if (loading) return <div>loading...</div>;
@@ -25,10 +35,22 @@ export default () => {
         <Menu items={MenuItems} />
         <div className="bg-white w-full">
           <div className="w-full relative">
-            <Image className="xs:h-[200px] xs:hidden" src={CompanyURL} alt="Picture of the company" />
+            <Image
+              width={192}
+              height={192}
+              className="xs:h-[200px] xs:hidden w-full h-[400px] object-cover"
+              src={backgroundPhoto as string}
+              alt="Picture of the company"
+            />
             <div className="flex gap-4 mt-[-4rem] ml-10 sm:ml-0 md:ml-0 xs:ml-0 sm:flex-col md:flex-col xs:flex-col">
               <div className="flex justify-center bg-white items-center min-w-[12rem] h-[12rem] rounded border-[0.5px] border-gray sm:hidden md:hidden xs:hidden">
-                <ProfileSVG />
+                <Image
+                  width={192}
+                  height={192}
+                  className="object-cover h-[192px] rounded"
+                  src={photo ?? ''}
+                  alt="Company profile image"
+                />
               </div>
               <div className="flex gap-10 pt-20 flex-col">
                 <div className=" text-[1.25rem] text-davy-gray">{name}</div>
@@ -55,7 +77,7 @@ export default () => {
                   <p>21 Ակտիվ հայտարարություն</p>
                   <p>{numberOfEmployees} Աշխատակից</p>
                   <p>Ընկերությունը ստեղծվել է՝ {`${new Date(creationDate).getFullYear()}`}թ․</p>
-                  <Link target="_blank" href={website} title={website} className="text-primary-blue underline">
+                  <Link target="_blank" href={website ?? ''} title={website} className="text-primary-blue underline">
                     Վեբ կայք
                   </Link>
                 </div>

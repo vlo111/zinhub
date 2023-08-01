@@ -69,3 +69,5 @@ export const regions = [
     label: 'Տավուշ',
   },
 ];
+
+export const DefaultCompanyImageUrl = 'https://apizinhub.analysed.ai/images/avatars/company-default.png';

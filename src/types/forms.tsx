@@ -10,14 +10,14 @@ export interface ICompanyForm {
       }
     | string;
   phone: string;
-  photo: string;
-  backgroundPhoto: string | File;
+  photo: string | undefined;
+  backgroundPhoto: string | File | undefined;
   numberOfEmployees: number;
   creationDate: string | Date;
   location: string;
   email: string;
   website: string;
   companyValues: string;
-  backgroundPhotoItem: FileList;
-  photoItem: FileList;
+  backgroundPhotoItem?: FileList;
+  photoItem?: FileList;
 }
