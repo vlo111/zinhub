@@ -50,4 +50,15 @@ export interface IParam {
   formatIds?: string[];
   filedWorkIds?: string[];
   employmentIds?: string[];
+export interface ICompanyList {
+  result: {
+    id: string;
+    name: string;
+    location: string;
+    backgroundPhoto: string;
+    photo: string;
+    createdAt: string;
+  }[];
+  count: number;
+  hes_more: boolean;
 }
