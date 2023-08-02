@@ -12,3 +12,16 @@ export interface ICompanyUserDetails {
   status: string;
   accessToken?: string;
 }
+
+export interface ICompanyList {
+  result: {
+    id: string;
+    name: string;
+    location: string;
+    backgroundPhoto: string;
+    photo: string;
+    createdAt: string;
+  }[];
+  count: number;
+  hes_more: boolean;
+}

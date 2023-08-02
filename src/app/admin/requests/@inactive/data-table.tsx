@@ -1,91 +1,71 @@
-'use client';
 import React from 'react';
-import { Column, useTable } from 'react-table';
+import { useTable, Column, useSortBy } from 'react-table';
+import { ICompanyList } from '@/api/company/use-get-all-company';
+// import { default as ArrowUpSvg } from './icons/up.svg';
+// import { default as ArrowDownSvg } from './icons/down.svg';
 
-interface Data {
-  name: string;
-  tin: string;
-  created: string;
-  phone: string;
-  action: string;
+interface DataTableProps {
+  data: ICompanyList[];
 }
 
-const DataTable: React.FC = () => {
-  const data: Data[] = React.useMemo(
-    () => [
-      {
-        name: 'Բիզնես Դեվելոփմենթ Գրուպ ',
-        tin: 'Ակտիվ',
-        created: '2021-02-05 08:28:36',
-        phone: '+37498100225',
-        action: 'blocked',
-      },
-      {
-        name: 'Բիզնես Դեվելոփմենթ Գրուպ ',
-        tin: 'Ակտիվ',
-        created: '2021-02-05 08:28:36',
-        phone: '+37498100225',
-        action: 'blocked',
-      },
-      {
-        name: 'Բիզնես Դեվելոփմենթ Գրուպ ',
-        tin: 'Ակտիվ',
-        created: '2021-02-05 08:28:36',
-        phone: '+37498100225',
-        action: 'blocked',
-      },
-    ],
-    []
-  );
-
+const DataTable: React.FC<DataTableProps> = ({ data }) => {
   // Columns configuration
-  const columns: Column<Data>[] = React.useMemo(
+  const columns: Column<ICompanyList>[] = React.useMemo(
     () => [
-      { Header: 'Անվանում', accessor: 'name' },
-      { Header: 'ՀՎՀՀ', accessor: 'tin' },
-      { Header: 'Ստեղծման ամսաթիվ', accessor: 'created' },
-      { Header: 'Հեռախոս', accessor: 'phone' },
-      { Header: 'Գործողություն', accessor: 'action' },
+      { Header: 'Անվանում', accessor: 'name', sortType: 'bas  ic' },
+      { Header: 'ՀՎՀՀ', accessor: 'taxAccount', sortType: 'alphanumeric' },
+      { Header: 'Ստեղծման ամսաթիվ', accessor: 'createdAt', sortType: 'alphanumeric' },
+      { Header: 'Հեռախոս', accessor: 'phone', sortType: 'alphanumeric' },
+      { Header: 'Գործողություն', accessor: 'status', sortType: 'alphanumeric' },
     ],
     []
   );
 
   // Create a table instance using react-table hooks
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable<Data>({ columns, data });
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable<ICompanyList>(
+    { columns, data },
+    useSortBy
+  );
 
   return (
-    <table {...getTableProps()} className="w-full">
-      <thead>
-        {headerGroups.map((headerGroup, index) => (
-          <tr
-            {...headerGroup.getHeaderGroupProps()}
-            key={index}
-            className="border-b border-b-[#0000000f] bg-[#0000000f]"
-          >
-            {headerGroup.headers.map((column) => (
-              <th align="left" {...column.getHeaderProps()} key={index} className="p-4">
-                {column.render('Header')}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row, index) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()} key={row.id} className="border-b border-b-[#0000000f]">
-              {row.cells.map((cell) => (
-                <td {...cell.getCellProps()} className="p-4" key={index}>
-                  {cell.render('Cell')}
-                </td>
+    <>
+      <table {...getTableProps()} className="w-full">
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr
+              {...headerGroup.getHeaderGroupProps()}
+              key={headerGroup.id}
+              className="border-b border-b-[#0000000f] bg-[#0000000f]"
+            >
+              {headerGroup.headers.map((column) => (
+                <th align="left" key={column.id} className="p-4">
+                  {column.render('Header')}
+                  {/*<span>{column.isSorted ? column.isSortedDesc ? <ArrowDownSvg /> : <ArrowUpSvg /> : ''}</span>*/}
+                </th>
               ))}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()} key={row.id} className="border-b border-b-[#0000000f]">
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()} className="p-4" key={cell.row.id + cell.column.id}>
+                    {cell.render('Cell')}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 
 export default DataTable;
+/*
+  {...column.getHeaderProps(column.getSortByToggleProps())}
+*/
