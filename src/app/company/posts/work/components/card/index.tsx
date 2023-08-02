@@ -1,7 +1,5 @@
-import Button from '@/components/button';
 import { default as EditedIcon } from '../../../../../../components/icons/edite.svg';
 import { default as LocationIcon } from '../../../../../../components/icons/location.svg';
-import { default as PhoneIcon } from '../../../../../../components/icons/phone.svg';
 import Image from 'next/image';
 
 export interface IData {
@@ -15,10 +13,10 @@ export interface IData {
   type: string;
 }
 
-const CourseCard: React.FC<{ data: IData }> = ({ data }) => {
+const WorkCard: React.FC<{ data: IData }> = ({ data }) => {
   return (
     <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-[0.5px] border-[#D2E6FF] hover:border-2 hover:border-primary-blue ">
-      <div className='col-span-2'>
+      <div className="col-span-2">
         <Image
           width={192}
           height={192}
@@ -34,9 +32,7 @@ const CourseCard: React.FC<{ data: IData }> = ({ data }) => {
           <p className="text-davy-gray text-xs font-normal flex flex-row gap-2">
             <LocationIcon /> {data.statementLocation}
           </p>
-          <p className="text-davy-gray text-xs font-normal flex flex-row gap-2">
-            <PhoneIcon /> {data.statementFiled}
-          </p>
+          <p className="text-davy-gray text-xs font-normal flex flex-row gap-2">{data.statementFiled}</p>
         </div>
       </div>
       <div className="flex flex-col content-between h-full justify-between col-span-2">
@@ -44,7 +40,6 @@ const CourseCard: React.FC<{ data: IData }> = ({ data }) => {
           <button className="px-5 py-[10px] border border-primary-blue rounded-md">
             <EditedIcon />
           </button>
-          <Button value={'Ավարտել'} />
         </div>
         <div className="w-full flex justify-end">
           <button className="font-bold text-primary-blue">Տեսնել ավելին</button>
@@ -54,4 +49,4 @@ const CourseCard: React.FC<{ data: IData }> = ({ data }) => {
   );
 };
 
-export default CourseCard;
+export default WorkCard;

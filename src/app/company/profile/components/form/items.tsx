@@ -48,7 +48,7 @@ export const Items = () => {
       <FormItem label="Ընկերության արժեքները" name="companyValues">
         <Textarea name="companyValues" />
       </FormItem>
-      <Button className="ml-auto block" value="Հաստատել և շարունակել" />
+      <Button className="ml-auto block" value="Հաստատել և շարունակել" submit={true}/>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import Button from '@/components/button';
-import { default as EditedIcon } from '../../../../../components/icons/edite.svg';
+import { default as FilterIcon } from '../../../../../components/icons/filter.svg';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { PATHS, navigationItemsPosts } from '@/helpers/constants';
@@ -18,8 +18,8 @@ const PostsHeader = () => {
               href={item.href}
               className={
                 pathname === item.href
-                  ? 'text-primary-blue border-b-2 border-primary-blue pb-3'
-                  : 'pb-3 text-davy-gray text-sm'
+                  ? 'text-primary-blue border-b-2 border-primary-blue pb-3 pt-2'
+                  : 'pb-3 pt-2 text-davy-gray text-sm'
               }
             >
               {item.label}
@@ -30,7 +30,7 @@ const PostsHeader = () => {
       <div className="flex flex-row gap-4 items-center justify-end">
         <Button value={'Ավելացնել հայտարարություն'} onClick={() => router.push(PATHS.POST_CREATE)} />
         <button className="px-5 py-[10px] border border-primary-blue rounded-md">
-          <EditedIcon />
+          <FilterIcon />
         </button>
       </div>
     </div>
