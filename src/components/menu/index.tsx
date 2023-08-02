@@ -11,7 +11,7 @@ export const Menu = ({ items }: { items: { navigate: string; label: string; icon
       <div className="">search</div>
       <div className="h-full">
         {items.map(({ navigate, label, icon }) => (
-          <MenuItem key={label} navigate={navigate} active={pathname === navigate} item={label} icon={icon} />
+          <MenuItem key={label} navigate={navigate} active={pathname.includes(navigate )} item={label} icon={icon} />
         ))}
       </div>
     </div>

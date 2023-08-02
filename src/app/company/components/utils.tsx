@@ -16,7 +16,7 @@ export const MenuItems = [
     icon: <ApplicationsSvg />,
   },
   {
-    navigate: PATHS.ROOT,
+    navigate: PATHS.COMPANY_TEACHER,
     label: 'Դասավանդողներ',
     icon: <AnnouncementSvg />,
   },

@@ -1,24 +1,14 @@
 import Button from '@/components/button';
+import Image from 'next/image';
 import { default as EditedIcon } from '../../../../../../components/icons/edite.svg';
 import { default as LocationIcon } from '../../../../../../components/icons/location.svg';
 import { default as PhoneIcon } from '../../../../../../components/icons/phone.svg';
-import Image from 'next/image';
+import { IDataPost } from '../../types';
 
-export interface IData {
-  id: string;
-  status: string;
-  companyPhoto: string;
-  companyName: string;
-  statementTitle: string;
-  statementLocation: string;
-  statementFiled: string;
-  type: string;
-}
-
-const CourseCard: React.FC<{ data: IData }> = ({ data }) => {
+const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
   return (
-    <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-[0.5px] border-[#D2E6FF] hover:border-2 hover:border-primary-blue ">
-      <div className='col-span-2'>
+    <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-[0.5px] border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
+      <div className="col-span-2">
         <Image
           width={192}
           height={192}
@@ -47,7 +37,7 @@ const CourseCard: React.FC<{ data: IData }> = ({ data }) => {
           <Button value={'Ավարտել'} />
         </div>
         <div className="w-full flex justify-end">
-          <button className="font-bold text-primary-blue">Տեսնել ավելին</button>
+          <button className="font-bold text-primary-blue hidden group-hover:block">Տեսնել ավելին</button>
         </div>
       </div>
     </div>
