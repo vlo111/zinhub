@@ -59,4 +59,15 @@ export interface ITeacher {
   options: ITeacherOption[];
 }
 
+export interface IDataPost {
+  id: string;
+  status: string;
+  companyPhoto: string;
+  companyName: string;
+  statementTitle: string;
+  statementLocation: string;
+  statementFiled: string;
+  type: string;
+}
+
 export type OpenModalType = (data: IFormData) => void;

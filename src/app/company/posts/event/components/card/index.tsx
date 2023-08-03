@@ -15,7 +15,7 @@ export interface IData {
 
 const EventCard: React.FC<{ data: IData }> = ({ data }) => {
   return (
-    <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-[0.5px] border-[#D2E6FF] hover:border-2 hover:border-primary-blue ">
+    <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-[0.5px] border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
       <div className="col-span-2">
         <Image
           width={192}
@@ -41,7 +41,7 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
           </button>
         </div>
         <div className="w-full flex justify-end">
-          <button className="font-bold text-primary-blue">Տեսնել ավելին</button>
+          <button className="font-bold text-primary-blue hidden group-hover:block">Տեսնել ավելին</button>
         </div>
       </div>
     </div>
