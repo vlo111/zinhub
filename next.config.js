@@ -19,7 +19,7 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     REACT_APP_BASE_URL: 'https://apizinhub.analysed.ai/',
-    port: 3003,
+    port: 3003
   },
 };
 

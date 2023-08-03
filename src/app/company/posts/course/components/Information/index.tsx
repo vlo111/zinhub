@@ -61,7 +61,7 @@ const Information = () => {
         })}
       </div>
       {fields.length <= 15 ? (
-        <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[20%]" />
+        <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[20%]" submit={false}/>
       ) : null}
     </div>
   );
