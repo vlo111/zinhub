@@ -18,11 +18,13 @@ export const ApproveModal = ({ currentPage, id, isOpen, onClose }: Props) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="flex bg-dark-gray">
+    <Modal width={'40%'} isOpen={isOpen} onClose={onClose} footer={false}>
+      <div className="flex flex-col gap-8">
         <span>Համոզված եք, որ ցանկանում եք հաստատել դիմում-հայտը</span>
-        <Button type="secondary" value="Չեղարկել" />
-        <Button type="primary" value="Հաստատել" onClick={actionApprove} />
+        <div className="flex justify-center gap-6">
+          <Button type="secondary" value="Չեղարկել" onClick={onClose} />
+          <Button type="primary" value="Հաստատել" onClick={actionApprove} />
+        </div>
       </div>
     </Modal>
   );

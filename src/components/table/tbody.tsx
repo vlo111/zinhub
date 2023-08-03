@@ -1,8 +1,8 @@
 import React from 'react';
 import { ICompanyList } from '@/api/company/use-get-all-company';
 import { Row, TableBodyPropGetter, TableBodyProps } from 'react-table';
-import { default as ApproveSvg } from '../icons/approve.svg';
-import { default as RejectSvg } from '../icons/reject.svg';
+import { default as ApproveSvg } from '../../app/admin/requests/@inactive/components/icons/approve.svg';
+import { default as RejectSvg } from '../../app/admin/requests/@inactive/components/icons/reject.svg';
 
 type Props = {
   getTableBodyProps: (propGetter?: TableBodyPropGetter<ICompanyList> | undefined) => TableBodyProps;

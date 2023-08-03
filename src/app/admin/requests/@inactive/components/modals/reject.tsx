@@ -23,16 +23,17 @@ export const RejectModal = ({ currentPage, id, isOpen, onClose }: Props) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <Form onSubmit={onSubmit} defaultValues={{ rejectText: '' }}>
-        <div className="flex bg-primary-blue">
-          <span>Համոզված եք, որ ուզում եք մերժել դիմում հայտը</span>
-          <span>Նշել մերժման պատճառը</span>
+    <Modal width={'50%'} isOpen={isOpen} onClose={onClose} footer={false}>
+      <Form onSubmit={onSubmit}>
+        <div className="flex flex-col gap-8 items-center">
+          <span className="text-dark-gray text-[1.25rem]">Համոզված եք, որ ուզում եք մերժել դիմում հայտը</span>
           <FormItem label="Նշել մերժման պատճառը" name="rejectText">
             <Textarea name="rejectText" />
           </FormItem>
-          <Button type="secondary" value="Չեղարկել" submit={false} onClick={onClose} />
-          <Button type="primary" value="Հաստատել" />
+          <div className="flex justify-center gap-6">
+            <Button type="secondary" value="Չեղարկել" submit={false} onClick={onClose} />
+            <Button type="primary" value="Հաստատել" />
+          </div>
         </div>
       </Form>
     </Modal>

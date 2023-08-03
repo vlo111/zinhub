@@ -1,9 +1,9 @@
 import React from 'react';
 import { HeaderGroup, HeaderPropGetter } from 'react-table';
 import { ICompanyList } from '@/api/company/use-get-all-company';
-import { default as ArrowUpSvg } from '../icons/up.svg';
-import { default as ArrowDownSvg } from '../icons/down.svg';
-import { default as ArrowTopDownSvg } from '../icons/top-down.svg';
+import { default as ArrowUpSvg } from '../../app/admin/requests/@inactive/components/icons/up.svg';
+import { default as ArrowDownSvg } from '../../app/admin/requests/@inactive/components/icons/down.svg';
+import { default as ArrowTopDownSvg } from '../../app/admin/requests/@inactive/components/icons/top-down.svg';
 
 type Column = {
   isSorted?: boolean;

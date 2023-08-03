@@ -1,10 +1,16 @@
 'use client';
-import DataTable from './components/table';
-import { useGetCompanyList } from '@/api/company/use-get-all-company';
+import DataTable from '../../../../components/table';
+import { ICompanyList, useGetCompanyList } from '@/api/company/use-get-all-company';
 import React, { useState } from 'react';
 import Pagination from '@/components/pagination';
 import { ApproveModal } from '@/app/admin/requests/@inactive/components/modals/approve';
 import { RejectModal } from '@/app/admin/requests/@inactive/components/modals/reject';
+
+interface IColumns {
+  Header: string;
+  accessor: keyof ICompanyList;
+  sortType?: string;
+}
 
 export default () => {
   const [openApprove, setOpenApprove] = useState<string>('');
@@ -17,11 +23,19 @@ export default () => {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+  const columns: IColumns[] = [
+    { Header: 'Անվանում', accessor: 'name', sortType: 'basic' },
+    { Header: 'ՀՎՀՀ', accessor: 'taxAccount', sortType: 'alphanumeric' },
+    { Header: 'Ստեղծման ամսաթիվ', accessor: 'createdAt', sortType: 'alphanumeric' },
+    { Header: 'Հեռախոս', accessor: 'phone', sortType: 'alphanumeric' },
+    { Header: 'Գործողություն', accessor: 'status' },
+  ];
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
       {!loading && (
         <DataTable
+          column={columns}
           data={data.result}
           setOpenApprove={(id) => setOpenApprove(id)}
           setOpenReject={(id) => setOpenReject(id)}
