@@ -36,7 +36,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: initVoid,
 });
 
-const localStorageUser = typeof window !== 'undefined' ? localStorage.getItem(AUTH_KEYS.USER) : null;
+const localStorageUser = typeof window !== "undefined" ? localStorage.getItem(AUTH_KEYS.USER) : null;
 
 function AuthProvider(props: AuthProviderProps) {
   const [user, setUser] = useState<ICompanyUserDetails | null>(() =>
