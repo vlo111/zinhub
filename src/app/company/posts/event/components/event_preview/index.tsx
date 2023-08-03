@@ -1,7 +1,7 @@
 'use client';
 import GradientLine from '../../../components/gradientLines';
 import InfoItem from '../../../components/items';
-import TextContent from '../../../components/text_content';
+import TextContent from '../../../components/text-content';
 import { IFormData } from '../../types';
 
 const EventPreview: React.FC<{ formData: IFormData }> = ({ formData }) => {

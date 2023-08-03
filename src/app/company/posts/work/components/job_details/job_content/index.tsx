@@ -1,5 +1,5 @@
-import TextContentByHtml from '@/app/company/posts/components/text_content_by_html';
-import TextContent from '@/app/company/posts/components/text_content';
+import TextContentByHtml from '@/app/company/posts/components/text-content-by-html';
+import TextContent from '@/app/company/posts/components/text-content';
 import { IJobContent } from '../../../types';
 
 const JobContent: React.FC<IJobContent> = ({ formData }) => {

@@ -15,19 +15,23 @@ import CreatePosts from '@/api/create-post';
 import { IOptions } from '@/types/global';
 import Contacts from '../components/contacts';
 import PostType from '../../components/checks';
+import SuccessModalContent from '../../components/success-modal-content';
+import { useRouter } from 'next/navigation';
 
 export default ({ id }: { id?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({});
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
+  const router = useRouter();
 
   const {
     data: { result },
   } = GetSelectData('TRINING');
 
   const { mutate: createPostsFn } = CreatePosts({
-    // onSuccess: (options: any) => {
-    //   console.log(options, 'onSuccess');
-    // },
+    onSuccess: () => {
+      setIsOpenCreateModal(true);
+    },
     // onError: (e: {
     //   response: {
     //     data: { message: string };
@@ -64,7 +68,7 @@ export default ({ id }: { id?: string }) => {
     });
   };
 
-  const openModal: OpenModalType = (data) => {    
+  const openModal: OpenModalType = (data) => {
     setFormData({ ...data });
     setIsOpen(true);
   };
@@ -73,9 +77,23 @@ export default ({ id }: { id?: string }) => {
     setIsOpen(false);
   };
 
+  const closeCreateModal = () => {
+    setIsOpenCreateModal(false);
+  };
+
+  const onAddNewPost = () => {
+    router.push('/company/posts/course/create');
+    setIsOpenCreateModal(false);
+  };
+
+  const onGoBack = () => {
+    router.push('/company/posts');
+    setIsOpenCreateModal(false);
+  };
+
   return (
     <Form onSubmit={onSubmit}>
-      <PostType /> 
+      <PostType />
       <GradientLine />
       <AboutCourse options={result?.filedOfStudy} />
       <Contacts options={result} />
@@ -84,8 +102,11 @@ export default ({ id }: { id?: string }) => {
       <GradientLine />
       <Teacher options={result?.teachers} />
       <SubmitButton openModal={openModal} />
-      <Modal isOpen={isOpen} onClose={closeModal}>
+      <Modal isOpen={isOpen} onClose={closeModal} width="95%">
         <CourseDetails formData={formData} />
+      </Modal>
+      <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
+        <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />
       </Modal>
     </Form>
   );

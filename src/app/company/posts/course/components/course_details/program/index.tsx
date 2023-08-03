@@ -1,5 +1,5 @@
 
-import TextContent from "@/app/company/posts/components/text_content";
+import TextContent from "@/app/company/posts/components/text-content";
 import { IProgram } from "../../../types";
 
 const Program: React.FC<IProgram> = ({ formData }) => {
