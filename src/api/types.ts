@@ -1,5 +1,5 @@
-import { UseQueryOptions } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
+import { UseQueryOptions } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
 
 export interface ISignInForm {
   email: string;
@@ -50,6 +50,8 @@ export interface IParam {
   formatIds?: string[];
   filedWorkIds?: string[];
   employmentIds?: string[];
+}
+
 export interface ICompanyList {
   result: {
     id: string;

@@ -109,17 +109,6 @@ export const registers: Registers = {
       message: 'Տևողությունը պետք է ունենա առավելագույնը 20 նիշ',
     },
   },
-  location: {
-    required: 'Հասցեն պարտադիր է',
-    minLength: {
-      value: 9,
-      message: 'Հասցեն պետք է ունենա առնվազն 9 նիշ',
-    },
-    maxLength: {
-      value: 100,
-      message: 'Հասցեն պետք է ունենա առավելագույնը 100 նիշ',
-    },
-  },
   salary: {
     required: 'Աշխատավարձի դաշտը պարտադիր է',
     minLength: {

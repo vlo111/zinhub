@@ -29,7 +29,6 @@ export const DatePicker: React.FC<IDatePicker> = ({ name }) => {
             id={name}
             selected={field.value ? new Date(field.value) : null}
             onChange={(date) => {
-              
               setError(name, {});
               field.onChange(date);
             }}

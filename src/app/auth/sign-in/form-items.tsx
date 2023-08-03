@@ -19,7 +19,8 @@ export default () => {
       <FormItem label="Գաղտնաբառ" name="password">
         <Input name="password" validation={register('password', registerPasswordField)} />
       </FormItem>
-      <Button value="Մուտք գործել" submit={true}/>
+      <p className="text-primary-blue cursor-pointer">Մոռացե՞լ եք գաղտնաբառը</p>
+      <Button value="Մուտք գործել" className="w-[9rem] ml-[calc(100%-9rem)] mt-24" />
     </>
   );
 };

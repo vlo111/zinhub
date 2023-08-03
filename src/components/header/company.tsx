@@ -5,6 +5,7 @@ import { Logo } from '@/components/logo';
 
 export const CompanyHeader = () => {
   const { user } = useAuth();
+
   return (
     <header className="flex justify-between px-20 py-4 xs:flex xs:flex-col xs:px-0 xs:py-0 xs:items-center relative z-10 border-b border-[#1f82ff33]">
       <Logo />

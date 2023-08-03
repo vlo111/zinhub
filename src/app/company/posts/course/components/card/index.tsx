@@ -1,8 +1,8 @@
 import Button from '@/components/button';
 import Image from 'next/image';
-import { default as EditedIcon } from '../../../../../../components/icons/edite.svg';
-import { default as LocationIcon } from '../../../../../../components/icons/location.svg';
-import { default as PhoneIcon } from '../../../../../../components/icons/phone.svg';
+import { default as EditedIcon } from '@/components/icons/edite.svg';
+import { default as LocationIcon } from '@/components/icons/location.svg';
+import { default as PhoneIcon } from '@/components/icons/phone.svg';
 import { IDataPost } from '../../types';
 
 const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
