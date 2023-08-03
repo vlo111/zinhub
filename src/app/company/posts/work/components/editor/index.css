@@ -1,0 +1,22 @@
+.customStyleEditor .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar{
+    @apply rounded-tr-md rounded-tl-md border-t border-l border-r border-gray;
+}
+.customStyleEditor .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+    @apply rounded-bl-md rounded-br-md border border-gray;
+}
+.customStyleEditorError .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar{
+    @apply rounded-tr-md rounded-tl-md border-t border-l border-r border-error;
+}
+.customStyleEditorError .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+    @apply rounded-bl-md rounded-br-md border border-error;
+}
+
+
+ol, ul {
+    list-style: none;
+    padding-left: 15px;
+    
+}
+ol, ul ::marker {
+  color: #1F82FF;
+}

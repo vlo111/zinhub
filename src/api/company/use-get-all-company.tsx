@@ -37,7 +37,7 @@ interface IParam {
 
 export const useGetCompanyList = (params: IParam, options?: Options): { data: IData; loading: boolean } => {
   const result = useQuery<AxiosResponse<ReturnData>, Error>(
-    [GET_COMPANIES + params.offset],
+    [GET_COMPANIES],
     () => client.post<ReturnData>(GET_COMPANIES, params),
     options
   );

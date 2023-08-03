@@ -1,5 +1,8 @@
 .custom-datepicker {
-  @apply bg-white h-10 rounded-md p-4 border border-gray w-full outline-none border-davy-gray;
+  @apply bg-white h-10 rounded-md p-4 border border-gray w-full outline-gray;
+}
+.errorDatepicker {
+  @apply bg-white h-10 rounded-md p-4 border border-error w-full outline-none;
 }
 
 .react-datepicker-wrapper {

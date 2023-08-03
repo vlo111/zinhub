@@ -1,0 +1,10 @@
+.reactSelect .css-13cymwt-control {
+  @apply !border !border-gray !outline-none;
+}
+.error .css-13cymwt-control {
+  @apply !border !border-error;
+}
+
+.css-t3ipsp-control {
+  @apply !border-[1px] !border-gray !shadow-none;
+}

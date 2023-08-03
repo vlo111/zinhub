@@ -4,18 +4,26 @@ export const PATHS = {
   SIGN_UP: '/auth/sign-up',
   COMPANY_PROFILE: '/company/profile',
   COMPANY_POSTS: '/company/posts',
+  COMPANY_TEACHER: '/company/teacher',
   COMPANY_PROFILE_UPDATE: '/company/profile/update',
   ADMIN_USERS: '/admin/users',
   ADMIN_ANNOUNCEMENTS: '/admin/announcements',
   ADMIN_REQUESTS: '/admin/requests',
   ADMIN_STORIES: '/admin/stories',
   ADMIN_STATISTICS: '/admin/statistics',
+  POST_CREATE: '/company/posts/course/create',
 };
 
 export const navigationItems = [
   { label: 'Ուսուցում', href: '/' },
   { label: 'Աշխատանք', href: '/work' },
   { label: 'Ընկերություններ', href: '/company/create' },
+];
+export const navigationItemsPosts = [
+  { label: 'Բոլորը', href: '/company/posts' },
+  { label: 'Ուսուցում', href: '/company/posts/course' },
+  { label: 'Աշխատանք', href: '/company/posts/work' },
+  { label: 'Այլ', href: '/company/posts/event' },
 ];
 
 export const AUTH_KEYS = {
