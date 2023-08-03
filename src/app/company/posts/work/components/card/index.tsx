@@ -15,7 +15,7 @@ export interface IData {
 
 const WorkCard: React.FC<{ data: IData }> = ({ data }) => {
   return (
-    <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-[0.5px] border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
+    <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-2 border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
       <div className="col-span-2">
         <Image
           width={192}
