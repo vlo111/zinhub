@@ -1,5 +1,5 @@
-import { default as EditedIcon } from '../../../../../../components/icons/edite.svg';
-import { default as LocationIcon } from '../../../../../../components/icons/location.svg';
+import { default as EditedIcon } from '@/components/icons/edite.svg';
+import { default as LocationIcon } from '@/components/icons/location.svg';
 import Image from 'next/image';
 
 export interface IData {

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import './index.css';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { registers } from '@/helpers/registers';
+import './index.css';
 
 interface ICKEditorComponent {
   name: string;
@@ -31,6 +31,8 @@ const CKEditorComponent: React.FC<ICKEditorComponent> = ({ name, fieldName }) =>
         control={control}
         rules={registers?.[name]}
         render={({ field }) => (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           <CKEditor
             {...field}
             editor={ClassicEditor}

@@ -40,10 +40,13 @@ const Information = () => {
           return (
             <div key={id} className="flex flex-row gap-2 w-full">
               <FormItem label="Ի՞նչ եք սովորելու" name={`topics[${index}].name`}>
-                <Input name={`topics[${index}].name`} validation={register(`topics[${index}].name`, { required: true })} />
+                <Input
+                  name={`topics[${index}].name`}
+                  validation={register(`topics[${index}].name`, { required: true })}
+                />
               </FormItem>
-              {
-               fields.length > 1 ? <button
+              {fields.length > 1 ? (
+                <button
                   className="mt-[14px]"
                   type="button"
                   onClick={() => {
@@ -51,8 +54,8 @@ const Information = () => {
                   }}
                 >
                   <DeleteIcon />
-                </button> : null
-              }
+                </button>
+              ) : null}
             </div>
           );
         })}

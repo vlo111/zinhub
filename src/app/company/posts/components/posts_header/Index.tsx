@@ -1,5 +1,5 @@
 import Button from '@/components/button';
-import { default as FilterIcon } from '../../../../../components/icons/filter.svg';
+import { default as FilterIcon } from '@/components/icons/filter.svg';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { PATHS, navigationItemsPosts } from '@/helpers/constants';

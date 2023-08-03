@@ -3,7 +3,7 @@ interface IProps extends HTMLProps<HTMLButtonElement> {
   submit?: boolean;
 }
 
-export default ({ type = 'primary', value, className, submit, ...props }: IProps) => (
+export default ({ type = 'primary', value, className, submit = true, ...props }: IProps) => (
   <button
     {...props}
     className={`btn ${className} ${type === 'primary' ? 'btn--primary' : 'btn--secondary'}`}
