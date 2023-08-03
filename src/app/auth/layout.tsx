@@ -10,7 +10,7 @@ import { AuthHeader } from '@/components/header/auth';
 export default ({ children }: { children: ReactNode }) => {
   const { user, role } = useAuth();
 
-  if (user !== null) redirect(role === ROLE.COMPANY ? PATHS.COMPANY_PROFILE : PATHS.ROOT);
+  if (user !== null) redirect(role === ROLE.COMPANY ? PATHS.COMPANY_PROFILE_UPDATE : PATHS.ADMIN_REQUESTS);
 
   return (
     <div>
