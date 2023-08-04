@@ -2,9 +2,9 @@ import React from 'react';
 import { default as ArrowUpSvg } from '../../app/admin/requests/@pending/components/icons/up.svg';
 import { default as ArrowDownSvg } from '../../app/admin/requests/@pending/components/icons/down.svg';
 import { default as ArrowTopDownSvg } from '../../app/admin/requests/@pending/components/icons/top-down.svg';
-import { DataTableGenericProps, TheadCell, TheadColumn, TheadProps, TheadSort } from '@/components/table/types';
+import { DataTableGenericProps, TheadCell, TheadColumn, ITheadProps, TheadSort } from '@/components/table/types';
 
-const Thead = <T extends DataTableGenericProps>({ headerGroups }: TheadProps<T>) => {
+const Thead = <T extends DataTableGenericProps>({ headerGroups }: ITheadProps<T>) => {
   return (
     <thead>
       {headerGroups.map((headerGroup) => (
