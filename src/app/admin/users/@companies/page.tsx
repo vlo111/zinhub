@@ -33,7 +33,7 @@ export default () => {
     { Header: 'Ստատուս', accessor: 'status', sortType: 'alphanumeric' },
     { Header: 'Ստեղծման ամսաթիվ', accessor: 'createdAt', sortType: 'alphanumeric' },
     { Header: 'Վերջին թարմացում', accessor: 'updatedAt', sortType: 'alphanumeric' },
-    { Header: 'Գործողություն', accessor: 'checkstatus' },
+    { Header: 'Գործողություն', accessor: 'checkStatus' },
   ];
 
   return (

@@ -18,7 +18,7 @@ const Tbody = <T extends DataTableGenericProps>({
   setOpenReject,
 }: TbodyProps<T>) => {
   const pathname = usePathname();
-  const status = (item: string) => {
+  const status = (id: string, item: string) => {
     return PATHS.ADMIN_USERS === pathname ? (
       <div className="flex items-center gap-4">
         <div
@@ -31,10 +31,10 @@ const Tbody = <T extends DataTableGenericProps>({
       </div>
     ) : (
       <div className="flex justify-center items-center gap-4">
-        <div className="cursor-pointer" onClick={() => setOpenApprove(item)}>
+        <div className="cursor-pointer" onClick={() => setOpenApprove(id)}>
           <ApproveSvg />
         </div>
-        <div className="cursor-pointer" onClick={() => setOpenReject(item)}>
+        <div className="cursor-pointer" onClick={() => setOpenReject(id)}>
           <RejectSvg />
         </div>
       </div>
@@ -62,7 +62,7 @@ const Tbody = <T extends DataTableGenericProps>({
                 key={cell.row.id + cell.column.id}
               >
                 {cell.column.id === 'status'
-                  ? status(row.original.status)
+                  ? status(row.original.id, row.original.status)
                   : isDate(cell.column.id)
                   ? new Date(cell.value).toLocaleDateString()
                   : cell.column.id === 'checkstatus'
