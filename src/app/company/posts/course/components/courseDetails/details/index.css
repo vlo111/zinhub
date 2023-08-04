@@ -1,8 +1,0 @@
-
-.infoText {
-    @apply text-sm font-bold
- }
- 
- .textLine {
-    @apply flex flex-row gap-1
- }

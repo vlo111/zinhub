@@ -5,7 +5,7 @@ import { IJobContent } from '../../../types';
 const JobContent: React.FC<IJobContent> = ({ formData }) => {
   return (
     <div className="flex flex-col gap-14 w-[60%]">
-      <TextContent title="Աշխատանքի նկարագրություն" description={formData?.workDescription} />
+      <TextContent title="Աշխատանքի նկարագրություն" description={formData?.workDescription !== undefined ? formData?.workDescription : formData?.description} />
       <TextContentByHtml title="Պարտականություններ" description={formData?.responsibilities} />
       <TextContentByHtml title="Անհրաժեշտ հմտություններ" description={formData?.skills} />
       <TextContent title="Հավելյալ նշումներ" description={formData?.additionalNotes} />

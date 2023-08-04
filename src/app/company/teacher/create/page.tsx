@@ -11,6 +11,7 @@ import { UploadImage } from '../components/upload-image';
 import { convertFileToBase64 } from '@/helpers/utils';
 import useCreateTeacher from '@/api/create-teacher';
 import DynamicFils from './dynamic-filds';
+import { useRouter } from 'next/navigation';
 
 export type FormItems = {
   phone: string;
@@ -22,10 +23,12 @@ export type FormItems = {
 
 export default () => {
   const { watch } = useForm();
+  const routs = useRouter();
   const convertToBase64 = async (file?: File) => (file ? await convertFileToBase64(file) : undefined);
   const { mutate: createTeacherFn } = useCreateTeacher({
-    // onSuccess: () => {
-    // },
+    onSuccess: () => {
+      routs.push('/company/teacher');
+    },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -63,7 +66,7 @@ export default () => {
           <DynamicFils />
         </Row>
         <Row>
-          <FormItem label="Կցել դասավանդողի լուսանկարը" name="profession">
+          <FormItem label="Կցել դասավանդողի լուսանկարը" name="">
             <UploadImage defaultImage={watch('photo')} />
           </FormItem>
         </Row>
