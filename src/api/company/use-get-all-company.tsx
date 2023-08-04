@@ -11,7 +11,7 @@ export type ICompanyListPending = {
   taxAccount: string;
   createdAt: Date;
   updatedAt?: string;
-  checkstatus?: string;
+  checkStatus?: string;
 };
 
 export type ICompanyListRejected = {
