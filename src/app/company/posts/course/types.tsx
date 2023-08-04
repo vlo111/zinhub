@@ -1,29 +1,52 @@
 import { IOptions } from '@/types/global';
 
 interface IDynamicForm {
-  name: string;
+  name: string | undefined;
+}
+interface IOptionByGet {
+  id: string;
+  title: string | undefined;
 }
 export interface IFormData {
   classHours?: string;
   courseDuration?: string;
+  description?: string | undefined;
   courseDescription?: string;
   filedStudyId?: IOptions;
   formatId?: IOptions;
+  format?: IOptionByGet;
   languageId?: IOptions;
+  language?: IOptionByGet;
   levelId?: IOptions;
+  level?: IOptionByGet;
   location?: string;
   phone?: string;
   program?: string | undefined;
   regionId?: IOptions;
+  region?: IOptionByGet;
   email?: string;
   startDate?: string;
   courseName?: string;
+  title?: string | undefined;
   teacherId?: IOptions[];
-  topics?: IDynamicForm[];
+  topics?: IDynamicForm[] | Array<string>;
+  duration?: string | undefined;
 }
 
+export interface ICompany {
+  id: string | undefined;
+  name: string | undefined;
+  photo: string | undefined;
+}
+export interface IGetCourseData {
+  id?: string;
+  status?: string;
+  company: ICompany;
+  trainingStatement: IFormData;
+}
 export interface ICourseDetails {
   formData: IFormData;
+  company?: ICompany;
 }
 export interface ISkills {
   formData: IFormData;
@@ -33,6 +56,7 @@ export interface IProgram {
 }
 export interface IDetails {
   formData: IFormData;
+  company?: ICompany;
 }
 export interface IAboutCourse {
   options: IOptions[];

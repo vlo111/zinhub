@@ -1,6 +1,7 @@
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as LocationIcon } from '@/components/icons/location.svg';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export interface IData {
   id: string;
@@ -14,6 +15,7 @@ export interface IData {
 }
 
 const EventCard: React.FC<{ data: IData }> = ({ data }) => {
+  const router = useRouter();
   return (
     <div className="grid grid-cols-7 gap-4 w-full p-2 rounded-[10px] border-2 border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
       <div className="col-span-2">
@@ -41,7 +43,7 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
           </button>
         </div>
         <div className="w-full flex justify-end">
-          <button className="font-bold text-primary-blue hidden group-hover:block">Տեսնել ավելին</button>
+          <button className="font-bold text-primary-blue hidden group-hover:block" onClick={() => router.push(`/company/posts/event/${data.id}`) }>Տեսնել ավելին</button>
         </div>
       </div>
     </div>

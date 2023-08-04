@@ -9,7 +9,7 @@ const Skills: React.FC<ISkills> = ({ formData }) => {
         {formData?.topics?.map((item, index) => (
           <div key={index} className="flex flex-row items-center gap-2 p-2 border border-secondary-orange rounded-md ">
             <CheckedIcon />
-            <p className="text-xs text-davy-gray">{item?.name}</p>
+            <p className="text-xs text-davy-gray">{item?.name !== undefined ? item?.name : item}</p>
           </div>
         ))}
       </div>

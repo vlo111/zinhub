@@ -80,8 +80,8 @@ export default () => {
         filedWorkId: data.filedWorkId?.value,
         levelId: data.levelId?.value,
         regionId: data.regionId?.value,
-        responsibilities: { html: data.responsibilities },
-        skills: { html: data.skills },
+        responsibilities: data.responsibilities ,
+        skills: data.skills,
       },
     });
   };

@@ -4,7 +4,7 @@ interface ITextContent {
   description: string | undefined;
 }
 
-const TextContentByHtml: React.FC<ITextContent> = ({ title, description }) => {
+const TextContentByHtml: React.FC<ITextContent> = ({ title, description }) => {  
   return (
     <div className="flex flex-col w-full gap-6">
       <p className="text-lg font-bold text-davy-gray">{title}</p>

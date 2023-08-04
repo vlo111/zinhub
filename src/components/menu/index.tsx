@@ -8,7 +8,7 @@ export const Menu = ({ items }: { items: { navigate: string; label: string; icon
 
   return (
     <div className="w-1/3 bg-white flex flex-col gap-10 xs:w-full">
-      <div className=""></div>
+      <div className=""><input className='border border-davy-gray w-full rounded-md'/></div>
       <div className="h-full">
         {items.map(({ navigate, label, icon }) => (
           <MenuItem key={label} navigate={navigate} active={pathname.includes(navigate)} item={label} icon={icon} />

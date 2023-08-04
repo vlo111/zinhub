@@ -1,6 +1,7 @@
 'use client';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
+import PostType from '../../components/checks';
 import { useState } from 'react';
 import GradientLine from '../../components/gradientLines';
 import EventContent from '../components/event_content';
@@ -10,7 +11,6 @@ import { OpenModalType } from '../types';
 import { SubmitButton } from '../components/SubmitButton';
 import CreatePosts from '@/api/create-post';
 import GetSelectData from '@/api/statics';
-import PostType from '../../components/checks';
 import SuccessModalContent from '../../components/success-modal-content';
 import { useRouter } from 'next/navigation';
 
@@ -22,7 +22,7 @@ export type FormItems = {
   value: string;
 };
 
-export default ({ id }: { id?: string }) => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const [formData, setFortData] = useState({});
@@ -35,14 +35,7 @@ export default ({ id }: { id?: string }) => {
   const { mutate: createPostsFn } = CreatePosts({
     onSuccess: () => {
       setIsOpenCreateModal(true);
-    },
-    // onError: (e: {
-    //   response: {
-    //     data: { message: string };
-    //   };
-    // }) => {
-    //   console.log(e?.response?.data?.message, 'onError');
-    // },
+    }
   });
 
   const openModal: OpenModalType = (data) => {
