@@ -17,12 +17,12 @@ interface IParams {
     classHours?: string;
     courseDuration?: string;
     registrationLink?: string;
-    responsibilities?: { description: string };
+    responsibilities?: string ;
     additionalNotes?: string;
     salary?: string;
     applicationDeadline?: string;
     whatWeOffer?: string;
-    skills?: { description: string };
+    skills?: string;
     topics?: string[];
     regionId?: string;
     teacherIds?: string[];

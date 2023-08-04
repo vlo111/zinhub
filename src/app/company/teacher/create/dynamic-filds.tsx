@@ -45,7 +45,7 @@ const DynamicFils = () => {
       })}
       <div className="w-full flex justify-end">
         {fields.length <= 5 ? (
-          <button onClick={onAddField} className="border border-gray rounded-md text-davy-gray px-4 py-2">
+          <button onClick={onAddField} className="border border-gray rounded-md text-davy-gray px-4 py-2" type='button'>
             + Ավելացնել դաշտ
           </button>
         ) : null}

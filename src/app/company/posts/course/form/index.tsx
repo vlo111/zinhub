@@ -18,7 +18,7 @@ import PostType from '../../components/checks';
 import SuccessModalContent from '../../components/success-modal-content';
 import { useRouter } from 'next/navigation';
 
-export default ({ id }: { id?: string }) => {
+export default () => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({});
   const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
@@ -31,14 +31,7 @@ export default ({ id }: { id?: string }) => {
   const { mutate: createPostsFn } = CreatePosts({
     onSuccess: () => {
       setIsOpenCreateModal(true);
-    },
-    // onError: (e: {
-    //   response: {
-    //     data: { message: string };
-    //   };
-    // }) => {
-    //   console.log(e?.response?.data?.message, 'onError');
-    // },
+    }
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -68,7 +61,7 @@ export default ({ id }: { id?: string }) => {
     });
   };
 
-  const openModal: OpenModalType = (data) => {
+  const openModal: OpenModalType = (data) => {    
     setFormData({ ...data });
     setIsOpen(true);
   };
