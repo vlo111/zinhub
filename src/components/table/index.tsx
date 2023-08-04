@@ -1,24 +1,16 @@
 import React from 'react';
 import { useTable, Column, useSortBy } from 'react-table';
-import { ICompanyList } from '@/api/company/use-get-all-company';
 import Thead from '@/components/table/thead';
 import Tbody from '@/components/table/tbody';
+import { DataTableGenericProps, DataTableProps } from '@/components/table/types';
 
-interface IColumns {
-  Header: string;
-  accessor: keyof ICompanyList;
-  sortType?: string;
-}
-
-interface DataTableProps {
-  data: ICompanyList[];
-  setOpenApprove: React.Dispatch<React.SetStateAction<string>>;
-  setOpenReject: React.Dispatch<React.SetStateAction<string>>;
-  column: IColumns[];
-}
-
-const DataTable = ({ data, column, setOpenApprove, setOpenReject }: DataTableProps) => {
-  const columns: Column<ICompanyList>[] = React.useMemo(() => column, [column]);
+const DataTable = <T extends DataTableGenericProps>({
+  data,
+  column,
+  setOpenApprove,
+  setOpenReject,
+}: DataTableProps<T>) => {
+  const columns: Column<T>[] = React.useMemo(() => column, [column]);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy);
 

@@ -1,14 +1,14 @@
 'use client';
 import DataTable from '@/components/table';
+import { ICompanyListPending, useGetCompanyList } from '@/api/company/use-get-all-company';
 import React, { useState } from 'react';
 import Pagination from '@/components/pagination';
 import { ApproveModal } from '@/app/admin/requests/@pending/components/modals/approve';
 import { RejectModal } from '@/app/admin/requests/@pending/components/modals/reject';
-import { ICompanyListRejected, useGetCompanyList } from '@/api/company/use-get-all-company';
 
 interface IColumns {
   Header: string;
-  accessor: keyof ICompanyListRejected;
+  accessor: keyof ICompanyListPending;
   sortType?: string;
 }
 
@@ -18,24 +18,24 @@ export default () => {
 
   const [currentPage, setCurrentPage] = useState(0);
 
-  const { data, loading } = useGetCompanyList({ limit: 10, offset: currentPage, statuses: ['REJECTED'] });
+  const { data, loading } = useGetCompanyList({ limit: 10, offset: currentPage, statuses: ['PENDING'] });
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+
   const columns: IColumns[] = [
     { Header: 'Անվանում', accessor: 'name', sortType: 'basic' },
     { Header: 'ՀՎՀՀ', accessor: 'taxAccount', sortType: 'alphanumeric' },
-    { Header: 'Ստեղծման ամսաթիվ', accessor: 'updatedAt', sortType: 'alphanumeric' },
-    { Header: 'Մերժման ամսաթիվ', accessor: 'rejectDate', sortType: 'alphanumeric' },
-    { Header: 'Պատճառ', accessor: 'reasonForRejection', sortType: 'alphanumeric' },
-    { Header: 'Ում կողմից', accessor: 'rejectedAdminName', sortType: 'alphanumeric' },
+    { Header: 'Ստեղծման ամսաթիվ', accessor: 'createdAt', sortType: 'alphanumeric' },
+    { Header: 'Հեռախոս', accessor: 'phone', sortType: 'alphanumeric' },
+    { Header: 'Գործողություն', accessor: 'status' },
   ];
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
       {!loading && (
-        <DataTable<ICompanyListRejected>
+        <DataTable<ICompanyListPending>
           column={columns}
           data={data.result}
           setOpenApprove={(id) => setOpenApprove(id)}

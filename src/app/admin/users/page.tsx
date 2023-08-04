@@ -1,3 +1,3 @@
 export default () => {
-  return <div>users </div>;
+  return <div>requests</div>;
 };

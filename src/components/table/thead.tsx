@@ -1,21 +1,10 @@
 import React from 'react';
-import { HeaderGroup, HeaderPropGetter } from 'react-table';
-import { ICompanyList } from '@/api/company/use-get-all-company';
-import { default as ArrowUpSvg } from '../../app/admin/requests/@inactive/components/icons/up.svg';
-import { default as ArrowDownSvg } from '../../app/admin/requests/@inactive/components/icons/down.svg';
-import { default as ArrowTopDownSvg } from '../../app/admin/requests/@inactive/components/icons/top-down.svg';
+import { default as ArrowUpSvg } from '../../app/admin/requests/@pending/components/icons/up.svg';
+import { default as ArrowDownSvg } from '../../app/admin/requests/@pending/components/icons/down.svg';
+import { default as ArrowTopDownSvg } from '../../app/admin/requests/@pending/components/icons/top-down.svg';
+import { DataTableGenericProps, TheadCell, TheadColumn, TheadProps, TheadSort } from '@/components/table/types';
 
-type Column = {
-  isSorted?: boolean;
-  isSortedDesc?: boolean;
-  getSortByToggleProps?: (() => void) | undefined;
-} & HeaderGroup<ICompanyList>;
-
-type Cell = React.ThHTMLAttributes<HTMLTableHeaderCellElement>;
-
-type Sort = HeaderPropGetter<ICompanyList> | undefined;
-
-const Thead = ({ headerGroups }: { headerGroups: HeaderGroup<ICompanyList>[] }) => {
+const Thead = <T extends DataTableGenericProps>({ headerGroups }: TheadProps<T>) => {
   return (
     <thead>
       {headerGroups.map((headerGroup) => (
@@ -24,9 +13,11 @@ const Thead = ({ headerGroups }: { headerGroups: HeaderGroup<ICompanyList>[] }) 
           key={headerGroup.id}
           className="border-b border-b-[#0000000f] bg-[#0000000f]"
         >
-          {headerGroup.headers.map((column: Column) => (
+          {headerGroup.headers.map((column: TheadColumn<T>) => (
             <th
-              {...(column.id !== 'status' ? (column.getHeaderProps(column.getSortByToggleProps as Sort) as Cell) : {})}
+              {...(column.id !== 'status'
+                ? (column.getHeaderProps(column.getSortByToggleProps as TheadSort<T>) as TheadCell)
+                : {})}
               align="left"
               className="p-4 select-none"
               key={column.id}
