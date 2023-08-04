@@ -10,6 +10,8 @@ export type ICompanyListPending = {
   status: string; //ACTIVE, INACTIVE, BLOCKED, PENDING, REJECTED",
   taxAccount: string;
   createdAt: Date;
+  updatedAt?: string;
+  checkstatus?: string;
 };
 
 export type ICompanyListRejected = {
