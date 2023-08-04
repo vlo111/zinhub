@@ -65,7 +65,7 @@ const Tbody = <T extends DataTableGenericProps>({
                   ? status(row.original.id, row.original.status)
                   : isDate(cell.column.id)
                   ? new Date(cell.value).toLocaleDateString()
-                  : cell.column.id === 'checkstatus'
+                  : cell.column.id === 'checkStatus'
                   ? checkStatus(cell.value)
                   : cell.render('Cell')}
               </td>
