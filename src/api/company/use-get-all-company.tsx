@@ -3,17 +3,30 @@ import client from '../client';
 import { AxiosResponse } from 'axios';
 export const GET_COMPANIES = 'api/company/all';
 
-export type ICompanyList = {
+export type ICompanyListPending = {
   id: string;
   name: string;
   phone: string;
-  status: string;
+  status: string; //ACTIVE, INACTIVE, BLOCKED, PENDING, REJECTED",
   taxAccount: string;
-  createdAt: string;
+  createdAt: Date;
+};
+
+export type ICompanyListRejected = {
+  id: string;
+  name: string;
+  status: string;
+  createdAt: Date;
+  updatedAt?: string;
+  reasonForRejection?: string;
+  taxAccount: string;
+  rejectDate?: string;
+  phone: string;
+  rejectedAdminName?: string;
 };
 
 interface IData {
-  result: ICompanyList[];
+  result: ICompanyListPending[] | ICompanyListRejected[];
   count: number;
   has_more: boolean;
 }

@@ -1,26 +1,30 @@
 import React from 'react';
-import { ICompanyList } from '@/api/company/use-get-all-company';
-import { Row, TableBodyPropGetter, TableBodyProps } from 'react-table';
-import { default as ApproveSvg } from '../../app/admin/requests/@inactive/components/icons/approve.svg';
-import { default as RejectSvg } from '../../app/admin/requests/@inactive/components/icons/reject.svg';
+import { Row } from 'react-table';
+import { default as ApproveSvg } from '../../app/admin/requests/@pending/components/icons/approve.svg';
+import { default as RejectSvg } from '../../app/admin/requests/@pending/components/icons/reject.svg';
+import { DataTableGenericProps, TbodyProps } from '@/components/table/types';
 
-type Props = {
-  getTableBodyProps: (propGetter?: TableBodyPropGetter<ICompanyList> | undefined) => TableBodyProps;
-  rows: Row<ICompanyList>[];
-  prepareRow: (row: Row<ICompanyList>) => void;
-  setOpenApprove: React.Dispatch<React.SetStateAction<string>>;
-  setOpenReject: React.Dispatch<React.SetStateAction<string>>;
-};
+const isDate = (item: string) => item === 'createdAt' || item === 'updatedAt' || item === 'rejectDate';
 
-const Tbody = ({ getTableBodyProps, rows, prepareRow, setOpenApprove, setOpenReject }: Props) => {
+const Tbody = <T extends DataTableGenericProps>({
+  getTableBodyProps,
+  rows,
+  prepareRow,
+  setOpenApprove,
+  setOpenReject,
+}: TbodyProps<T>) => {
   return (
     <tbody {...getTableBodyProps()}>
-      {rows.map((row) => {
+      {rows.map((row: Row<T>) => {
         prepareRow(row);
         return (
           <tr {...row.getRowProps()} key={row.id} className="border-b border-b-[#0000000f]">
             {row.cells.map((cell) => (
-              <td {...cell.getCellProps()} className="p-4" key={cell.row.id + cell.column.id}>
+              <td
+                {...cell.getCellProps()}
+                className="p-4 max-w-[40px] overflow-hidden overflow-ellipsis"
+                key={cell.row.id + cell.column.id}
+              >
                 {cell.column.id === 'status' ? (
                   <div className="flex justify-center items-center gap-4">
                     <div className="cursor-pointer" onClick={() => setOpenApprove(row.original.id)}>
@@ -30,6 +34,8 @@ const Tbody = ({ getTableBodyProps, rows, prepareRow, setOpenApprove, setOpenRej
                       <RejectSvg />
                     </div>
                   </div>
+                ) : isDate(cell.column.id) ? (
+                  new Date(cell.value).toLocaleDateString()
                 ) : (
                   cell.render('Cell')
                 )}

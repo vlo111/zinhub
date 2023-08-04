@@ -1,14 +1,14 @@
 'use client';
-import DataTable from '../../../../components/table';
-import { ICompanyList, useGetCompanyList } from '@/api/company/use-get-all-company';
+import DataTable from '@/components/table';
+import { ICompanyListPending, useGetCompanyList } from '@/api/company/use-get-all-company';
 import React, { useState } from 'react';
 import Pagination from '@/components/pagination';
-import { ApproveModal } from '@/app/admin/requests/@inactive/components/modals/approve';
-import { RejectModal } from '@/app/admin/requests/@inactive/components/modals/reject';
+import { ApproveModal } from '@/app/admin/requests/@pending/components/modals/approve';
+import { RejectModal } from '@/app/admin/requests/@pending/components/modals/reject';
 
 interface IColumns {
   Header: string;
-  accessor: keyof ICompanyList;
+  accessor: keyof ICompanyListPending;
   sortType?: string;
 }
 
@@ -23,6 +23,7 @@ export default () => {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+
   const columns: IColumns[] = [
     { Header: 'Անվանում', accessor: 'name', sortType: 'basic' },
     { Header: 'ՀՎՀՀ', accessor: 'taxAccount', sortType: 'alphanumeric' },
@@ -34,7 +35,7 @@ export default () => {
   return (
     <div className="h-full w-full flex flex-col justify-between">
       {!loading && (
-        <DataTable
+        <DataTable<ICompanyListPending>
           column={columns}
           data={data.result}
           setOpenApprove={(id) => setOpenApprove(id)}

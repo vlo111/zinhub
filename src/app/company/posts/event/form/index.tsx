@@ -68,8 +68,6 @@ export default ({ id }: { id?: string }) => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // eslint-disable-next-line no-console
-    console.log('Data - ', data);
     createPostsFn({
       type: 'OTHER',
       statementData: {
