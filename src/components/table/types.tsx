@@ -14,8 +14,6 @@ export interface IColumns<T> {
 
 export interface IDataTableProps<T> {
   data: T[];
-  setOpenApprove: React.Dispatch<React.SetStateAction<string>>;
-  setOpenReject: React.Dispatch<React.SetStateAction<string>>;
   column: IColumns<T>[];
 }
 
@@ -44,6 +42,4 @@ export type TbodyProps<T extends object> = {
   getTableBodyProps: (propGetter?: TableBodyPropGetter<T> | undefined) => TableBodyProps;
   rows: Row<T>[];
   prepareRow: (row: Row<T>) => void;
-  // setOpenApprove: React.Dispatch<React.SetStateAction<string>>;
-  // setOpenReject: React.Dispatch<React.SetStateAction<string>>;
 };

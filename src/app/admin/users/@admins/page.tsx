@@ -36,20 +36,13 @@ export default () => {
     {
       Header: 'Գործողություն',
       accessor: 'status',
-      renderRow: (row: ICompanyListPending) => <div>{row.status}abuuuuuuu</div>,
+      renderRow: (row: ICompanyListPending) => <div>{row.status}</div>,
     },
   ];
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
-      {!loading && (
-        <DataTable<ICompanyListPending>
-          column={columns}
-          data={data.result}
-          setOpenApprove={(id) => setOpenApprove(id)}
-          setOpenReject={(id) => setOpenReject(id)}
-        />
-      )}
+      {!loading && <DataTable<ICompanyListPending> column={columns} data={data.result} />}
       <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
       <ApproveModal
         id={openApprove}

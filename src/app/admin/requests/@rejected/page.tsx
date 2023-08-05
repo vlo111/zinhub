@@ -4,13 +4,8 @@ import React, { useState } from 'react';
 import Pagination from '@/components/pagination';
 import { ApproveModal } from '@/app/admin/requests/@pending/components/modals/approve';
 import { RejectModal } from '@/app/admin/requests/@pending/components/modals/reject';
-import { ICompanyListRejected, useGetCompanyList } from '@/api/company/use-get-all-company';
-
-interface IColumns {
-  Header: string;
-  accessor: keyof ICompanyListRejected;
-  sortType?: string;
-}
+import { ICompanyListPending, ICompanyListRejected, useGetCompanyList } from '@/api/company/use-get-all-company';
+import { IColumns } from '@/components/table/types';
 
 export default () => {
   const [openApprove, setOpenApprove] = useState<string>('');
@@ -23,25 +18,28 @@ export default () => {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-  const columns: IColumns[] = [
+  const columns: IColumns<ICompanyListRejected>[] = [
     { Header: 'Անվանում', accessor: 'name', sortType: 'basic' },
     { Header: 'ՀՎՀՀ', accessor: 'taxAccount', sortType: 'alphanumeric' },
-    { Header: 'Ստեղծման ամսաթիվ', accessor: 'updatedAt', sortType: 'alphanumeric' },
-    { Header: 'Մերժման ամսաթիվ', accessor: 'rejectDate', sortType: 'alphanumeric' },
+    {
+      Header: 'Ստեղծման ամսաթիվ',
+      accessor: 'updatedAt',
+      sortType: 'alphanumeric',
+      renderRow: (row: ICompanyListPending) => <div>{new Date(row.createdAt).toLocaleDateString()}</div>,
+    },
+    {
+      Header: 'Մերժման ամսաթիվ',
+      accessor: 'rejectDate',
+      sortType: 'alphanumeric',
+      renderRow: (row: ICompanyListPending) => <div>{new Date(row.createdAt).toLocaleDateString()}</div>,
+    },
     { Header: 'Պատճառ', accessor: 'reasonForRejection', sortType: 'alphanumeric' },
     { Header: 'Ում կողմից', accessor: 'rejectedAdminName', sortType: 'alphanumeric' },
   ];
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
-      {!loading && (
-        <DataTable<ICompanyListRejected>
-          column={columns}
-          data={data.result}
-          setOpenApprove={(id) => setOpenApprove(id)}
-          setOpenReject={(id) => setOpenReject(id)}
-        />
-      )}
+      {!loading && <DataTable<ICompanyListRejected> column={columns} data={data.result} />}
       <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
       <ApproveModal
         id={openApprove}
