@@ -15,7 +15,7 @@ const Thead = <T extends DataTableGenericProps>({ headerGroups }: ITheadProps<T>
         >
           {headerGroup.headers.map((column: TheadColumn<T>) => (
             <th
-              {...(column.id !== 'status'
+              {...(column?.sortType
                 ? (column.getHeaderProps(column.getSortByToggleProps as TheadSort<T>) as TheadCell)
                 : {})}
               align="left"
@@ -23,9 +23,9 @@ const Thead = <T extends DataTableGenericProps>({ headerGroups }: ITheadProps<T>
               key={column.id}
             >
               <div className="flex items-center gap-2">
-                <span>{column.render('Header')}</span>
+                <span className='text-davy-gray'>{column?.render('Header')}</span>
                 <span>
-                  {column.id !== 'status' &&
+                  {column?.sortType &&
                     (column.isSorted ? column.isSortedDesc ? <ArrowDownSvg /> : <ArrowUpSvg /> : <ArrowTopDownSvg />)}
                 </span>
               </div>
