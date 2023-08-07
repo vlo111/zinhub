@@ -51,9 +51,6 @@ const Pagination: React.FC<PaginationProps> = ({ offset, count, onPageChange }) 
 
   return (
     <div style={{ marginTop: '10px' }}>
-      <span>
-        Showing {Math.min(10, count - offset)} of {count} results
-      </span>
       <div className="flex justify-center h-[1.5rem]">
         <button
           className="flex justify-center items-center w-[1.5rem]"
