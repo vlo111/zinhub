@@ -5,12 +5,10 @@ import React, { useState } from 'react';
 import Pagination from '@/components/pagination';
 import { ApproveModal } from '@/app/admin/requests/@pending/components/modals/approve';
 import { RejectModal } from '@/app/admin/requests/@pending/components/modals/reject';
+import { IColumns } from '@/components/table/types';
 
-interface IColumns {
-  Header: string;
-  accessor: keyof ICompanyListPending;
-  sortType?: string;
-}
+import { default as BlockSvg } from '../../components/icons/block.svg';
+import { default as UnBlockSvg } from '../../components/icons/un-block.svg';
 
 export default () => {
   const [openApprove, setOpenApprove] = useState<string>('');
@@ -28,24 +26,53 @@ export default () => {
     setCurrentPage(newPage);
   };
 
-  const columns: IColumns[] = [
+  const columns: IColumns<ICompanyListPending>[] = [
     { Header: 'Անվանում', accessor: 'name', sortType: 'basic' },
-    { Header: 'Ստատուս', accessor: 'status', sortType: 'alphanumeric' },
-    { Header: 'Ստեղծման ամսաթիվ', accessor: 'createdAt', sortType: 'alphanumeric' },
-    { Header: 'Վերջին թարմացում', accessor: 'updatedAt', sortType: 'alphanumeric' },
-    { Header: 'Գործողություն', accessor: 'checkStatus' },
+    {
+      Header: 'Ստատուս',
+      accessor: 'status',
+      sortType: 'alphanumeric',
+      renderRow: (row: ICompanyListPending) => (
+        <div className="flex items-center gap-4">
+          <div
+            role="presentation"
+            className={`rounded-[50px] ${
+              row.status === 'ACTIVE' ? 'bg-[#52C41A]' : row.status === 'INACTIVE' ? 'bg-[#CDCDCD]' : 'bg-[#FF4D4F]'
+            } w-[5px] h-[5px]`}
+            onClick={() => setOpenApprove(row.id)}
+          />
+          <div>{row.status === 'ACTIVE' ? 'Ակտիվ' : row.status === 'INACTIVE' ? 'Չակտիվացված' : 'Արգելափակված'}</div>
+        </div>
+      ),
+    },
+    {
+      Header: 'Ստեղծման ամսաթիվ',
+      accessor: 'createdAt',
+      sortType: 'alphanumeric',
+      renderRow: (row: ICompanyListPending) => <div>{new Date(row.createdAt).toLocaleDateString()}</div>,
+    },
+    {
+      Header: 'Վերջին թարմացում',
+      accessor: 'updatedAt',
+      sortType: 'alphanumeric',
+      renderRow: (row: ICompanyListPending) => <div>{new Date(row.createdAt).toLocaleDateString()}</div>,
+    },
+    {
+      Header: 'Գործողություն',
+      accessor: 'checkStatus',
+      renderRow: (row: ICompanyListPending) => (
+        <div className="flex justify-center items-center gap-4">
+          <div className="cursor-pointer" onClick={() => setOpenApprove(row.id)}>
+            {row.checkStatus === 'ACTIVE' ? <BlockSvg /> : row.checkStatus === 'INACTIVE' ? '' : <UnBlockSvg />}
+          </div>
+        </div>
+      ),
+    },
   ];
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
-      {!loading && (
-        <DataTable<ICompanyListPending>
-          column={columns}
-          data={data.result}
-          setOpenApprove={(id) => setOpenApprove(id)}
-          setOpenReject={(id) => setOpenReject(id)}
-        />
-      )}
+      {!loading && <DataTable<ICompanyListPending> column={columns} data={data.result} />}
       <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
       <ApproveModal
         id={openApprove}
