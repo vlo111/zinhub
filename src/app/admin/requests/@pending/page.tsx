@@ -1,16 +1,13 @@
 'use client';
-import DataTable from '@/components/table';
-import { ICompanyListPending, useGetCompanyList } from '@/api/company/use-get-all-company';
 import React, { useState } from 'react';
+import DataTable from '@/components/table';
 import Pagination from '@/components/pagination';
-import { ApproveModal } from '@/app/admin/requests/@pending/components/modals/approve';
-import { RejectModal } from '@/app/admin/requests/@pending/components/modals/reject';
-
-interface IColumns {
-  Header: string;
-  accessor: keyof ICompanyListPending;
-  sortType?: string;
-}
+import { ApproveModal } from './components/modals/approve';
+import { RejectModal } from './components/modals/reject';
+import { IColumns } from '@/components/table/types';
+import { ICompanyListPending, useGetCompanyList } from '@/api/company/use-get-all-company';
+import { default as ApproveSvg } from './components/icons/approve.svg';
+import { default as RejectSvg } from './components/icons/reject.svg';
 
 export default () => {
   const [openApprove, setOpenApprove] = useState<string>('');
@@ -24,24 +21,35 @@ export default () => {
     setCurrentPage(newPage);
   };
 
-  const columns: IColumns[] = [
+  const columns: IColumns<ICompanyListPending>[] = [
     { Header: 'Անվանում', accessor: 'name', sortType: 'basic' },
     { Header: 'ՀՎՀՀ', accessor: 'taxAccount', sortType: 'alphanumeric' },
-    { Header: 'Ստեղծման ամսաթիվ', accessor: 'createdAt', sortType: 'alphanumeric' },
+    {
+      Header: 'Ստեղծման ամսաթիվ',
+      accessor: 'createdAt',
+      sortType: 'alphanumeric',
+      renderRow: (row: ICompanyListPending) => <div>{new Date(row.createdAt).toLocaleDateString()}</div>,
+    },
     { Header: 'Հեռախոս', accessor: 'phone', sortType: 'alphanumeric' },
-    { Header: 'Գործողություն', accessor: 'status' },
+    {
+      Header: 'Գործողություն',
+      accessor: 'status',
+      renderRow: (row: ICompanyListPending) => (
+        <div className="flex justify-center items-center gap-4">
+          <div role="presentation" className="cursor-pointer" onClick={() => setOpenApprove(row.id)}>
+            <ApproveSvg />
+          </div>
+          <div role="presentation" className="cursor-pointer" onClick={() => setOpenReject(row.id)}>
+            <RejectSvg />
+          </div>
+        </div>
+      ),
+    },
   ];
 
   return (
     <div className="h-full w-full flex flex-col justify-between">
-      {!loading && (
-        <DataTable<ICompanyListPending>
-          column={columns}
-          data={data.result}
-          setOpenApprove={(id) => setOpenApprove(id)}
-          setOpenReject={(id) => setOpenReject(id)}
-        />
-      )}
+      {!loading && <DataTable<ICompanyListPending> column={columns} data={data.result} />}
       <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
       <ApproveModal
         id={openApprove}
