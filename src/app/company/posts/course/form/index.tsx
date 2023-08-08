@@ -4,7 +4,7 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
 import GradientLine from '../../components/gradientLines';
 import Information from '../components/Information';
-import Teacher from '../components/Teacher';
+import Teacher from '../components/teacher';
 import Modal from '@/components/modal';
 import { SubmitButton } from '../components/SubmitButton';
 import AboutCourse from '../components/about_course';

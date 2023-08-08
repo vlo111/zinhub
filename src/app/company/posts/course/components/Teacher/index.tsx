@@ -57,5 +57,3 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
 };
 
 export default Teacher;
-
-// {fields.map(({ id, name }, index) => {

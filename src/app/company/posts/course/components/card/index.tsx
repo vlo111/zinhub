@@ -34,7 +34,7 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
       </div>
       <div className="flex flex-col content-between h-full justify-between col-span-2">
         <div className="flex align-center w-full justify-end gap-2">
-          <button className="px-5 py-[10px] border border-primary-blue rounded-md">
+          <button className="px-5 py-[10px] border border-primary-blue rounded-md" onClick={() => router.push(`/company/posts/course/edit/${data.id}`)}>
             <EditedIcon />
           </button>
           <Button value={'Ավարտել'} />
