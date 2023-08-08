@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ICourseDetails } from '../../types';
 import { useAuth } from '@/providers/auth';
+import { useParams, useRouter } from 'next/navigation';
 import { default as SuccessIcon } from '@/components/icons/success.svg';
 import TrainerCard from '@/components/trainer';
 import Details from './details';
@@ -9,7 +10,6 @@ import Skills from './skills';
 import useDeletePost from '@/api/company/use-delete-post';
 import Modal from '@/components/modal';
 import Button from '@/components/button';
-import { useParams, useRouter } from 'next/navigation';
 
 const CourseDetails: React.FC<ICourseDetails> = ({ formData, company }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -75,7 +75,7 @@ const CourseDetails: React.FC<ICourseDetails> = ({ formData, company }) => {
               value="Վերադառնալ իմ էջ"
               type="secondary"
               onClick={() => {
-                router.push('/company/posts');
+                router.push('/company/posts/course');
                 setOpenConfirmDeleteModal(false);
               }}
             />

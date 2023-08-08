@@ -83,7 +83,7 @@ export default () => {
       <GradientLine />
       <EventContent regions={result?.regions} />
       <SubmitButton openModal={openModal} />
-      <Modal isOpen={isOpen} onClose={closeModal} width="95%">
+      <Modal isOpen={isOpen} onClose={closeModal} width="90%">
         <EventPreview formData={formData} company={result?.company}/>
       </Modal>
       <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
