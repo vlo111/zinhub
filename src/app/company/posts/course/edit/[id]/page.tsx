@@ -56,18 +56,16 @@ export default () => {
     setIsOpenCreateModal(false);
   };
 
-  console.log(data?.trainingStatement, 'gggggggggggggggggggggggggg');
-
   return (
     <>
       {!isLoading ? (
         <Form onSubmit={onSubmit} defaultValues={{ ...data?.trainingStatement }}>
-          <div>gago</div>
+          <div>Armen</div>
           <GradientLine />
           <AboutCourse options={result?.filedOfStudy} />
           <Contacts options={result} />
           <GradientLine />
-          <Information />
+          <Information edit={true}/>
           <GradientLine />
           <Teacher options={result?.teachers} />
           <SubmitButton openModal={openModal} />

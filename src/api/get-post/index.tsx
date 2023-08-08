@@ -21,6 +21,11 @@ const useGetPostById = (id: string, edit = false, options = { enabled: true }) =
     ...options,
   });
   const { data, isSuccess, isLoading } = result;
+
+  console.log(data?.trainingStatement?.teachers.map((teacher) => {
+    return {...teacher, value: teacher.id, label: teacher.fullName };
+  }));
+  
   if (edit) {
     editData = {
       ...data,

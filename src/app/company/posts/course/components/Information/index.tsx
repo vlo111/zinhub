@@ -8,7 +8,7 @@ import Grid from '../flex/grid';
 import { default as DeleteIcon } from '@/components/icons/delete.svg';
 import { useEffect } from 'react';
 
-const Information = () => {
+const Information: React.FC<{ edit?: boolean }> = ({ edit = false }) => {
   const { control, setValue, register } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
@@ -18,7 +18,9 @@ const Information = () => {
   const onAddField = (): void => append({});
 
   useEffect(() => {
-    setValue('topics', [{}]);
+    if (!edit) {
+      setValue('topics', [{}]);
+    }
   }, [setValue]);
 
   return (
@@ -61,7 +63,7 @@ const Information = () => {
         })}
       </div>
       {fields.length <= 15 ? (
-        <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[20%]" submit={false}/>
+        <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[20%]" submit={false} />
       ) : null}
     </div>
   );

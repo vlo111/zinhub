@@ -3,7 +3,7 @@ import { ISelect } from '@/types/global';
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import ReactSelect from 'react-select';
-import './index.css'
+import './index.css';
 
 export const Select: React.FC<ISelect> = ({ name, options }) => {
   const {
@@ -25,7 +25,7 @@ export const Select: React.FC<ISelect> = ({ name, options }) => {
             {...field}
             onChange={(value) => field.onChange(value)}
             onBlur={field.onBlur}
-            value={options?.find((option) => option?.value === field?.value)}
+            value={options?.find((option) => option?.value === field?.value.value)}
             instanceId={field.name}
           />
         )}
