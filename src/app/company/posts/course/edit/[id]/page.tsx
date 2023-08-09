@@ -13,7 +13,9 @@ import Contacts from '../../components/contacts';
 import Information from '../../components/Information';
 import Modal from '@/components/modal';
 import CourseDetails from '../../components/course_details';
-import SuccessModalContent from '../../../components/success-modal-content';
+import useUpdateSinglePost from '@/api/create-post/update-post';
+import { IOptions } from '@/types/global';
+import Button from '@/components/button';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +28,37 @@ export default () => {
   const {
     data: { result },
   } = GetSelectData('TRINING');
-
-  const { data, isLoading }: { data: any } = useGetPostById(id, true);
+  const { data, isLoading } = useGetPostById(id, 'TRINING');
+  const { mutate: updatePostById } = useUpdateSinglePost({
+    onSuccess: () => {
+      setIsOpenCreateModal(true);
+    },
+  });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data, '<-------------data');
+    const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
+    const topicsArr = data.topics.map((item: { name: string }) => item.name);
+    updatePostById({
+      id: id,
+      statementData: {
+        title: data.courseName,
+        classHours: data.classHours,
+        duration: data.duration,
+        location: data.location,
+        phone: data.phone,
+        program: data.program,
+        startDate: data.startDate,
+        description: data.courseDescription,
+        registrationLink: data.email,
+        filedStudyId: data.filedStudyId?.value,
+        formatId: data.formatId?.value,
+        languageId: data.languageId?.value,
+        levelId: data.levelId?.value,
+        regionId: data.regionId?.value,
+        teacherIds: teachersArr,
+        topics: topicsArr,
+      },
+    });
   };
 
   const openModal: SubmitHandler<FieldValues> = (data) => {
@@ -44,15 +72,11 @@ export default () => {
 
   const closeCreateModal = () => {
     setIsOpenCreateModal(false);
-  };
-
-  const onAddNewPost = () => {
-    router.push('/company/posts/course/create');
-    setIsOpenCreateModal(false);
+    router.push('/company/posts/course');
   };
 
   const onGoBack = () => {
-    router.push('/company/posts');
+    router.push('/company/posts/course');
     setIsOpenCreateModal(false);
   };
 
@@ -65,15 +89,22 @@ export default () => {
           <AboutCourse options={result?.filedOfStudy} />
           <Contacts options={result} />
           <GradientLine />
-          <Information edit={true}/>
+          <Information edit={true} />
           <GradientLine />
-          <Teacher options={result?.teachers} />
+          <Teacher options={result?.teachers} edit={true} />
           <SubmitButton openModal={openModal} />
           <Modal isOpen={isOpen} onClose={closeModal} width="95%">
             <CourseDetails formData={formData} />
           </Modal>
           <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
-            <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />
+            <div className="flex items-center flex-col gap-11">
+              <p className="w-[80%] text-lg font-medium text-davy-gray flex text-center">
+                Ձեր հայտարարությունը հաջողությամբ խմբագրվել է
+              </p>
+              <div className="flex flex-row gap-4 items-center">
+                <Button value="Վերադառնալ իմ էջ" type="secondary" onClick={onGoBack} />
+              </div>
+            </div>
           </Modal>
         </Form>
       ) : (

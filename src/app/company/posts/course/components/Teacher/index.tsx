@@ -6,7 +6,7 @@ import Button from '@/components/button';
 import { useEffect } from 'react';
 import { ITeacher } from '../../types';
 
-const Teacher: React.FC<ITeacher> = ({ options }) => {
+const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
   const { control, setValue } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
@@ -23,7 +23,9 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
   });
 
   useEffect(() => {
-    setValue('teacherIds', [{}]);
+    if (!edit) {
+      setValue('teacherIds', [{}]);
+    }
   }, [setValue]);
 
   return (

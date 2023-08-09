@@ -57,6 +57,7 @@ export interface IFormData {
   teachers?: ITeacherOption[] | undefined;
   topics?: IDynamicForm[] | Array<string>;
   duration?: string | undefined;
+  filedStud?: {id: string, title: string}
 }
 
 export interface ICompany {
@@ -98,6 +99,22 @@ export interface IContactsSelectData {
 }
 export interface IContacts {
   options: IContactsSelectData;
+}
+
+export interface ITeacher {
+  options: ITeacherOption[];
+  edit?: boolean
+}
+
+export interface IDataPost {
+  id: string;
+  status: string;
+  companyPhoto: string;
+  companyName: string;
+  statementTitle: string;
+  statementLocation: string;
+  statementFiled: string;
+  type: string;
 }
 
 export type OpenModalType = (data: IFormData) => void;
