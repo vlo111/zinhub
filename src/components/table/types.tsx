@@ -1,8 +1,9 @@
 import { ICompanyListPending, ICompanyListRejected } from '@/api/company/use-get-all-company';
+import { ITableData } from '@/app/company/teacher/types';
 import React from 'react';
 import { Cell, HeaderGroup, HeaderPropGetter, Row, TableBodyPropGetter, TableBodyProps } from 'react-table';
 
-export type DataTableGenericProps = ICompanyListPending | ICompanyListRejected;
+export type DataTableGenericProps = ICompanyListPending | ICompanyListRejected | ITableData;
 
 /* Data Table */
 export interface IColumns<T> {
@@ -26,6 +27,7 @@ export type CellRenderer<T extends object> = {
 export type TheadColumn<T extends DataTableGenericProps> = {
   isSorted?: boolean;
   isSortedDesc?: boolean;
+  sortType?: string
   getSortByToggleProps?: (() => void) | undefined;
 } & HeaderGroup<T>;
 

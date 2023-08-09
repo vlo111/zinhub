@@ -10,20 +10,16 @@ import { default as DeleteIcon } from '@/components/icons/delete.svg';
 import { default as SuccessIcon } from '@/components/icons/success.svg';
 import Modal from '@/components/modal';
 import useDeleteTeacher from '@/api/create-teacher/delete';
-
-interface ITableData {
-  id: string;
-  fullName?: string;
-  profession?: string;
-  photo?: string;
-}
+import { ITableData } from './types';
+import Pagination from '@/components/pagination';
 
 export default () => {
   const [openDeleteModal, setOpenDeleteModal] = useState<string>('');
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const router = useRouter();
 
-  const { data, isLoading, refetch } = useGetAllTeachers();
+  const { data, isLoading, refetch } = useGetAllTeachers(10, currentPage);
   const { mutate: deleteTeacherById } = useDeleteTeacher({
     onSuccess: () => {
       setOpenConfirmDeleteModal(true);
@@ -37,6 +33,10 @@ export default () => {
   };
   const oncloseConfirmModal = () => {
     setOpenConfirmDeleteModal(false);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
   };
 
   const columns: IColumns<ITableData>[] = [
@@ -74,7 +74,7 @@ export default () => {
   ];
 
   return (
-    <div className="flex flex-col gap-10 lg:px-10 md:px-3 sm:px-3 xs:px-3">
+    <div className="flex flex-col gap-10 mb-5 lg:px-10 md:px-3 sm:px-3 xs:px-3">
       <div className="flex w-full justify-end">
         <Button
           value={'+ Ավելացնել դասավանդող'}
@@ -84,6 +84,7 @@ export default () => {
         />
       </div>
       <div>{!isLoading && <DataTable column={columns} data={data?.result} />}</div>
+      <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
       <Modal isOpen={openDeleteModal !== ''} onClose={onclose} width={'40%'} footer={false}>
         <div className="flex items-center flex-col gap-11">
           <p className="w-[80%] text-lg font-medium text-davy-gray flex text-center">

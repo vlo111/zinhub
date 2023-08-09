@@ -6,8 +6,9 @@ import { IData, IParam, Options, ReturnData } from '../types';
 export const url = 'api/statements/all';
 
 export const useGetCompanyPosts = (params: IParam, options?: Options): { data: IData; loading: boolean } => {
+  const {limit, offset} = params 
   const result = useQuery<AxiosResponse<ReturnData>, Error>(
-    [url],
+    [url, limit, offset],
     () => client.post<ReturnData>(url, params),
     options
   );

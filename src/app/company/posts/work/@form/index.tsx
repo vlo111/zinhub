@@ -1,18 +1,19 @@
 'use client';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { Form } from '@/components/form';
-import PostType from '../../components/checks';
-import { useState } from 'react';
 import GradientLine from '../../components/gradientLines';
-import EventContent from '../components/event_content';
-import EventPreview from '../components/event_preview';
+import { Form } from '@/components/form';
+import { useState } from 'react';
+import JobDetails from '../components/jobDetails';
+import JobDescription from '../components/jobDesctiption';
 import Modal from '@/components/modal';
-import { OpenModalType } from '../types';
+import JobPreview from '../components/job_details';
 import { SubmitButton } from '../components/SubmitButton';
-import CreatePosts from '@/api/create-post';
+import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
-import SuccessModalContent from '../../components/success-modal-content';
+import CreatePosts from '@/api/create-post';
+import PostType from '../../components/checks';
 import { useRouter } from 'next/navigation';
+import SuccessModalContent from '../../components/success-modal-content';
 
 export type FormItems = {
   phone: string;
@@ -24,13 +25,13 @@ export type FormItems = {
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const [formData, setFortData] = useState({});
+  const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
   const router = useRouter();
 
   const {
     data: { result },
-  } = GetSelectData('OTHER');
+  } = GetSelectData('WORK');
 
   const { mutate: createPostsFn } = CreatePosts({
     onSuccess: () => {
@@ -46,6 +47,7 @@ export default () => {
   const closeModal = () => {
     setIsOpen(false);
   };
+
   const closeCreateModal = () => {
     setIsOpenCreateModal(false);
   };
@@ -62,17 +64,24 @@ export default () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     createPostsFn({
-      type: 'OTHER',
+      type: 'WORK',
       statementData: {
-        title: data.courseName,
-        applicationDeadline: data.applicationDeadline,
-        location: data.location,
-        registrationLink: data.email,
-        startDate: data.startDate,
-        phone: data.phone,
-        program: data.program,
+        title: data.companyName,
         whatWeOffer: data.whatWeOffer,
+        salary: data.salary,
+        location: data.location,
+        additionalNotes: data.additionalNotes,
+        applicationDeadline: data.applicationDeadline,
+        duration: data.duration,
+        registrationLink: data.email,
+        phone: data.phone,
+        description: data.workDescription,
+        employmentId: data.employmentId?.value,
+        filedWorkId: data.filedWorkId?.value,
+        levelId: data.levelId?.value,
         regionId: data.regionId?.value,
+        responsibilities: data.responsibilities ,
+        skills: data.skills,
       },
     });
   };
@@ -81,10 +90,12 @@ export default () => {
     <Form onSubmit={onSubmit}>
       <PostType />
       <GradientLine />
-      <EventContent regions={result?.regions} />
+      <JobDetails options={result} />
+      <GradientLine />
+      <JobDescription />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-        <EventPreview formData={formData} />
+        <JobPreview formData={formData} company={result?.company}/>
       </Modal>
       <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
         <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />

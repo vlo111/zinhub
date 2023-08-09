@@ -3,7 +3,7 @@ import useGetPostById from '@/api/get-post';
 import CourseDetails from '../components/course_details';
 
 export default ({ params: { id } }: { params: { id: string } }) => {
-  const { data }: { data: any } = useGetPostById(id);
+  const { data } = useGetPostById(id);
 
   return (
     <div>

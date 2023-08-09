@@ -2,8 +2,10 @@ import './index.css';
 import InfoItem from './item';
 import { IDetails } from '../../../types';
 import GradientLine from '@/app/company/posts/components/gradientLines';
+import { default as EditedIcon } from '@/components/icons/edite.svg';
+import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
 
-const Details: React.FC<IDetails> = ({ formData, company }) => {
+const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => {
   return (
     <>
       <div className="flex-col w-full grid grid-cols-3 gap-4">
@@ -15,6 +17,17 @@ const Details: React.FC<IDetails> = ({ formData, company }) => {
                 {formData?.courseName !== undefined ? formData?.courseName : formData?.title}
               </p>
               <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
+              {role === 'COMPANY' ? (
+                <div className="flex flex-row gap-2">
+                  <button className="button border-primary-blue text-primary-blue">
+                    <EditedIcon /> Խմբագրել
+                  </button>
+                  <button className="button border-error text-error" onClick={openModal}>
+                    <DeletedIcon />
+                    Ջնջել
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
           <p className="text-sm font-medium text-davy-gray">

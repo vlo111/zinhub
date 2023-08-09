@@ -34,7 +34,7 @@ export default () => {
     }
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {    
     const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
     const topicsArr = data.topics.map((item: { name: string }) => item.name);
 
@@ -96,7 +96,7 @@ export default () => {
       <Teacher options={result?.teachers} />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-        <CourseDetails formData={formData} />
+        <CourseDetails formData={formData} company={result?.company}/>
       </Modal>
       <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
         <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />

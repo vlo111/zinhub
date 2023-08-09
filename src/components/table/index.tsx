@@ -10,7 +10,7 @@ const DataTable = <T extends DataTableGenericProps>({ data, column }: IDataTable
       column.map((col) => ({
         ...col,
         Cell: col.renderRow
-          ? ({ cell, row }: CellRenderer<T>) => col.renderRow?.(row.original)
+          ? ({ row }: CellRenderer<T>) => col.renderRow?.(row.original)
           : ({ cell }: CellRenderer<T>) => cell.value,
       })),
     [column]
