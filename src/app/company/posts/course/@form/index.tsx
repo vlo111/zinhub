@@ -4,7 +4,7 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
 import GradientLine from '../../components/gradientLines';
 import Information from '../components/Information';
-import Teacher from '../components/Teacher';
+import Teacher from '../components/teacher';
 import Modal from '@/components/modal';
 import { SubmitButton } from '../components/SubmitButton';
 import AboutCourse from '../components/about_course';
@@ -34,7 +34,7 @@ export default () => {
     }
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {    
     const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
     const topicsArr = data.topics.map((item: { name: string }) => item.name);
 
@@ -96,7 +96,7 @@ export default () => {
       <Teacher options={result?.teachers} />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-        <CourseDetails formData={formData} />
+        <CourseDetails formData={formData} company={result?.company}/>
       </Modal>
       <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
         <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />

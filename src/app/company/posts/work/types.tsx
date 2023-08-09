@@ -39,6 +39,8 @@ export interface IJobPreview {
 export interface IAboutCompany {
   formData: IFormData;
   company?: ICompany;
+  role?: string
+  openModal?: () => void
 }
 export interface IJobContent {
   formData: IFormData;

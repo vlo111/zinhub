@@ -7,6 +7,31 @@ interface IOptionByGet {
   id: string;
   title: string | undefined;
 }
+
+export interface ITeacherOption {
+  id: string;
+  fullName: string;
+  profession?: string;
+  photo?: string;
+  description?: string;
+  websites?: { link: { url: string }[] };
+}
+
+export interface ITeacher {
+  options: ITeacherOption[];
+}
+
+export interface IDataPost {
+  id: string;
+  status: string;
+  companyPhoto: string;
+  companyName: string;
+  statementTitle: string;
+  statementLocation: string;
+  statementFiled: string;
+  type: string;
+}
+
 export interface IFormData {
   classHours?: string;
   courseDuration?: string;
@@ -28,7 +53,8 @@ export interface IFormData {
   startDate?: string;
   courseName?: string;
   title?: string | undefined;
-  teacherId?: IOptions[];
+  teacherIds?: ITeacherOption[];
+  teachers?: ITeacherOption[] | undefined;
   topics?: IDynamicForm[] | Array<string>;
   duration?: string | undefined;
 }
@@ -57,6 +83,8 @@ export interface IProgram {
 export interface IDetails {
   formData: IFormData;
   company?: ICompany;
+  role?: string,
+  openModal?: () => void
 }
 export interface IAboutCourse {
   options: IOptions[];
@@ -70,28 +98,6 @@ export interface IContactsSelectData {
 }
 export interface IContacts {
   options: IContactsSelectData;
-}
-
-export interface ITeacherOption {
-  id: string;
-  fullName: string;
-  profession: string;
-  photo: string;
-}
-
-export interface ITeacher {
-  options: ITeacherOption[];
-}
-
-export interface IDataPost {
-  id: string;
-  status: string;
-  companyPhoto: string;
-  companyName: string;
-  statementTitle: string;
-  statementLocation: string;
-  statementFiled: string;
-  type: string;
 }
 
 export type OpenModalType = (data: IFormData) => void;

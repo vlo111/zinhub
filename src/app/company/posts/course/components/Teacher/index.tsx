@@ -15,6 +15,7 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
   const onAddField = (): void => append({});
   const teacherOptions = options?.map((teacher) => {
     return {
+      ...teacher,
       label: teacher?.fullName,
       value: teacher?.id,
       icon: teacher?.photo,

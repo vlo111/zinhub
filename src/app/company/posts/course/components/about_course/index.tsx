@@ -9,10 +9,6 @@ import Row from '../flex/row';
 import { IAboutCourse } from '../../types';
 
 const AboutCourse: React.FC<IAboutCourse> = ({ options }) => {
-  // const {
-  //   register,
-  //   formState: { errors },
-  // } = useForm<FormItems>();
 
   return (
     <Grid>
