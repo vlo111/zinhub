@@ -62,7 +62,7 @@ export default () => {
       sortType: '',
       renderRow: (row: ITableData) => (
         <div className="flex items-center gap-4">
-          <div role="presentation" className="cursor-pointer">
+          <div role="presentation" className="cursor-pointer" onClick={() => router.push(`/company/teacher/edit/${row.id}`)}>
             <EditIcon />
           </div>
           <div role="presentation" className="cursor-pointer" onClick={() => setOpenDeleteModal(row.id)}>

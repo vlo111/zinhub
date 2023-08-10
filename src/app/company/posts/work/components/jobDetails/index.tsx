@@ -8,7 +8,7 @@ import Row from '../../../course/components/flex/row';
 
 const JobDetails: React.FC<IJobDetails> = ({ options }) => {
   return (
-    <div className="flex flex-col gap-4 w-full mb-14 ">
+    <div className="flex flex-col gap-4 w-full mb-8 ">
       <Grid>
         <Row>
           <FormItem label="Հայտարարության վերնագիրը" name="companyName">

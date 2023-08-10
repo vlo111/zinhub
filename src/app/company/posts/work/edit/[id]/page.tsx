@@ -13,6 +13,7 @@ import useUpdateSinglePost from '@/api/create-post/update-post';
 import Modal from '@/components/modal';
 import JobPreview from '../../components/job_details';
 import Button from '@/components/button';
+import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,7 +78,7 @@ export default () => {
     <>
       {!isLoading ? (
         <Form onSubmit={onSubmit} defaultValues={{ ...data?.workStatement }}>
-          <div>work</div>
+          <div className='flex flex-row items-center text-sm font-bold gap-2 mb-4'>ԱՇԽԱՏԱՆՔ<EditBlackIcon/></div>
           <GradientLine />
           <JobDetails options={result} />
           <GradientLine />

@@ -55,6 +55,7 @@ export default () => {
         languageId: data.languageId?.value,
         levelId: data.levelId?.value,
         regionId: data.regionId?.value,
+        applicationDeadline: data.applicationDeadline,
         teacherIds: teachersArr,
         topics: topicsArr,
       },

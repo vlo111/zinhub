@@ -12,9 +12,9 @@ const TrainerCard: React.FC<{ teacher: ITeacherOption }> = ({ teacher }) => {
       </div>
       <div className="py-4 flex flex-col gap-2 col-span-3">
         <p className="font-bold text-davy-gray">ԱՇԽԱՏԱՆՔԱՅԻՆ ՓՈՐՁ</p>
-        <p className="text-davy-gray">{teacher?.description}</p>
+        <p className="text-davy-gray">{teacher?.experience}</p>
       </div>
-      <img src={teacher?.photo} className=' min-h-[200px] max-h-[260px] w-full col-span-2 rounded-lg' />
+      <img src={teacher?.photo} className=" min-h-[200px] max-h-[260px] w-full col-span-2 rounded-lg" />
     </div>
   );
 };

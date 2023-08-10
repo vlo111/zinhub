@@ -50,26 +50,30 @@ const Pagination: React.FC<PaginationProps> = ({ offset, count, onPageChange }) 
   };
 
   return (
-    <div style={{ marginTop: '10px' }}>
-      <div className="flex justify-center h-[1.5rem]">
-        <button
-          className="flex justify-center items-center w-[1.5rem]"
-          disabled={offset <= 0}
-          onClick={handlePreviousClick}
-        >
-          <LeftArrowSVG fillOpacity={offset <= 0 ? '0.3' : '1'} />
-        </button>
-        {renderPageNumbers()}
+    <>
+      {count > 10 ? (
+        <div style={{ marginTop: '10px' }}>
+          <div className="flex justify-center h-[1.5rem]">
+            <button
+              className="flex justify-center items-center w-[1.5rem]"
+              disabled={offset <= 0}
+              onClick={handlePreviousClick}
+            >
+              <LeftArrowSVG fillOpacity={offset <= 0 ? '0.3' : '1'} />
+            </button>
+            {renderPageNumbers()}
 
-        <button
-          className="flex justify-center items-center w-[1.5rem]"
-          disabled={offset >= count - 10}
-          onClick={handleNextClick}
-        >
-          <RightArrowSVG fillOpacity={offset >= count - 10 ? '0.3' : '1'} />
-        </button>
-      </div>
-    </div>
+            <button
+              className="flex justify-center items-center w-[1.5rem]"
+              disabled={offset >= count - 10}
+              onClick={handleNextClick}
+            >
+              <RightArrowSVG fillOpacity={offset >= count - 10 ? '0.3' : '1'} />
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 };
 

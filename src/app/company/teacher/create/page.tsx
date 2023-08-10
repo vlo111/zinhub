@@ -13,14 +13,6 @@ import useCreateTeacher from '@/api/create-teacher';
 import DynamicFils from './dynamic-filds';
 import { useRouter } from 'next/navigation';
 
-export type FormItems = {
-  phone: string;
-  email: string;
-  address: string;
-  about: string;
-  value: string;
-};
-
 export default () => {
   const { watch } = useForm();
   const routs = useRouter();
@@ -32,7 +24,7 @@ export default () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const photoBase64 = await convertToBase64(data.photoItem?.[0]);
+    const photoBase64 = await convertToBase64(data.photoItem?.[0]);    
     createTeacherFn({
       fullName: data.fullName,
       profession: data.profession,

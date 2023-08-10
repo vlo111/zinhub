@@ -13,7 +13,7 @@ export interface ITeacherOption {
   fullName: string;
   profession?: string;
   photo?: string;
-  description?: string;
+  experience?: string;
   websites?: { link: { url: string }[] };
 }
 

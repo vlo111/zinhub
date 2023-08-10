@@ -7,10 +7,13 @@ import { IContacts } from '../../types';
 const Contacts: React.FC<IContacts> = ({ options }) => {
 
   return (
-    <div className="flex flex-col gap-4 w-full my-14 ">
+    <div className="flex flex-col gap-4 w-full my-8 ">
       <div className="grid gap-x-12 gap-y-4 grid-cols-3 w-full">
         <FormItem label="Դասընթացի մեկնարկը" name="startDate">
           <DatePicker name="startDate" />
+        </FormItem>
+        <FormItem label="Դիմելու վերջնաժամկետը" name="applicationDeadline">
+          <DatePicker name="applicationDeadline" />
         </FormItem>
         <FormItem label="Դասընթացի Տևողությունը" name="duration">
           <Input name="duration" />

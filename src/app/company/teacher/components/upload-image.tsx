@@ -1,12 +1,11 @@
-'use client'
+'use client';
 import { useRef, useState } from 'react';
 import { default as UploadSVG } from '../../profile/components/icons/company-upload.svg';
 import Image from 'next/image';
 import { FileInput } from '@/components/input/file-input';
-import { DefaultCompanyImageUrl } from '@/helpers/constants';
 import { useFormContext } from 'react-hook-form';
 
-export const UploadImage = ({ defaultImage, }: { defaultImage: string | null }) => {
+export const UploadImage = ({ defaultImage }: { defaultImage: string | null | undefined }) => {
   const { watch } = useFormContext();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -33,7 +32,7 @@ export const UploadImage = ({ defaultImage, }: { defaultImage: string | null }) 
             src={preview}
             alt="Profile Preview"
           />
-        ) : defaultImage === DefaultCompanyImageUrl ? (
+        ) : defaultImage ? (
           <Image
             src={defaultImage ?? ''}
             width={192}

@@ -13,6 +13,7 @@ import useUpdateSinglePost from '@/api/create-post/update-post';
 import { useParams } from 'next/navigation';
 import useGetPostById from '@/api/get-post';
 import Button from '@/components/button';
+import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
 
 export type FormItems = {
   phone: string;
@@ -84,7 +85,7 @@ export default () => {
     <>
       {!isLoading ? (
         <Form onSubmit={onSubmit} defaultValues={data?.otherStatement}>
-          <div>Event</div>
+           <div className='flex flex-row items-center text-sm font-bold gap-2 mb-4'>ԱՅԼ<EditBlackIcon/></div>
           <GradientLine />
           <EventContent regions={result?.regions} />
           <SubmitButton openModal={openModal} />

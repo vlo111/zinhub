@@ -4,6 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { SubmitButton } from '../SubmitButton';
 import { Form } from '@/components/form';
+import { IOptions } from '@/types/global';
 import GetSelectData from '@/api/statics';
 import useGetPostById from '@/api/get-post';
 import AboutCourse from '../../components/about_course';
@@ -14,8 +15,8 @@ import Information from '../../components/Information';
 import Modal from '@/components/modal';
 import CourseDetails from '../../components/course_details';
 import useUpdateSinglePost from '@/api/create-post/update-post';
-import { IOptions } from '@/types/global';
 import Button from '@/components/button';
+import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,7 +85,7 @@ export default () => {
     <>
       {!isLoading ? (
         <Form onSubmit={onSubmit} defaultValues={{ ...data?.trainingStatement }}>
-          <div>Armen</div>
+          <div className='flex flex-row items-center text-sm font-bold gap-2 mb-4'>ՈւՍՈՒՑՈՒՄ<EditBlackIcon/></div>
           <GradientLine />
           <AboutCourse options={result?.filedOfStudy} />
           <Contacts options={result} />

@@ -1,9 +1,13 @@
 .checkCard {
   @apply flex flex-col gap-3 border border-primary-blue-light rounded-xl h-32 content-between p-4 flex-none w-72 cursor-pointer;
 }
+
+.checkCardChecked {
+  @apply flex flex-col gap-3 border-[2px] border-primary-blue rounded-xl h-32 content-between p-4 flex-none w-72 cursor-pointer;
+}
 .cardTop {
   @apply flex flex-row justify-between;
 }
 .textStyle {
-  @apply text-davy-gray text-sm md:text-xs;
+  @apply text-davy-gray text-sm cursor-pointer md:text-xs;
 }
