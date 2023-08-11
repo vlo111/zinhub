@@ -20,10 +20,10 @@ export const navigationItems = [
   { label: 'Ընկերություններ', href: '/company/create' },
 ];
 export const navigationItemsPosts = [
-  { label: 'Բոլորը', href: '/company/posts' },
-  { label: 'Ուսուցում', href: '/company/posts/course' },
-  { label: 'Աշխատանք', href: '/company/posts/work' },
-  { label: 'Այլ', href: '/company/posts/event' },
+  { label: 'ԲՈԼՈՐԸ', href: '/company/posts' },
+  { label: 'ՈՒՍՈՒՑՈՒՄ', href: '/company/posts/course' },
+  { label: 'ԱՇԽԱՏԱՆՔ', href: '/company/posts/work' },
+  { label: 'ԱՅԼ', href: '/company/posts/event' },
 ];
 
 export const AUTH_KEYS = {

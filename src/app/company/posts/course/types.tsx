@@ -30,6 +30,7 @@ export interface IDataPost {
   statementLocation: string;
   statementFiled: string;
   type: string;
+  timeAgo?: string;
 }
 
 export interface IFormData {

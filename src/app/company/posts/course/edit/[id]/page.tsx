@@ -37,6 +37,7 @@ export default () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    
     const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
     const topicsArr = data.topics.map((item: { name: string }) => item.name);
     updatePostById({
@@ -49,6 +50,7 @@ export default () => {
         phone: data.phone,
         program: data.program,
         startDate: data.startDate,
+        applicationDeadline: data.endDate,
         description: data.courseDescription,
         registrationLink: data.email,
         filedStudyId: data.filedStudyId?.value,
@@ -85,7 +87,7 @@ export default () => {
     <>
       {!isLoading ? (
         <Form onSubmit={onSubmit} defaultValues={{ ...data?.trainingStatement }}>
-          <div className='flex flex-row items-center text-sm font-bold gap-2 mb-4'>ՈւՍՈՒՑՈՒՄ<EditBlackIcon/></div>
+           <div className='flex flex-row items-center text-sm font-bold gap-2 mb-4'>ՈւՍՈՒՑՈՒՄ<EditBlackIcon/></div>
           <GradientLine />
           <AboutCourse options={result?.filedOfStudy} />
           <Contacts options={result} />
@@ -95,7 +97,7 @@ export default () => {
           <Teacher options={result?.teachers} edit={true} />
           <SubmitButton openModal={openModal} />
           <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-            <CourseDetails formData={formData} />
+            <CourseDetails formData={formData} company={data.company}/>
           </Modal>
           <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
             <div className="flex items-center flex-col gap-11">

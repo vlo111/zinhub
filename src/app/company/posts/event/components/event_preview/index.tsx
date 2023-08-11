@@ -52,7 +52,7 @@ const EventPreview: React.FC<{ formData: IFormData; company?: ICompany }> = ({ f
               <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
               {role === 'COMPANY' ? (
                 <div className="flex flex-row gap-2">
-                  <button className={`${button} border-primary-blue text-primary-blue`}>
+                  <button className={`${button} border-primary-blue text-primary-blue`} onClick={() => router.push(`/company/posts/event/edit/${id}`)}>
                     <EditedIcon /> Խմբագրել
                   </button>
                   <button className={`${button} border-error text-error`} onClick={openDeleteModal}>

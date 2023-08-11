@@ -30,7 +30,7 @@ export default () => {
     onSuccess: () => {
       setIsOpenCreateModal(true);
     },
-  });
+  });  
 
   const openModal: SubmitHandler<FieldValues> = (data) => {
     setFortData({ ...data });
@@ -85,7 +85,7 @@ export default () => {
           <JobDescription />
           <SubmitButton openModal={openModal} />
           <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-            <JobPreview formData={formData} />
+            <JobPreview formData={formData} company={data?.company}/>
           </Modal>
           <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false} >
             <div className="flex items-center flex-col gap-11">

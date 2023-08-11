@@ -30,10 +30,6 @@ export default () => {
   const router = useRouter();
   const { id } = useParams();
 
-//   const {
-//     reset,
-//   } = useForm()
-
   const {
     data: { result },
   } = GetSelectData('OTHER');
@@ -90,7 +86,7 @@ export default () => {
           <EventContent regions={result?.regions} />
           <SubmitButton openModal={openModal} />
           <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-            <EventPreview formData={formData} />
+            <EventPreview formData={formData} company={data.company}/>
           </Modal>
           <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
             <div className="flex items-center flex-col gap-11">

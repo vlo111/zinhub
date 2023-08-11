@@ -55,7 +55,7 @@ const useGetPostById = (id: string, edit = '', options = { enabled: true }): { d
     retry: false,
     ...options,
   });
-  const { data, isSuccess, isLoading } = result as UseQueryResult<any, Error>;
+  const { data, isSuccess, isLoading } = result as UseQueryResult<any, Error>;  
 
   if (edit === 'TRINING') {
     editData = {
@@ -68,6 +68,7 @@ const useGetPostById = (id: string, edit = '', options = { enabled: true }): { d
         },
         courseDescription: data?.trainingStatement?.description,
         startDate: new Date(data?.trainingStatement?.startDate),
+        endDate: new Date(data?.trainingStatement?.applicationDeadline),
         duration: data?.trainingStatement?.duration,
         classHours: data?.trainingStatement?.classHours,
         levelId: { value: data?.trainingStatement?.level.id, label: data?.trainingStatement?.level.title },

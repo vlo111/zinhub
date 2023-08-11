@@ -12,8 +12,8 @@ const Contacts: React.FC<IContacts> = ({ options }) => {
         <FormItem label="Դասընթացի մեկնարկը" name="startDate">
           <DatePicker name="startDate" />
         </FormItem>
-        <FormItem label="Դիմելու վերջնաժամկետը" name="applicationDeadline">
-          <DatePicker name="applicationDeadline" />
+        <FormItem label="Դիմելու վերջնաժամկետը" name="endDate">
+          <DatePicker name="endDate" />
         </FormItem>
         <FormItem label="Դասընթացի Տևողությունը" name="duration">
           <Input name="duration" />

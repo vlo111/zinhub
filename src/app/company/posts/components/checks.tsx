@@ -6,8 +6,6 @@ import { default as EmployerIcon } from '@/components/icons/employer-icon.svg';
 import { default as ConferenceRoomIcon } from '@/components/icons/conference-room-icon.svg';
 import { useEffect, useState } from 'react';
 
-// import Link from 'next/link';
-
 const PostType = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -42,7 +40,10 @@ const PostType = () => {
     <div className="flex flex-col border gap-6 border-primary-blue-light rounded-xl items-center content-center p-10 mb-14 ">
       <p className=" text-lg font-bold ">Տեղադրել հայտարարություն</p>
       <div className="grid grid-cols-3 gap-4 xl:grid-flow-col rounded-xl items-center content-center">
-        <div onClick={() => onCheckRadio(1)} className={checkRadio === 1 ? 'checkCardChecked' : 'checkCard'}>
+        <div
+          onClick={() => onCheckRadio(1)}
+          className={checkRadio === 1 && pathname === '/company/posts/course/create' ? 'checkCardChecked' : 'checkCard'}
+        >
           <div className="cardTop ">
             <div className="flex flex-row gap-2">
               <TrainingCenterIcon />
@@ -52,7 +53,10 @@ const PostType = () => {
           </div>
           <label className="textStyle">Ես ուսումնական կենտրոն եմ, առաջարկում եմ դասընթաց</label>
         </div>
-        <div onClick={() => onCheckRadio(2)} className={checkRadio === 2 ? 'checkCardChecked' : 'checkCard'}>
+        <div
+          onClick={() => onCheckRadio(2)}
+          className={checkRadio === 2 && pathname === '/company/posts/work/create' ? 'checkCardChecked' : 'checkCard'}
+        >
           <div className="cardTop">
             <div className="flex flex-row gap-2">
               <EmployerIcon />
@@ -62,7 +66,10 @@ const PostType = () => {
           </div>
           <label className="textStyle">Ես գործատու եմ, առաջարկում եմ աշխատանք</label>
         </div>
-        <div onClick={() => onCheckRadio(3)} className={checkRadio === 3 ? 'checkCardChecked' : 'checkCard'}>
+        <div
+          onClick={() => onCheckRadio(3)}
+          className={checkRadio === 3 && pathname === '/company/posts/event/create' ? 'checkCardChecked' : 'checkCard'}
+        >
           <div className="cardTop">
             <div className="flex flex-row gap-2">
               <ConferenceRoomIcon />
