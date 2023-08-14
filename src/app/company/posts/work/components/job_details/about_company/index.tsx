@@ -5,6 +5,7 @@ import { IAboutCompany } from '../../../types';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
 import { useParams, useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
 
 const button = 'border py-2 px-4 flex flex-row items-center gap-2 rounded-md text-sm'
 
@@ -23,7 +24,7 @@ const AboutCompany: React.FC<IAboutCompany> = ({ formData, company, role, openMo
             <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
             {role === 'COMPANY' ? (
               <div className="flex flex-row gap-2">
-                <button className={`${button} border-primary-blue text-primary-blue`} onClick={() => router.push(`/company/posts/work/edit/${id}`)}>
+                <button className={`${button} border-primary-blue text-primary-blue`} onClick={() => router.push(`${PATHS.WORK_EDIT}/${id}`)}>
                   <EditedIcon /> Խմբագրել
                 </button>
                 <button className={`${button} border-error text-error`} onClick={openModal}>

@@ -3,9 +3,9 @@ import { IOptions } from '@/types/global';
 interface IDynamicForm {
   name: string | undefined;
 }
-interface IOptionByGet {
+export interface IOptionByGet {
   id: string;
-  title: string | undefined;
+  title: string;
 }
 
 export interface ITeacherOption {
@@ -39,6 +39,7 @@ export interface IFormData {
   description?: string | undefined;
   courseDescription?: string;
   filedStudyId?: IOptions;
+  filedStudy?: IOptionByGet;
   formatId?: IOptions;
   format?: IOptionByGet;
   languageId?: IOptions;
@@ -51,14 +52,16 @@ export interface IFormData {
   regionId?: IOptions;
   region?: IOptionByGet;
   email?: string;
+  registrationLink?: string;
   startDate?: string;
+  applicationDeadline?: string;
   courseName?: string;
   title?: string | undefined;
   teacherIds?: ITeacherOption[];
   teachers?: ITeacherOption[] | undefined;
   topics?: IDynamicForm[] | Array<string>;
   duration?: string | undefined;
-  filedStud?: {id: string, title: string}
+  filedStud?: { id: string; title: string };
 }
 
 export interface ICompany {
@@ -85,8 +88,8 @@ export interface IProgram {
 export interface IDetails {
   formData: IFormData;
   company?: ICompany;
-  role?: string,
-  openModal?: () => void
+  role?: string;
+  openModal?: () => void;
 }
 export interface IAboutCourse {
   options: IOptions[];
@@ -104,7 +107,7 @@ export interface IContacts {
 
 export interface ITeacher {
   options: ITeacherOption[];
-  edit?: boolean
+  edit?: boolean;
 }
 
 export interface IDataPost {

@@ -4,6 +4,7 @@ import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as LocationIcon } from '@/components/icons/location.svg';
 import { IDataPost } from '../../types';
 import { useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
 
 const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
   const router = useRouter();
@@ -30,7 +31,7 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
                 {data?.status === 'ACTIVE' ? (
                   <button
                     className="px-5 py-[10px] border border-primary-blue rounded-md"
-                    onClick={() => router.push(`/company/posts/course/edit/${data.id}`)}
+                    onClick={() => router.push(`${PATHS.COURSE_EDIT}/${data.id}`)}
                   >
                     <EditedIcon />
                   </button>
@@ -84,7 +85,7 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
         <div className="w-full flex justify-end col-span-3 h-4 my-2 ">
           <button
             className="font-bold text-primary-blue hidden group-hover:block"
-            onClick={() => router.push(`/company/posts/course/${data.id}`)}
+            onClick={() => router.push(`${PATHS.COMPANY_COURSE}/${data.id}`)}
           >
             Տեսնել ավելին
           </button>

@@ -8,6 +8,7 @@ import useDeletePost from '@/api/company/use-delete-post';
 import Modal from '@/components/modal';
 import Button from '@/components/button';
 import { default as SuccessIcon } from '@/components/icons/success.svg';
+import { PATHS } from '@/helpers/constants';
 
 const JobPreview: React.FC<IJobPreview> = ({ formData, company }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -65,7 +66,7 @@ const JobPreview: React.FC<IJobPreview> = ({ formData, company }) => {
               value="Վերադառնալ իմ էջ"
               type="secondary"
               onClick={() => {
-                router.push('/company/posts/work');
+                router.push(PATHS.COMPANY_WORK);
                 setOpenConfirmDeleteModal(false);
               }}
             />

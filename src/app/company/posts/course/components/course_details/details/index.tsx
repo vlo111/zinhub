@@ -5,9 +5,10 @@ import GradientLine from '@/app/company/posts/components/gradientLines';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
 import { useParams, useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
 
 const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => {
-  const rout = useRouter();
+  const router = useRouter();
   const { id } = useParams();
   return (
     <>
@@ -24,7 +25,7 @@ const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => 
                 <div className="flex flex-row gap-2">
                   <button
                     className="button border-primary-blue text-primary-blue"
-                    onClick={() => rout.push(`company/posts/course/edit/${id}`)}
+                    onClick={() => router.push(`${PATHS.COURSE_EDIT}/${id}`)}
                   >
                     <EditedIcon /> Խմբագրել
                   </button>

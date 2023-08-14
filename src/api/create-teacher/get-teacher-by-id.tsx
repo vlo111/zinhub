@@ -13,7 +13,7 @@ interface IData {
     createdAt?: string;
     updatedAt?: string;
     photoItem?: string;
-    websites?: {link: Array<{url: string}> }
+    websites?: { link: Array<{ url: string }> };
   };
 }
 
@@ -32,13 +32,7 @@ const useGetTeacherById = (
   if (edit) {
     editData = {
       result: {
-        photo: data?.result?.photo,
-        fullName: data?.result?.fullName,
-        companyId: data?.result?.experience,
-        experience: data?.result?.companyId,
-        profession: data?.result?.profession,
-        createdAt: data?.result?.createdAt,
-        updatedAt: data?.result?.updatedAt,
+        ...data?.result,
         websites: data?.result?.websites?.link?.map((item) => item),
       },
     };

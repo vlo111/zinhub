@@ -5,6 +5,7 @@ import { default as TrainingCenterIcon } from '@/components/icons/training-cente
 import { default as EmployerIcon } from '@/components/icons/employer-icon.svg';
 import { default as ConferenceRoomIcon } from '@/components/icons/conference-room-icon.svg';
 import { useEffect, useState } from 'react';
+import { PATHS } from '@/helpers/constants';
 
 const PostType = () => {
   const router = useRouter();
@@ -14,24 +15,24 @@ const PostType = () => {
   const onCheckRadio = (value: number): void => {
     setCheckRadio(value);
     if (value === 1) {
-      router.push('/company/posts/course/create');
+      router.push(PATHS.COURSE_CREATE);
     }
     if (value === 2) {
-      router.push('/company/posts/work/create');
+      router.push((PATHS.WORK_CREATE));
     }
     if (value === 3) {
-      router.push('/company/posts/event/create');
+      router.push(PATHS.EVENT_CREATE);
     }
   };
 
   useEffect(() => {
-    if (pathname === '/company/posts/course/create') {
+    if (pathname === PATHS.COURSE_CREATE) {
       setCheckRadio(1);
     }
-    if (pathname === '/company/posts/work/create') {
+    if (pathname === PATHS.WORK_CREATE) {
       setCheckRadio(2);
     }
-    if (pathname === '/company/posts/event/create') {
+    if (pathname === PATHS.EVENT_CREATE) {
       setCheckRadio(3);
     }
   }, []);
@@ -42,40 +43,40 @@ const PostType = () => {
       <div className="grid grid-cols-3 gap-4 xl:grid-flow-col rounded-xl items-center content-center">
         <div
           onClick={() => onCheckRadio(1)}
-          className={checkRadio === 1 && pathname === '/company/posts/course/create' ? 'checkCardChecked' : 'checkCard'}
+          className={checkRadio === 1 && pathname === PATHS.COURSE_CREATE ? 'checkCardChecked' : 'checkCard'}
         >
           <div className="cardTop ">
             <div className="flex flex-row gap-2">
               <TrainingCenterIcon />
               <div className="flex flex-row text-sm font-bold text-davy-gray">ՈւՍՈՒՑՈՒՄ</div>
             </div>
-            <input type="radio" value={1} checked={checkRadio === 1 && pathname === '/company/posts/course/create'} />
+            <input type="radio" value={1} checked={checkRadio === 1 && pathname === PATHS.COURSE_CREATE} />
           </div>
           <label className="textStyle">Ես ուսումնական կենտրոն եմ, առաջարկում եմ դասընթաց</label>
         </div>
         <div
           onClick={() => onCheckRadio(2)}
-          className={checkRadio === 2 && pathname === '/company/posts/work/create' ? 'checkCardChecked' : 'checkCard'}
+          className={checkRadio === 2 && pathname === PATHS.WORK_CREATE ? 'checkCardChecked' : 'checkCard'}
         >
           <div className="cardTop">
             <div className="flex flex-row gap-2">
               <EmployerIcon />
               <div className="flex flex-row text-sm font-bold text-davy-gray">ԱՇԽԱՏԱՆՔ</div>
             </div>
-            <input type="radio" value={2} checked={checkRadio === 2 && pathname === '/company/posts/work/create'} />
+            <input type="radio" value={2} checked={checkRadio === 2 && pathname === PATHS.WORK_CREATE} />
           </div>
           <label className="textStyle">Ես գործատու եմ, առաջարկում եմ աշխատանք</label>
         </div>
         <div
           onClick={() => onCheckRadio(3)}
-          className={checkRadio === 3 && pathname === '/company/posts/event/create' ? 'checkCardChecked' : 'checkCard'}
+          className={checkRadio === 3 && pathname === PATHS.EVENT_CREATE ? 'checkCardChecked' : 'checkCard'}
         >
           <div className="cardTop">
             <div className="flex flex-row gap-2">
               <ConferenceRoomIcon />
               <div className="flex flex-row text-sm font-bold text-davy-gray">ԱՅԼ</div>
             </div>
-            <input type="radio" value={3} checked={checkRadio === 3 && pathname === '/company/posts/event/create'} />
+            <input type="radio" value={3} checked={checkRadio === 3 && pathname === PATHS.EVENT_CREATE} />
           </div>
           <label className="textStyle">Ես ընկերություն եմ առաջարկում եմ միջոցառում-ծառայություն</label>
         </div>

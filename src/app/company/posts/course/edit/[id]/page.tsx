@@ -17,6 +17,7 @@ import CourseDetails from '../../components/course_details';
 import useUpdateSinglePost from '@/api/create-post/update-post';
 import Button from '@/components/button';
 import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
+import { PATHS } from '@/helpers/constants';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,29 +38,39 @@ export default () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    
-    const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
-    const topicsArr = data.topics.map((item: { name: string }) => item.name);
+    const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      id: postId,
+      email,
+      courseName,
+      endDate,
+      filedStudyId,
+      courseDescription,
+      regionId,
+      formatId,
+      languageId,
+      levelId,
+      topics,
+      teacherIds,
+      ...rest
+    } = data;
+    const teachersArr = teacherIds.map((item: IOptions) => item.value);
+    const topicsArr = topics.map((item: { name: string }) => item.name);
     updatePostById({
       id: id,
       statementData: {
-        title: data.courseName,
-        classHours: data.classHours,
-        duration: data.duration,
-        location: data.location,
-        phone: data.phone,
-        program: data.program,
-        startDate: data.startDate,
-        applicationDeadline: data.endDate,
-        description: data.courseDescription,
-        registrationLink: data.email,
-        filedStudyId: data.filedStudyId?.value,
-        formatId: data.formatId?.value,
-        languageId: data.languageId?.value,
-        levelId: data.levelId?.value,
-        regionId: data.regionId?.value,
+        title: courseName,
+        applicationDeadline: endDate,
+        description: courseDescription,
+        registrationLink: email,
+        filedStudyId: filedStudyId?.value,
+        formatId: formatId?.value,
+        languageId: languageId?.value,
+        levelId: levelId?.value,
+        regionId: regionId?.value,
         teacherIds: teachersArr,
         topics: topicsArr,
+        ...rest,
       },
     });
   };
@@ -75,11 +86,11 @@ export default () => {
 
   const closeCreateModal = () => {
     setIsOpenCreateModal(false);
-    router.push('/company/posts/course');
+    router.push(PATHS.COMPANY_COURSE);
   };
 
   const onGoBack = () => {
-    router.push('/company/posts/course');
+    router.push(PATHS.COMPANY_COURSE);
     setIsOpenCreateModal(false);
   };
 
@@ -87,7 +98,10 @@ export default () => {
     <>
       {!isLoading ? (
         <Form onSubmit={onSubmit} defaultValues={{ ...data?.trainingStatement }}>
-           <div className='flex flex-row items-center text-sm font-bold gap-2 mb-4'>ՈւՍՈՒՑՈՒՄ<EditBlackIcon/></div>
+          <div className="flex flex-row items-center text-sm font-bold gap-2 mb-4">
+            ՈւՍՈՒՑՈՒՄ
+            <EditBlackIcon />
+          </div>
           <GradientLine />
           <AboutCourse options={result?.filedOfStudy} />
           <Contacts options={result} />
@@ -97,7 +111,7 @@ export default () => {
           <Teacher options={result?.teachers} edit={true} />
           <SubmitButton openModal={openModal} />
           <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-            <CourseDetails formData={formData} company={data.company}/>
+            <CourseDetails formData={formData} company={data.company} />
           </Modal>
           <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
             <div className="flex items-center flex-col gap-11">

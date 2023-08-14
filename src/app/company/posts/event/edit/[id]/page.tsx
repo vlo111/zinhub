@@ -14,6 +14,7 @@ import { useParams } from 'next/navigation';
 import useGetPostById from '@/api/get-post';
 import Button from '@/components/button';
 import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
+import { PATHS } from '@/helpers/constants';
 
 export type FormItems = {
   phone: string;
@@ -52,27 +53,25 @@ export default () => {
 
   const closeCreateModal = () => {
     setIsOpenCreateModal(false);
-    router.push('/company/posts/event');
+    router.push(PATHS.COMPANY_EVENT);
   };
 
   const onGoBack = () => {
-    router.push('/company/posts/event');
+    router.push(PATHS.COMPANY_EVENT);
     setIsOpenCreateModal(false);
   };
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const {id: postId, email, courseName, regionId, ...rest } = data;
+
     updatePostById({
       id: id,
       statementData: {
-        title: data.courseName,
-        applicationDeadline: data.applicationDeadline,
-        location: data.location,
-        registrationLink: data.email,
-        startDate: data.startDate,
-        phone: data.phone,
-        program: data.program,
-        whatWeOffer: data.whatWeOffer,
-        regionId: data.regionId?.value,
+        registrationLink: email,
+        title: courseName,
+        regionId: regionId?.value,
+        ...rest,
       },
     });
   };

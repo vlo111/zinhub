@@ -12,6 +12,7 @@ import useDeletePost from '@/api/company/use-delete-post';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
 import { default as SuccessIcon } from '@/components/icons/success.svg';
+import { PATHS } from '@/helpers/constants';
 
 const button = 'border py-2 px-4 flex flex-row items-center gap-2 rounded-md text-sm'
 
@@ -52,7 +53,7 @@ const EventPreview: React.FC<{ formData: IFormData; company?: ICompany }> = ({ f
               <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
               {role === 'COMPANY' ? (
                 <div className="flex flex-row gap-2">
-                  <button className={`${button} border-primary-blue text-primary-blue`} onClick={() => router.push(`/company/posts/event/edit/${id}`)}>
+                  <button className={`${button} border-primary-blue text-primary-blue`} onClick={() => router.push(`${PATHS.EVENT_EDIT}/${id}`)}>
                     <EditedIcon /> Խմբագրել
                   </button>
                   <button className={`${button} border-error text-error`} onClick={openDeleteModal}>
@@ -114,7 +115,7 @@ const EventPreview: React.FC<{ formData: IFormData; company?: ICompany }> = ({ f
               value="Վերադառնալ իմ էջ"
               type="secondary"
               onClick={() => {
-                router.push('/company/posts/event');
+                router.push(PATHS.COMPANY_EVENT);
                 setOpenConfirmDeleteModal(false);
               }}
             />

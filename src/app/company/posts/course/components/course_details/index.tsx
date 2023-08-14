@@ -10,6 +10,7 @@ import Skills from './skills';
 import useDeletePost from '@/api/company/use-delete-post';
 import Modal from '@/components/modal';
 import Button from '@/components/button';
+import { PATHS } from '@/helpers/constants';
 
 const CourseDetails: React.FC<ICourseDetails> = ({ formData, company }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -75,7 +76,7 @@ const CourseDetails: React.FC<ICourseDetails> = ({ formData, company }) => {
               value="Վերադառնալ իմ էջ"
               type="secondary"
               onClick={() => {
-                router.push('/company/posts/course');
+                router.push(PATHS.COMPANY_COURSE);
                 setOpenConfirmDeleteModal(false);
               }}
             />

@@ -17,6 +17,7 @@ import Contacts from '../components/contacts';
 import PostType from '../../components/checks';
 import SuccessModalContent from '../../components/success-modal-content';
 import { useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,12 +77,12 @@ export default () => {
   };
 
   const onAddNewPost = () => {
-    router.push('/company/posts/course/create');
+    router.push(PATHS.COURSE_CREATE);
     setIsOpenCreateModal(false);
   };
 
   const onGoBack = () => {
-    router.push('/company/posts');
+    router.push(PATHS.COMPANY_POSTS);
     setIsOpenCreateModal(false);
   };
 

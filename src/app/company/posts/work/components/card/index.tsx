@@ -1,6 +1,7 @@
 import Button from '@/components/button';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as LocationIcon } from '@/components/icons/location.svg';
+import { PATHS } from '@/helpers/constants';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
@@ -40,7 +41,7 @@ const WorkCard: React.FC<{ data: IData }> = ({ data }) => {
                 {data?.status === 'ACTIVE' ? (
                   <button
                     className="px-5 py-[10px] border border-primary-blue rounded-md"
-                    onClick={() => router.push(`/company/posts/work/edit/${data.id}`)}
+                    onClick={() => router.push(`${PATHS.WORK_EDIT}/${data.id}`)}
                   >
                     <EditedIcon />
                   </button>
@@ -94,7 +95,7 @@ const WorkCard: React.FC<{ data: IData }> = ({ data }) => {
         <div className="w-full flex justify-end col-span-3 h-4 my-2">
           <button
             className="font-bold text-primary-blue hidden group-hover:block"
-            onClick={() => router.push(`/company/posts/work/${data.id}`)}
+            onClick={() => router.push(`${PATHS.COMPANY_WORK}/${data.id}`)}
           >
             Տեսնել ավելին
           </button>
