@@ -1,5 +1,5 @@
 import { FormProvider, SubmitHandler, useForm, FieldValues, DefaultValues } from 'react-hook-form';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 export const Form = <T extends FieldValues>({
   onSubmit,
@@ -14,6 +14,10 @@ export const Form = <T extends FieldValues>({
   const methods = useForm<T>({
     defaultValues,
   });
+
+  useEffect(() => {
+    methods.reset(defaultValues);
+  }, [defaultValues, methods]);
 
   return (
     <FormProvider {...methods}>

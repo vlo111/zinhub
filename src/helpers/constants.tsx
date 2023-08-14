@@ -11,7 +11,17 @@ export const PATHS = {
   ADMIN_REQUESTS: '/admin/requests',
   ADMIN_STORIES: '/admin/stories',
   ADMIN_STATISTICS: '/admin/statistics',
-  POST_CREATE: '/company/posts/course/create',
+  COURSE_CREATE: '/company/posts/course/create',
+  WORK_CREATE: '/company/posts/work/create',
+  EVENT_CREATE: '/company/posts/event/create',
+  COMPANY_COURSE: '/company/posts/course',
+  COMPANY_EVENT: '/company/posts/event',
+  COMPANY_WORK: '/company/posts/work',
+  COURSE_EDIT: '/company/posts/course/edit',
+  EVENT_EDIT: '/company/posts/event/edit',
+  WORK_EDIT: '/company/posts/work/edit',
+  TEACHER_CREATE: '/company/teacher/create',
+  TEACHER_EDIT: '/company/teacher/edit',
 };
 
 export const navigationItems = [
@@ -20,10 +30,10 @@ export const navigationItems = [
   { label: 'Ընկերություններ', href: '/company/create' },
 ];
 export const navigationItemsPosts = [
-  { label: 'Բոլորը', href: '/company/posts' },
-  { label: 'Ուսուցում', href: '/company/posts/course' },
-  { label: 'Աշխատանք', href: '/company/posts/work' },
-  { label: 'Այլ', href: '/company/posts/event' },
+  { label: 'ԲՈԼՈՐԸ', href: '/company/posts' },
+  { label: 'ՈՒՍՈՒՑՈՒՄ', href: '/company/posts/course' },
+  { label: 'ԱՇԽԱՏԱՆՔ', href: '/company/posts/work' },
+  { label: 'ԱՅԼ', href: '/company/posts/event' },
 ];
 
 export const AUTH_KEYS = {

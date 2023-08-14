@@ -12,6 +12,7 @@ import Modal from '@/components/modal';
 import useDeleteTeacher from '@/api/create-teacher/delete';
 import { ITableData } from './types';
 import Pagination from '@/components/pagination';
+import { PATHS } from '@/helpers/constants';
 
 export default () => {
   const [openDeleteModal, setOpenDeleteModal] = useState<string>('');
@@ -62,7 +63,7 @@ export default () => {
       sortType: '',
       renderRow: (row: ITableData) => (
         <div className="flex items-center gap-4">
-          <div role="presentation" className="cursor-pointer">
+          <div role="presentation" className="cursor-pointer" onClick={() => router.push(`${PATHS.TEACHER_EDIT}/${row.id}`)}>
             <EditIcon />
           </div>
           <div role="presentation" className="cursor-pointer" onClick={() => setOpenDeleteModal(row.id)}>
@@ -80,7 +81,7 @@ export default () => {
           value={'+ Ավելացնել դասավանդող'}
           type="secondary"
           submit={false}
-          onClick={() => router.push('/company/teacher/create')}
+          onClick={() => router.push(PATHS.TEACHER_CREATE)}
         />
       </div>
       <div>{!isLoading && <DataTable column={columns} data={data?.result} />}</div>

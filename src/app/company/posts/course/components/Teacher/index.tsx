@@ -6,7 +6,7 @@ import Button from '@/components/button';
 import { useEffect } from 'react';
 import { ITeacher } from '../../types';
 
-const Teacher: React.FC<ITeacher> = ({ options }) => {
+const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
   const { control, setValue } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
@@ -23,11 +23,13 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
   });
 
   useEffect(() => {
-    setValue('teacherIds', [{}]);
+    if (!edit) {
+      setValue('teacherIds', [{}]);
+    }
   }, [setValue]);
 
   return (
-    <div className="grid grid-cols-3 gap-4 gap-x-10 mt-14">
+    <div className="grid grid-cols-3 gap-4 gap-x-10 mt-8">
       <div className="col-span-2 flex gap-6 flex-col">
         {fields.map(({ id }, index) => {
           return (
@@ -50,7 +52,7 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
           );
         })}
         {fields.length < 5 ? (
-          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" />
+          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" submit={false}/>
         ) : null}
       </div>
     </div>
@@ -58,5 +60,3 @@ const Teacher: React.FC<ITeacher> = ({ options }) => {
 };
 
 export default Teacher;
-
-// {fields.map(({ id, name }, index) => {

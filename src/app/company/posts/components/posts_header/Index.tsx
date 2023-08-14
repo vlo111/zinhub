@@ -28,7 +28,7 @@ const PostsHeader = () => {
         </div>
       </div>
       <div className="flex flex-row gap-4 items-center justify-end">
-        <Button value={'Ավելացնել հայտարարություն'} onClick={() => router.push(PATHS.POST_CREATE)} />
+        <Button value={'Ավելացնել հայտարարություն'} onClick={() => router.push(PATHS.COURSE_CREATE)} />
         <button className="px-5 py-[10px] border border-primary-blue rounded-md">
           <FilterIcon />
         </button>

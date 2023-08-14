@@ -4,8 +4,12 @@ import { IDetails } from '../../../types';
 import GradientLine from '@/app/company/posts/components/gradientLines';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
+import { useParams, useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
 
 const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => {
+  const router = useRouter();
+  const { id } = useParams();
   return (
     <>
       <div className="flex-col w-full grid grid-cols-3 gap-4">
@@ -19,7 +23,10 @@ const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => 
               <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
               {role === 'COMPANY' ? (
                 <div className="flex flex-row gap-2">
-                  <button className="button border-primary-blue text-primary-blue">
+                  <button
+                    className="button border-primary-blue text-primary-blue"
+                    onClick={() => router.push(`${PATHS.COURSE_EDIT}/${id}`)}
+                  >
                     <EditedIcon /> Խմբագրել
                   </button>
                   <button className="button border-error text-error" onClick={openModal}>

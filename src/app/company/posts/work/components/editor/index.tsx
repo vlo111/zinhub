@@ -35,6 +35,7 @@ const CKEditorComponent: React.FC<ICKEditorComponent> = ({ name, fieldName }) =>
           // @ts-ignore
           <CKEditor
             {...field}
+            data={field.value}
             editor={ClassicEditor}
             config={{
               toolbar: ['bulletedList'],

@@ -7,9 +7,10 @@ export interface IModal {
   children: string | JSX.Element | JSX.Element[];
   width: string;
   footer?: boolean;
+  header?: boolean;
 }
 
-const Modal: React.FC<IModal> = ({ isOpen, onClose, children, width, footer }) => {
+const Modal: React.FC<IModal> = ({ isOpen, onClose, children, width, footer, header = true }) => {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -38,11 +39,13 @@ const Modal: React.FC<IModal> = ({ isOpen, onClose, children, width, footer }) =
         className={`bg-white rounded-lg p-4 w-[${width}] max-h-[95%] overflow-y-auto flex justify-between flex-col`}
         ref={modalRef}
       >
-        <div className="w-full flex justify-end pb-4">
-          <button onClick={onClose}>
-            <CloseIcon />
-          </button>
-        </div>
+        {header === false ? null : (
+          <div className="w-full flex justify-end pb-4">
+            <button onClick={onClose}>
+              <CloseIcon />
+            </button>
+          </div>
+        )}
         {children}
         <div className="w-full flex justify-end mt-14">
           {footer === false ? null : (
