@@ -9,7 +9,7 @@ import { Textarea } from '@/components/texarea';
 import { SubmitButton } from '../components/SubmitButton';
 import { UploadImage } from '../components/upload-image';
 import { convertFileToBase64 } from '@/helpers/utils';
-import useCreateTeacher from '@/api/create-teacher';
+import useCreateTeacher from '@/api/teacher';
 import DynamicFils from './dynamic-filds';
 import { useRouter } from 'next/navigation';
 

@@ -14,7 +14,7 @@ import Contacts from '../../components/contacts';
 import Information from '../../components/Information';
 import Modal from '@/components/modal';
 import CourseDetails from '../../components/course_details';
-import useUpdateSinglePost from '@/api/create-post/update-post';
+import useUpdateSinglePost from '@/api/posts/update';
 import Button from '@/components/button';
 import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
 import { PATHS } from '@/helpers/constants';

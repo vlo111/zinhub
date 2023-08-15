@@ -11,7 +11,7 @@ import AboutCourse from '../components/about_course';
 import CourseDetails from '../components/course_details';
 import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
-import CreatePosts from '@/api/create-post';
+import CreatePosts from '@/api/posts/create';
 import { IOptions } from '@/types/global';
 import Contacts from '../components/contacts';
 import PostType from '../../components/checks';

@@ -12,7 +12,7 @@ import Modal from '@/components/modal';
 import Button from '@/components/button';
 import { PATHS } from '@/helpers/constants';
 
-const CourseDetails: React.FC<ICourseDetails> = ({ formData, company }) => {
+const CourseDetails: React.FC<ICourseDetails> = ({ status, formData, company }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] = useState(false);
   const teachersArray = formData?.teachers !== undefined ? formData?.teachers : formData?.teacherIds;
@@ -39,7 +39,7 @@ const CourseDetails: React.FC<ICourseDetails> = ({ formData, company }) => {
 
   return (
     <div className="flex flex-col gap-14 w-full p-4">
-      <Details formData={formData} company={company} role={role} openModal={openDeleteModal} />
+      <Details formData={formData} company={company} role={role} openModal={openDeleteModal} status={status} />
       <Program formData={formData} />
       <Skills formData={formData} />
       <div className="flex flex-col gap-4">

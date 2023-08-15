@@ -21,7 +21,7 @@ export const Form = <T extends FieldValues>({
 
   return (
     <FormProvider {...methods}>
-      <form className="flex flex-col" onSubmit={methods.handleSubmit(onSubmit)}>
+      <form className="flex flex-col items-center" onSubmit={methods.handleSubmit(onSubmit)}>
         {children}
       </form>
     </FormProvider>

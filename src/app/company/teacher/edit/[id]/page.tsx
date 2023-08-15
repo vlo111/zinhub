@@ -12,8 +12,8 @@ import FormItem from '@/components/form/item';
 import Grid from '@/app/company/posts/course/components/flex/grid';
 import Row from '@/app/company/posts/course/components/flex/row';
 import DynamicFils from '../../create/dynamic-filds';
-import useGetTeacherById from '@/api/create-teacher/get-teacher-by-id';
-import useUpdateSingleTeacher from '@/api/create-teacher/update-teacher-by-id';
+import useGetTeacherById from '@/api/teacher/get-teacher-by-id';
+import useUpdateSingleTeacher from '@/api/teacher/update-teacher-by-id';
 
 export default () => {
   const routs = useRouter();

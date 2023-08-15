@@ -2,12 +2,46 @@ import Button from '@/components/button';
 import Image from 'next/image';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as LocationIcon } from '@/components/icons/location.svg';
-import { IDataPost } from '../../types';
+import { IDataPost, IFormDAtaModal } from '../../types';
 import { useRouter } from 'next/navigation';
 import { PATHS } from '@/helpers/constants';
+import { useState } from 'react';
+import Modal from '@/components/modal';
+import ParticipantsCount from '../participants-count';
+import { SubmitHandler } from 'react-hook-form';
+import SuccessModalFinish from '../../../components/success-finish-modal';
+import useFinishedPost from '@/api/posts/finish';
 
 const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
   const router = useRouter();
+  const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
+
+  const { mutate: finishedPostById } = useFinishedPost({
+    onSuccess: () => {
+      setOpenSuccessModal(true);
+    }
+  });
+
+  const onCloseParticipantsCount = () => {
+    setOpenParticipantsCount(false);
+  };
+  const onCloseSuccessModalFinish = () => {
+    setOpenSuccessModal(false);
+  };
+
+  const onSubmit: SubmitHandler<IFormDAtaModal> = (formData) => {
+    finishedPostById({
+      id: data?.id,
+      formData: {
+        participants: +formData.participants,
+        completedCourses: +formData.completedCourses,
+      },
+    });
+  };
+  const onGoBack = () => {
+    setOpenSuccessModal(false);
+  };
 
   return (
     <div className="grid grid-cols-4 gap-4 w-full p-2 rounded-[10px] border-2 border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
@@ -36,7 +70,9 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
                     <EditedIcon />
                   </button>
                 ) : null}
-                {data?.status === 'ACTIVE' || data?.status === 'INACTIVE' ? <Button value={'Ավարտել'} /> : null}
+                {data?.status === 'ACTIVE' || data?.status === 'INACTIVE' ? (
+                  <Button value={'Ավարտել'} onClick={() => setOpenParticipantsCount(true)} />
+                ) : null}
               </div>
             </div>
           </div>
@@ -91,6 +127,12 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
           </button>
         </div>
       </div>
+      <Modal width={'50%'} isOpen={openParticipantsCount} onClose={onCloseParticipantsCount} footer={false}>
+        <ParticipantsCount onSubmit={onSubmit} onClose={onCloseParticipantsCount} />
+      </Modal>
+      <Modal width={'50%'} isOpen={openSuccessModal} onClose={onCloseSuccessModalFinish} footer={false}>
+        <SuccessModalFinish onGoBack={onGoBack} />
+      </Modal>
     </div>
   );
 };

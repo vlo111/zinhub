@@ -1,9 +1,14 @@
 import Button from '@/components/button';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as LocationIcon } from '@/components/icons/location.svg';
+import Modal from '@/components/modal';
 import { PATHS } from '@/helpers/constants';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+import SuccessModalFinish from '../../../components/success-finish-modal';
+import ApplicantsCount from '../applicants-count';
 
 export interface IData {
   id: string;
@@ -18,7 +23,23 @@ export interface IData {
 }
 
 const EventCard: React.FC<{ data: IData }> = ({ data }) => {
+  const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
+
   const router = useRouter();
+
+  const onCloseParticipantsCount = () => {
+    setOpenParticipantsCount(false);
+  };
+  const onCloseSuccessModalFinish = () => {
+    setOpenSuccessModal(false);
+  };
+
+  const onGoBack = () => {
+    setOpenSuccessModal(false);
+  };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
+  const onSubmit: SubmitHandler<FormData> = (data) => {};
   return (
     <div className="grid grid-cols-4 gap-4 w-full p-2 rounded-[10px] border-2 border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
       <div className="col-span-1">
@@ -41,12 +62,14 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
                 {data?.status === 'ACTIVE' ? (
                   <button
                     className="px-5 py-[10px] border border-primary-blue rounded-md"
-                    onClick={() =>  router.push(`${PATHS.EVENT_EDIT}/${data.id}`)}
+                    onClick={() => router.push(`${PATHS.EVENT_EDIT}/${data.id}`)}
                   >
                     <EditedIcon />
                   </button>
                 ) : null}
-                {data?.status === 'ACTIVE' || data?.status === 'INACTIVE' ? <Button value={'Ավարտել'} /> : null}
+                {data?.status === 'ACTIVE' || data?.status === 'INACTIVE' ? (
+                  <Button value={'Ավարտել'} onClick={() => setOpenParticipantsCount(true)} />
+                ) : null}
               </div>
             </div>
           </div>
@@ -101,6 +124,12 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
           </button>
         </div>
       </div>
+      <Modal width={'50%'} isOpen={openParticipantsCount} onClose={onCloseParticipantsCount} footer={false}>
+        <ApplicantsCount onSubmit={onSubmit} onClose={onCloseParticipantsCount} />
+      </Modal>
+      <Modal width={'50%'} isOpen={openSuccessModal} onClose={onCloseSuccessModalFinish} footer={false}>
+        <SuccessModalFinish onGoBack={onGoBack} />
+      </Modal>
     </div>
   );
 };

@@ -5,5 +5,5 @@ import EventPreview from '../components/event_preview';
 export default ({ params: { id } }: { params: { id: string } }) => {
   const { data } = useGetPostById(id);
 
-  return <EventPreview formData={data?.otherStatement} company={data?.company}/>;
+  return <EventPreview formData={data?.otherStatement} status={data?.status} company={data?.company} />;
 };

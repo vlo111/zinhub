@@ -10,7 +10,7 @@ import Button from '@/components/button';
 import { default as SuccessIcon } from '@/components/icons/success.svg';
 import { PATHS } from '@/helpers/constants';
 
-const JobPreview: React.FC<IJobPreview> = ({ formData, company }) => {
+const JobPreview: React.FC<IJobPreview> = ({ status, formData, company }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] = useState(false);
   const { role } = useAuth();
@@ -36,7 +36,7 @@ const JobPreview: React.FC<IJobPreview> = ({ formData, company }) => {
 
   return (
     <div className="mb-12">
-      <AboutCompany formData={formData} company={company} role={role} openModal={openDeleteModal}/>
+      <AboutCompany status={status} formData={formData} company={company} role={role} openModal={openDeleteModal} />
       <JobContent formData={formData} />
       <Modal isOpen={isOpenDeleteModal} onClose={closeModal} width={'40%'} footer={false}>
         <div className="flex items-center flex-col gap-11">
