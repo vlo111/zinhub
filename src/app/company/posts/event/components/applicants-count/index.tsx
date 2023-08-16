@@ -3,9 +3,10 @@ import { Form } from '@/components/form';
 import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import { SubmitHandler } from 'react-hook-form';
+import { IFormDAtaModal } from '../../../course/types';
 
 interface IParticipantsCount {
-  onSubmit: SubmitHandler<FormData>;
+  onSubmit: SubmitHandler<IFormDAtaModal>;
   onClose: () => void;
 }
 

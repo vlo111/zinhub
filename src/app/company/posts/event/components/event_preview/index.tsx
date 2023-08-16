@@ -16,13 +16,16 @@ import { PATHS } from '@/helpers/constants';
 import { SubmitHandler } from 'react-hook-form';
 import ApplicantsCount from '../applicants-count';
 import SuccessModalFinish from '../../../components/success-finish-modal';
+import useFinishedPost from '@/api/posts/finish';
+import { IFormDAtaModal } from '../../../course/types';
 
 const button = 'border py-2 px-4 flex flex-row items-center gap-2 rounded-md text-sm';
 
-const EventPreview: React.FC<{ status: string; formData: IFormData; company?: ICompany }> = ({
+const EventPreview: React.FC<{eventId?: string; status?: string; formData: IFormData; company?: ICompany }> = ({
   status,
   formData,
   company,
+  eventId,
 }) => {
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] = useState(false);
@@ -31,6 +34,12 @@ const EventPreview: React.FC<{ status: string; formData: IFormData; company?: IC
   const { role } = useAuth();
   const { id } = useParams();
   const router = useRouter();
+
+  const { mutate: finishedPostById } = useFinishedPost({
+    onSuccess: () => {
+      setOpenSuccessModal(true);
+    },
+  });
 
   const { mutate: deletePostById } = useDeletePost({
     onSuccess: () => {
@@ -57,10 +66,18 @@ const EventPreview: React.FC<{ status: string; formData: IFormData; company?: IC
 
   const onGoBack = () => {
     setOpenSuccessModal(false);
+    router.push('/company/posts/event')
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  const onSubmit: SubmitHandler<FormData> = (data) => {};
+  const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {    
+    finishedPostById({
+      id: eventId,
+      formData: {
+        participants: +data.participants,
+        completedCourses: +data.completedCourses,
+      },
+    });
+  };
 
   return (
     <div className="w-full">

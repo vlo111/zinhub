@@ -29,7 +29,7 @@ const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
   }, [setValue]);
 
   return (
-    <div className="grid grid-cols-3 gap-4 gap-x-10 mt-8">
+    <div className="grid grid-cols-3 gap-4 gap-x-10 mt-8 w-full">
       <div className="col-span-2 flex gap-6 flex-col">
         {fields.map(({ id }, index) => {
           return (

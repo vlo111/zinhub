@@ -11,14 +11,23 @@ import ApplicantsCount from '@/app/company/posts/event/components/applicants-cou
 import SuccessModalFinish from '@/app/company/posts/components/success-finish-modal';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
+import useFinishedPost from '@/api/posts/finish';
+import { IFormDAtaModal } from '@/app/company/posts/course/types';
 
 const button = 'border py-2 px-4 flex flex-row items-center gap-2 rounded-md text-sm';
 
-const AboutCompany: React.FC<IAboutCompany> = ({ status, formData, company, role, openModal }) => {
+const AboutCompany: React.FC<IAboutCompany> = ({ workId, status, formData, company, role, openModal }) => {
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const { id } = useParams();
   const router = useRouter();
+
+  const { mutate: finishedPostById } = useFinishedPost({
+    onSuccess: () => {
+      setOpenParticipantsCount(false);
+      setOpenSuccessModal(true);
+    },
+  });
 
   const onCloseParticipantsCount = () => {
     setOpenParticipantsCount(false);
@@ -29,11 +38,18 @@ const AboutCompany: React.FC<IAboutCompany> = ({ status, formData, company, role
 
   const onGoBack = () => {
     setOpenSuccessModal(false);
+    router.push('/company/posts/work')
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  const onSubmit: SubmitHandler<FormData> = (data) => {};
-
+  const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {
+    finishedPostById({
+      id: workId,
+      formData: {
+        participants: +data.participants,
+        completedCourses: +data.completedCourses,
+      },
+    });
+  };
   return (
     <div className="flex-col w-full grid grid-cols-3 gap-4">
       <div className="flex flex-col gap-4 col-span-2 ">

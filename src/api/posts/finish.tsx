@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import client from '../client';
 
 export const url = 'api/statements';
@@ -11,8 +11,16 @@ interface IParams {
   };
 }
 
-const useFinishedPost = (options = {}) =>
-  useMutation(async (params: IParams) => {
+const useFinishedPost = (options = {}) =>{
+  const queryClient = useQueryClient();
+
+  return useMutation(async (params: IParams) => {
     await client.patch(`${url}/${params.id}/finish`, params.formData);
-  }, options);
+  }, { onSuccess: () => {
+    void queryClient.invalidateQueries(['api/statements/all']);
+  },
+  ...options
+});
+}
+
 export default useFinishedPost;

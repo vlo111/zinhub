@@ -7,7 +7,7 @@ export default ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <div>
-      <JobPreview formData={data?.workStatement} status={data?.status} company={data?.company} />
+      <JobPreview workId={data?.id} formData={data?.workStatement} status={data?.status} company={data?.company} />
     </div>
   );
 };

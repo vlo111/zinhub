@@ -8,6 +8,7 @@ interface IGetOptions {
 }
 
 export interface IFormData {
+  id?: string;
   applicationDeadline?: string;
   location?: string;
   phone?: string;

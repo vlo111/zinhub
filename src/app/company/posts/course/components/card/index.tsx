@@ -39,8 +39,10 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
       },
     });
   };
+
   const onGoBack = () => {
     setOpenSuccessModal(false);
+    router.push('/company/posts/course')
   };
 
   return (
@@ -77,7 +79,7 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-4 mb-4">
+        <div className="grid grid-cols-5 gap-4 mb-4 mt-4">
           <div className="col-span-2">
             <p className="text-davy-gray text-xs font-normal"> Ստեղծված՝ {data.timeAgo}</p>
           </div>
@@ -100,7 +102,7 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
                 Արգելափակված
               </p>
             ) : null}
-            {data?.status === 'DONE ' ? (
+            {data?.status === 'DONE' ? (
               <p className="text-davy-gray text-xs font-normal flex flex-row items-center gap-2">
                 <div className="w-[6px] h-[6px] rounded-full bg-[#9E9E9E]" />
                 Ավարտված

@@ -6,6 +6,7 @@ interface IOptionsGet {
 }
 
 export interface IFormData {
+  id?: string,
   additionalNotes?: string;
   applicationDeadline?: string;
   workDescription?: string;
@@ -37,11 +38,13 @@ export interface IJobPreview {
   formData: IFormData;
   company?: ICompany;
   status?: string;
+  workId?: string;
 }
 export interface IAboutCompany {
   formData: IFormData;
   company?: ICompany;
   role?: string;
+  workId?: string;
   openModal?: () => void;
   status: string | undefined;
 }

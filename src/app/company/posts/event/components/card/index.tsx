@@ -9,6 +9,8 @@ import { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import SuccessModalFinish from '../../../components/success-finish-modal';
 import ApplicantsCount from '../applicants-count';
+import { IFormDAtaModal } from '../../../course/types';
+import useFinishedPost from '@/api/posts/finish';
 
 export interface IData {
   id: string;
@@ -26,6 +28,13 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
 
+  const { mutate: finishedPostById } = useFinishedPost({
+    onSuccess: () => {
+      setOpenSuccessModal(true);
+      setOpenParticipantsCount(false)
+    },
+  });
+
   const router = useRouter();
 
   const onCloseParticipantsCount = () => {
@@ -38,8 +47,16 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
   const onGoBack = () => {
     setOpenSuccessModal(false);
   };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-  const onSubmit: SubmitHandler<FormData> = (data) => {};
+  const onSubmit: SubmitHandler<IFormDAtaModal> = (formData) => {
+    finishedPostById({
+      id: data?.id,
+      formData: {
+        participants: +formData.participants,
+        completedCourses: +formData.completedCourses,
+      },
+    });
+  };
+
   return (
     <div className="grid grid-cols-4 gap-4 w-full p-2 rounded-[10px] border-2 border-[#D2E6FF] hover:border-2 hover:border-primary-blue group">
       <div className="col-span-1">
@@ -74,7 +91,7 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-4 mb-4">
+        <div className="grid grid-cols-5 gap-4 mb-4 mt-4">
           <div className="col-span-2">
             <p className="text-davy-gray text-xs font-normal"> Ստեղծված՝ {data.timeAgo}</p>
           </div>
@@ -97,7 +114,7 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
                 Արգելափակված
               </p>
             ) : null}
-            {data?.status === 'DONE ' ? (
+            {data?.status === 'DONE' ? (
               <p className="text-davy-gray text-xs font-normal flex flex-row items-center gap-2">
                 <div className="w-[6px] h-[6px] rounded-full bg-[#9E9E9E]" />
                 Ավարտված
