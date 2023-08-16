@@ -11,16 +11,20 @@ import ParticipantsCount from '../participants-count';
 import { SubmitHandler } from 'react-hook-form';
 import SuccessModalFinish from '../../../components/success-finish-modal';
 import useFinishedPost from '@/api/posts/finish';
+import { useQueryClient } from '@tanstack/react-query';
 
 const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
   const router = useRouter();
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const queryClient = useQueryClient();
 
   const { mutate: finishedPostById } = useFinishedPost({
     onSuccess: () => {
       setOpenSuccessModal(true);
-    }
+      setOpenParticipantsCount(false);
+      void queryClient.invalidateQueries(['api/statements/all']);
+    },
   });
 
   const onCloseParticipantsCount = () => {
@@ -42,7 +46,7 @@ const CourseCard: React.FC<{ data: IDataPost }> = ({ data }) => {
 
   const onGoBack = () => {
     setOpenSuccessModal(false);
-    router.push('/company/posts/course')
+    router.push('/company/posts/course');
   };
 
   return (

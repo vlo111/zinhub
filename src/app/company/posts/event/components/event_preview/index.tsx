@@ -18,6 +18,7 @@ import ApplicantsCount from '../applicants-count';
 import SuccessModalFinish from '../../../components/success-finish-modal';
 import useFinishedPost from '@/api/posts/finish';
 import { IFormDAtaModal } from '../../../course/types';
+import { useQueryClient } from '@tanstack/react-query';
 
 const button = 'border py-2 px-4 flex flex-row items-center gap-2 rounded-md text-sm';
 
@@ -31,6 +32,7 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] = useState(false);
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const queryClient = useQueryClient();
   const { role } = useAuth();
   const { id } = useParams();
   const router = useRouter();
@@ -38,6 +40,9 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
   const { mutate: finishedPostById } = useFinishedPost({
     onSuccess: () => {
       setOpenSuccessModal(true);
+      setOpenParticipantsCount(false);
+        void queryClient.invalidateQueries(['api/statements/all']);        
+
     },
   });
 

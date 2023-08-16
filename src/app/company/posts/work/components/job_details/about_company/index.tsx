@@ -13,12 +13,14 @@ import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
 import useFinishedPost from '@/api/posts/finish';
 import { IFormDAtaModal } from '@/app/company/posts/course/types';
+import { useQueryClient } from '@tanstack/react-query';
 
 const button = 'border py-2 px-4 flex flex-row items-center gap-2 rounded-md text-sm';
 
 const AboutCompany: React.FC<IAboutCompany> = ({ workId, status, formData, company, role, openModal }) => {
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const queryClient = useQueryClient();
   const { id } = useParams();
   const router = useRouter();
 
@@ -26,6 +28,8 @@ const AboutCompany: React.FC<IAboutCompany> = ({ workId, status, formData, compa
     onSuccess: () => {
       setOpenParticipantsCount(false);
       setOpenSuccessModal(true);
+        void queryClient.invalidateQueries(['api/statements/all']);        
+
     },
   });
 

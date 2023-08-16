@@ -13,17 +13,21 @@ import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
 import './index.css';
 import { SubmitHandler } from 'react-hook-form';
 import useFinishedPost from '@/api/posts/finish';
+import { useQueryClient } from '@tanstack/react-query';
 
 const Details: React.FC<IDetails> = ({ status, formData, company, role, openModal }) => {
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const router = useRouter();
   const { id } = useParams();
+  const queryClient = useQueryClient();
 
   const { mutate: finishedPostById } = useFinishedPost({
     onSuccess: () => {
       setOpenSuccessModal(true);
-    }
+      setOpenParticipantsCount(false);
+      void queryClient.invalidateQueries(['api/statements/all']);
+    },
   });
 
   const onCloseParticipantsCount = () => {
@@ -33,7 +37,7 @@ const Details: React.FC<IDetails> = ({ status, formData, company, role, openModa
     setOpenSuccessModal(false);
   };
 
-  const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {    
+  const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {
     finishedPostById({
       id: formData?.id,
       formData: {

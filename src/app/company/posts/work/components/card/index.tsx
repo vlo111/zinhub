@@ -11,6 +11,7 @@ import ApplicantsCount from '../../../event/components/applicants-count';
 import SuccessModalFinish from '../../../components/success-finish-modal';
 import { IFormDAtaModal } from '../../../course/types';
 import useFinishedPost from '@/api/posts/finish';
+import { useQueryClient } from '@tanstack/react-query';
 
 export interface IData {
   id: string;
@@ -27,12 +28,15 @@ export interface IData {
 const WorkCard: React.FC<{ data: IData }> = ({ data }) => {
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const queryClient = useQueryClient();
   const router = useRouter();
 
   const { mutate: finishedPostById } = useFinishedPost({
     onSuccess: () => {
       setOpenParticipantsCount(false);
       setOpenSuccessModal(true);
+        void queryClient.invalidateQueries(['api/statements/all']);        
+
     },
   });
 
