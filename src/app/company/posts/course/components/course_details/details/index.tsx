@@ -6,6 +6,7 @@ import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
 import { useParams, useRouter } from 'next/navigation';
 import { PATHS } from '@/helpers/constants';
+import Button from '@/components/button';
 
 const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => {
   const router = useRouter();
@@ -33,6 +34,14 @@ const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => 
                     <DeletedIcon />
                     Ջնջել
                   </button>
+                </div>
+              ) : null}
+              {role === 'SUPER_ADMIN' ? (
+                <div className="flex flex-row gap-4 items-center">
+                  <Button type="primary" value={'Արգելափակել'} />
+                  <p className="text-davy-gray text-xs">{`Ստեղծված՝ ${new Date(
+                    formData?.createdAt ?? ''
+                  ).toLocaleDateString()}`}</p>
                 </div>
               ) : null}
             </div>

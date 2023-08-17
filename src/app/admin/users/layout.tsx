@@ -19,11 +19,11 @@ export default ({ admins, companies }: { admins: ReactNode; companies: ReactNode
     <div className="h-full">
       <div className="h-12 pb-[1.3rem]">
         <div className="flex items-center gap-8 h-full mx-4 w-[11.5rem] border-b border-[#F0F0F0]">
-          <div className={`cursor-pointer ${adminsClass}`} onClick={() => setMode(MODES.ADMINS)}>
-            Ադմինիստրատոր
-          </div>
           <div className={`cursor-pointer ${companiesClass}}`} onClick={() => setMode(MODES.COMPANIES)}>
             Ընկերություն
+          </div>
+          <div className={`cursor-pointer ${adminsClass}`} onClick={() => setMode(MODES.ADMINS)}>
+            Ադմինիստրատոր
           </div>
         </div>
       </div>

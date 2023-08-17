@@ -1,9 +1,10 @@
 import { ICompanyListPending, ICompanyListRejected } from '@/api/company/use-get-all-company';
+import { IDataTablePostsAdmin } from '@/app/admin/announcements/@all/page';
 import { ITableData } from '@/app/company/teacher/types';
 import React from 'react';
 import { Cell, HeaderGroup, HeaderPropGetter, Row, TableBodyPropGetter, TableBodyProps } from 'react-table';
 
-export type DataTableGenericProps = ICompanyListPending | ICompanyListRejected | ITableData;
+export type DataTableGenericProps = ICompanyListPending | ICompanyListRejected | ITableData | IDataTablePostsAdmin;
 
 /* Data Table */
 export interface IColumns<T> {
@@ -13,9 +14,10 @@ export interface IColumns<T> {
   renderRow?: (row: T) => React.ReactNode;
 }
 
-export interface IDataTableProps<T> {
+export interface IDataTableProps<T extends object> {
   data: T[];
   column: IColumns<T>[];
+  onRowClick?: (row: Row<T>) => void;
 }
 
 export type CellRenderer<T extends object> = {
@@ -27,7 +29,7 @@ export type CellRenderer<T extends object> = {
 export type TheadColumn<T extends DataTableGenericProps> = {
   isSorted?: boolean;
   isSortedDesc?: boolean;
-  sortType?: string
+  sortType?: string;
   getSortByToggleProps?: (() => void) | undefined;
 } & HeaderGroup<T>;
 
@@ -44,4 +46,5 @@ export type TbodyProps<T extends object> = {
   getTableBodyProps: (propGetter?: TableBodyPropGetter<T> | undefined) => TableBodyProps;
   rows: Row<T>[];
   prepareRow: (row: Row<T>) => void;
+  onRowClick?: (row: Row<T>) => void;
 };

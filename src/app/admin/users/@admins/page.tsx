@@ -6,6 +6,7 @@ import Pagination from '@/components/pagination';
 import { ApproveModal } from '@/app/admin/requests/@pending/components/modals/approve';
 import { RejectModal } from '@/app/admin/requests/@pending/components/modals/reject';
 import { IColumns } from '@/components/table/types';
+import Button from '@/components/button';
 
 export default () => {
   const [openApprove, setOpenApprove] = useState<string>('');
@@ -41,21 +42,30 @@ export default () => {
   ];
 
   return (
-    <div className="h-full w-full flex flex-col justify-between">
-      {!loading && <DataTable<ICompanyListPending> column={columns} data={data.result} />}
-      <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
-      <ApproveModal
-        id={openApprove}
-        onClose={() => setOpenApprove('')}
-        isOpen={openApprove !== ''}
-        currentPage={currentPage}
-      />
-      <RejectModal
-        id={openReject}
-        onClose={() => setOpenReject('')}
-        isOpen={openReject !== ''}
-        currentPage={currentPage}
-      />
-    </div>
+    <>
+      <div className='w-full flex justify-end mb-6'>
+        <Button
+          value={'+ Ավելացնել ադմինիստրատոր'}
+          type="secondary"
+          submit={false}
+        />
+      </div>
+      <div className="h-full w-full flex flex-col justify-between">
+        {!loading && <DataTable<ICompanyListPending> column={columns} data={data.result} />}
+        <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
+        <ApproveModal
+          id={openApprove}
+          onClose={() => setOpenApprove('')}
+          isOpen={openApprove !== ''}
+          currentPage={currentPage}
+        />
+        <RejectModal
+          id={openReject}
+          onClose={() => setOpenReject('')}
+          isOpen={openReject !== ''}
+          currentPage={currentPage}
+        />
+      </div>
+    </>
   );
 };

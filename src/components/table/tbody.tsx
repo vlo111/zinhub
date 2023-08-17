@@ -2,7 +2,8 @@ import React from 'react';
 import { Row } from 'react-table';
 import { DataTableGenericProps, TbodyProps } from '@/components/table/types';
 
-const Tbody = <T extends DataTableGenericProps>({ getTableBodyProps, rows, prepareRow }: TbodyProps<T>) => {
+const Tbody = <T extends DataTableGenericProps>({ getTableBodyProps, rows, prepareRow, onRowClick }: TbodyProps<T>) => {
+  
   return (
     <tbody {...getTableBodyProps()}>
       {rows.map((row: Row<T>) => {
@@ -14,6 +15,7 @@ const Tbody = <T extends DataTableGenericProps>({ getTableBodyProps, rows, prepa
                 {...cell.getCellProps()}
                 className="p-4 max-w-[40px] overflow-hidden overflow-ellipsis"
                 key={cell.row.id + cell.column.id}
+                onClick={() => onRowClick && onRowClick(row?.original as Row<T>)}
               >
                 {cell.render('Cell')}
               </td>

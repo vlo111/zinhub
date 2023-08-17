@@ -62,6 +62,7 @@ export interface IFormData {
   topics?: IDynamicForm[] | Array<string>;
   duration?: string | undefined;
   filedStud?: { id: string; title: string };
+  createdAt?: string;
 }
 
 export interface ICompany {
