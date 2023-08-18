@@ -1,28 +1,23 @@
 'use client';
 import React, { useState } from 'react';
-import Pagination from '@/components/pagination';
-import DataTable from '@/components/table';
 import { useGetCompanyPosts } from '@/api/company/use-get-company-posts';
 import { IColumns } from '@/components/table/types';
+import { IDataTablePostsAdmin } from '../@all/page';
+import { useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
+import Pagination from '@/components/pagination';
+import DataTable from '@/components/table';
 
 export default () => {
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(0);
 
   const { data, loading } = useGetCompanyPosts({ limit: 10, offset: currentPage, type: ['WORK'] });
 
-  interface IDataTable {
-    id: string
-    status: string
-    type: string
-    companyName: string
-    createdAt?: string
-    statementTitle: string
-  }
-
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-  const columns: IColumns<IDataTable>[] = [
+  const columns: IColumns<IDataTablePostsAdmin>[] = [
     { Header: 'Ընկերության անվանում', accessor: 'companyName', sortType: '' },
     {
       Header: 'Հայտարարության անվանում',
@@ -43,9 +38,13 @@ export default () => {
     },
   ];
 
+  const onRowClick = (row: IDataTablePostsAdmin) => {
+    router.push(`${PATHS.ADMIN_POST_WORK}/${row?.id}`);
+  };
+
   return (
     <div>
-      {!loading && <DataTable<IDataTable> column={columns} data={data?.result} />}
+      {!loading && <DataTable<IDataTablePostsAdmin> column={columns} data={data?.result} onRowClick={onRowClick} />}
       <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
     </div>
   );

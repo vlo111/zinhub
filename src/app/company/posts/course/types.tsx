@@ -64,7 +64,7 @@ export interface IFormData {
   duration?: string | undefined;
   filedStud?: { id: string; title: string };
   createdAt?: string;
-  status?: string
+  status?: string;
 }
 
 export interface ICompany {
@@ -81,7 +81,7 @@ export interface IGetCourseData {
 export interface ICourseDetails {
   formData: IFormData;
   company?: ICompany;
-  status?: string
+  status?: string;
 }
 export interface ISkills {
   formData: IFormData;
@@ -94,7 +94,7 @@ export interface IDetails {
   company?: ICompany;
   role?: string;
   openModal?: () => void;
-  status?: string
+  status?: string;
 }
 export interface IAboutCourse {
   options: IOptions[];
@@ -129,6 +129,9 @@ export interface IDataPost {
 export interface IFormDAtaModal {
   participants: number;
   completedCourses: number;
+}
+export interface IRejectionModalData {
+  rejectionText: string;
 }
 
 export type OpenModalType = (data: IFormData) => void;

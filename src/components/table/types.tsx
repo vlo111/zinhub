@@ -17,7 +17,7 @@ export interface IColumns<T> {
 export interface IDataTableProps<T extends object> {
   data: T[];
   column: IColumns<T>[];
-  onRowClick?: (row: Row<T>) => void;
+  onRowClick?: (row: T) => void;
 }
 
 export type CellRenderer<T extends object> = {

@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGetCompanyPosts } from '@/api/company/use-get-company-posts';
 import { IColumns } from '@/components/table/types';
-import { Row } from 'react-table';
 import Pagination from '@/components/pagination';
 import DataTable from '@/components/table';
+import { PATHS } from '@/helpers/constants';
 
 export interface IDataTablePostsAdmin {
   id: string;
@@ -46,15 +46,15 @@ export default () => {
     },
   ];
 
-  const onRowClick = (row: Row<IDataTablePostsAdmin>) => {
+  const onRowClick = (row: IDataTablePostsAdmin) => {
     if (row?.type === 'TRINING') {
-      router.push(`/admin/announcements/${row?.id}`);
+      router.push(`${PATHS.ADMIN_POST_COURSE}/${row?.id}`);
     }
     if (row?.type === 'OTHER') {
-      router.push(`/admin/announcements/${row?.id}`);
+      router.push(`${PATHS.ADMIN_POST_OTHER}/${row?.id}`);
     }
     if (row?.type === 'WORK') {
-      router.push(`/admin/announcements/${row?.id}`);
+      router.push(`${PATHS.ADMIN_POST_WORK}/${row?.id}`);
     }
   };
 

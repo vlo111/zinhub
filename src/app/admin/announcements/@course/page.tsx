@@ -1,12 +1,12 @@
 'use client';
-import React, { useState } from 'react';
-import Pagination from '@/components/pagination';
-import DataTable from '@/components/table';
 import { useGetCompanyPosts } from '@/api/company/use-get-company-posts';
 import { IColumns } from '@/components/table/types';
 import { useRouter } from 'next/navigation';
-import { Row } from 'react-table';
 import { IDataTablePostsAdmin } from '../@all/page';
+import React, { useState } from 'react';
+import Pagination from '@/components/pagination';
+import DataTable from '@/components/table';
+import { PATHS } from '@/helpers/constants';
 
 export default () => {
   const router = useRouter();
@@ -38,8 +38,8 @@ export default () => {
     },
   ];
 
-  const onRowClick = (row: Row<IDataTablePostsAdmin>) => {
-    router.push(`/admin/announcements/${row?.id}`);
+  const onRowClick = (row: IDataTablePostsAdmin) => {
+    router.push(`${PATHS.ADMIN_POST_COURSE}/${row?.id}`);
   };
   return (
     <div>

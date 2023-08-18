@@ -21,6 +21,7 @@ export interface IFormData {
   whatWeOffer?: string;
   title?: string;
   status?: string;
+  createdAt?: string;
 }
 export interface ICompany {
   id: string;

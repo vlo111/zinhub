@@ -6,7 +6,7 @@ interface IOptionsGet {
 }
 
 export interface IFormData {
-  id?: string,
+  id?: string;
   additionalNotes?: string;
   applicationDeadline?: string;
   workDescription?: string;
@@ -25,8 +25,9 @@ export interface IFormData {
   skills?: string;
   title?: string;
   whatWeOffer?: string;
-  companyName?: string;
   status?: string;
+  companyName?: string;
+  createdAt?: string;
 }
 
 interface ICompany {

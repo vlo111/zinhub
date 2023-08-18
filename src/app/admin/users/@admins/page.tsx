@@ -1,11 +1,12 @@
 'use client';
-import DataTable from '@/components/table';
-import { ICompanyListPending, useGetCompanyList } from '@/api/company/use-get-all-company';
 import React, { useState } from 'react';
-import Pagination from '@/components/pagination';
+import { ICompanyListPending, useGetCompanyList } from '@/api/company/use-get-all-company';
 import { ApproveModal } from '@/app/admin/requests/@pending/components/modals/approve';
 import { RejectModal } from '@/app/admin/requests/@pending/components/modals/reject';
+import { STATUS } from '@/helpers/constants';
 import { IColumns } from '@/components/table/types';
+import Pagination from '@/components/pagination';
+import DataTable from '@/components/table';
 import Button from '@/components/button';
 
 export default () => {
@@ -17,7 +18,7 @@ export default () => {
   const { data, loading } = useGetCompanyList({
     limit: 10,
     offset: currentPage,
-    statuses: ['ACTIVE'],
+    statuses: [STATUS.ACTIVE],
   });
 
   const handlePageChange = (newPage: number) => {

@@ -1,17 +1,17 @@
-import Button from '@/components/button';
-import { default as EditedIcon } from '@/components/icons/edite.svg';
-import { default as LocationIcon } from '@/components/icons/location.svg';
-import Modal from '@/components/modal';
-import { PATHS } from '@/helpers/constants';
-import Image from 'next/image';
+import { PATHS, STATUS } from '@/helpers/constants';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
+import { IFormDAtaModal } from '../../../course/types';
+import { useQueryClient } from '@tanstack/react-query';
+import Modal from '@/components/modal';
+import Image from 'next/image';
 import SuccessModalFinish from '../../../components/success-finish-modal';
 import ApplicantsCount from '../applicants-count';
-import { IFormDAtaModal } from '../../../course/types';
 import useFinishedPost from '@/api/posts/finish';
-import { useQueryClient } from '@tanstack/react-query';
+import Button from '@/components/button';
+import { default as EditedIcon } from '@/components/icons/edite.svg';
+import { default as LocationIcon } from '@/components/icons/location.svg';
 
 export interface IData {
   id: string;
@@ -79,7 +79,7 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
           <div className="col-span-1">
             <div className="flex flex-col content-between h-full justify-between col-span-1">
               <div className="flex align-center w-full justify-end gap-2">
-                {data?.status === 'ACTIVE' ? (
+                {data?.status === STATUS.ACTIVE ? (
                   <button
                     className="px-5 py-[10px] border border-primary-blue rounded-md"
                     onClick={() => router.push(`${PATHS.EVENT_EDIT}/${data.id}`)}
@@ -87,7 +87,7 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
                     <EditedIcon />
                   </button>
                 ) : null}
-                {data?.status === 'ACTIVE' || data?.status === 'INACTIVE' ? (
+                {data?.status === STATUS.ACTIVE || data?.status === STATUS.INACTIVE ? (
                   <Button value={'Ավարտել'} onClick={() => setOpenParticipantsCount(true)} />
                 ) : null}
               </div>
@@ -99,25 +99,25 @@ const EventCard: React.FC<{ data: IData }> = ({ data }) => {
             <p className="text-davy-gray text-xs font-normal"> Ստեղծված՝ {data.timeAgo}</p>
           </div>
           <div className="col-span-3">
-            {data?.status === 'ACTIVE' ? (
+            {data?.status === STATUS.ACTIVE ? (
               <p className="text-davy-gray text-xs font-normal flex flex-row items-center gap-2">
                 <div className="w-[6px] h-[6px] rounded-full bg-[#52C41A]" />
                 Նոր
               </p>
             ) : null}
-            {data?.status === 'INACTIVE' ? (
+            {data?.status === STATUS.INACTIVE ? (
               <p className="text-davy-gray text-xs font-normal flex flex-row items-center gap-2">
                 <div className="w-[6px] h-[6px] rounded-full bg-[#1F82FF]" />
                 Ընթացիկ
               </p>
             ) : null}
-            {data?.status === 'BLOCKED' ? (
+            {data?.status === STATUS.BLOCKED ? (
               <p className="text-davy-gray text-xs font-normal flex flex-row items-center gap-2">
                 <div className="w-[6px] h-[6px] rounded-full bg-[#FF4D4F]" />
                 Արգելափակված
               </p>
             ) : null}
-            {data?.status === 'DONE' ? (
+            {data?.status === STATUS.DONE ? (
               <p className="text-davy-gray text-xs font-normal flex flex-row items-center gap-2">
                 <div className="w-[6px] h-[6px] rounded-full bg-[#9E9E9E]" />
                 Ավարտված

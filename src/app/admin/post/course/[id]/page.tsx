@@ -7,7 +7,7 @@ export default ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <div>
-      <CourseDetails formData={data?.trainingStatement} company={data?.company} />
+      <CourseDetails status={data?.status} formData={data?.trainingStatement} company={data?.company} />
     </div>
   );
 };

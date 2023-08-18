@@ -22,6 +22,9 @@ export const PATHS = {
   WORK_EDIT: '/company/posts/work/edit',
   TEACHER_CREATE: '/company/teacher/create',
   TEACHER_EDIT: '/company/teacher/edit',
+  ADMIN_POST_COURSE: '/admin/post/course',
+  ADMIN_POST_OTHER: '/admin/post/other',
+  ADMIN_POST_WORK: '/admin/post/work',
 };
 
 export const navigationItems = [
@@ -90,3 +93,10 @@ export const regions = [
 ];
 
 export const DefaultCompanyImageUrl = 'https://apizinhub.analysed.ai/images/avatars/company-default.png';
+
+export const STATUS = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE',
+  DONE: 'DONE',
+  BLOCKED: 'BLOCKED',
+};

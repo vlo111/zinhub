@@ -15,6 +15,7 @@ export default ({
   course,
   other,
   work,
+  children,
 }: {
   all: ReactNode;
   course: ReactNode;
@@ -35,7 +36,7 @@ export default ({
   return (
     <div className="h-full">
       <div className="h-12 pb-[1.3rem]">
-        <div className="flex items-center gap-8 h-full mx-4 w-[11.5rem] border-b border-[#F0F0F0]">
+        <div className="flex items-center gap-8 h-full mx-4 w-[21.5rem] border-b border-[#F0F0F0]">
           <div className={`cursor-pointer ${allClass}`} onClick={() => setMode(MODES.ALL)}>
             Բոլորը
           </div>
@@ -50,7 +51,15 @@ export default ({
           </div>
         </div>
       </div>
-      {mode === MODES.ALL ? all : mode === MODES.COURSE ? course : mode === MODES.WORK ? work : other}
+      {mode === MODES.ALL
+        ? all
+        : mode === MODES.COURSE
+        ? course
+        : mode === MODES.WORK
+        ? work
+        : mode === MODES.OTHER
+        ? other
+        : children}
     </div>
   );
 };
