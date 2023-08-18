@@ -9,7 +9,7 @@ import GetSelectData from '@/api/statics';
 import GradientLine from '../../../components/gradientLines';
 import EventContent from '../../components/event_content';
 import EventPreview from '../../components/event_preview';
-import useUpdateSinglePost from '@/api/create-post/update-post';
+import useUpdateSinglePost from '@/api/posts/update';
 import { useParams } from 'next/navigation';
 import useGetPostById from '@/api/get-post';
 import Button from '@/components/button';

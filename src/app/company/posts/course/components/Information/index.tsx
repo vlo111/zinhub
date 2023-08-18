@@ -24,7 +24,7 @@ const Information: React.FC<{ edit?: boolean }> = ({ edit = false }) => {
   }, [setValue]);
 
   return (
-    <div className="flex flex-col mb-14">
+    <div className="flex flex-col mb-14 w-full">
       <Grid>
         <Row>
           <FormItem label="Email/գրանցման հղում" name="email">

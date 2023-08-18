@@ -9,7 +9,7 @@ import EventPreview from '../components/event_preview';
 import Modal from '@/components/modal';
 import { OpenModalType } from '../types';
 import { SubmitButton } from '../components/SubmitButton';
-import CreatePosts from '@/api/create-post';
+import CreatePosts from '@/api/posts/create';
 import GetSelectData from '@/api/statics';
 import SuccessModalContent from '../../components/success-modal-content';
 import { useRouter } from 'next/navigation';
