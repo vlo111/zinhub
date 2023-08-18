@@ -9,7 +9,7 @@ import GradientLine from '../../../components/gradientLines';
 import JobDetails from '../../components/jobDetails';
 import JobDescription from '../../components/jobDesctiption';
 import useGetPostById from '@/api/get-post';
-import useUpdateSinglePost from '@/api/create-post/update-post';
+import useUpdateSinglePost from '@/api/posts/update';
 import Modal from '@/components/modal';
 import JobPreview from '../../components/job_details';
 import Button from '@/components/button';

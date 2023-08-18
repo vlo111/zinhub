@@ -1,11 +1,12 @@
 import { IOptions } from '@/types/global';
 
 interface IOptionsGet {
-  id: string,
-  title: string
+  id: string;
+  title: string;
 }
 
 export interface IFormData {
+  id?: string,
   additionalNotes?: string;
   applicationDeadline?: string;
   workDescription?: string;
@@ -24,7 +25,8 @@ export interface IFormData {
   skills?: string;
   title?: string;
   whatWeOffer?: string;
-  companyName?: string
+  companyName?: string;
+  status?: string;
 }
 
 interface ICompany {
@@ -34,13 +36,17 @@ interface ICompany {
 }
 export interface IJobPreview {
   formData: IFormData;
-  company?: ICompany
+  company?: ICompany;
+  status?: string;
+  workId?: string;
 }
 export interface IAboutCompany {
   formData: IFormData;
   company?: ICompany;
-  role?: string
-  openModal?: () => void
+  role?: string;
+  workId?: string;
+  openModal?: () => void;
+  status: string | undefined;
 }
 export interface IJobContent {
   formData: IFormData;

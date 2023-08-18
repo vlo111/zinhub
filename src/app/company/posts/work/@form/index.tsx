@@ -10,7 +10,7 @@ import JobPreview from '../components/job_details';
 import { SubmitButton } from '../components/SubmitButton';
 import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
-import CreatePosts from '@/api/create-post';
+import CreatePosts from '@/api/posts/create';
 import PostType from '../../components/checks';
 import { useRouter } from 'next/navigation';
 import SuccessModalContent from '../../components/success-modal-content';

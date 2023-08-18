@@ -1,16 +1,52 @@
-import './index.css';
-import InfoItem from './item';
-import { IDetails } from '../../../types';
-import GradientLine from '@/app/company/posts/components/gradientLines';
-import { default as EditedIcon } from '@/components/icons/edite.svg';
-import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
+import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { PATHS } from '@/helpers/constants';
 import Button from '@/components/button';
+import { IDetails, IFormDAtaModal } from '../../../types';
+import InfoItem from './item';
+import GradientLine from '@/app/company/posts/components/gradientLines';
+import Modal from '@/components/modal';
+import ParticipantsCount from '../../participants-count';
+import SuccessModalFinish from '@/app/company/posts/components/success-finish-modal';
+import { default as EditedIcon } from '@/components/icons/edite.svg';
+import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
+import './index.css';
+import { SubmitHandler } from 'react-hook-form';
+import useFinishedPost from '@/api/posts/finish';
+import { useQueryClient } from '@tanstack/react-query';
 
-const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => {
+const Details: React.FC<IDetails> = ({ status, formData, company, role, openModal }) => {
+  const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
+  const [openSuccessModal, setOpenSuccessModal] = useState(false);
   const router = useRouter();
   const { id } = useParams();
+  const queryClient = useQueryClient();
+
+  const { mutate: finishedPostById } = useFinishedPost({
+    onSuccess: () => {
+      setOpenSuccessModal(true);
+      setOpenParticipantsCount(false);
+      void queryClient.invalidateQueries(['api/statements/all']);
+    },
+  });
+
+  const onCloseParticipantsCount = () => {
+    setOpenParticipantsCount(false);
+  };
+  const onGoBack = () => {
+    setOpenSuccessModal(false);
+  };
+
+  const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {
+    finishedPostById({
+      id: formData?.id,
+      formData: {
+        participants: +data.participants,
+        completedCourses: +data.completedCourses,
+      },
+    });
+  };
+
   return (
     <>
       <div className="flex-col w-full grid grid-cols-3 gap-4">
@@ -23,17 +59,24 @@ const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => 
               </p>
               <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
               {role === 'COMPANY' ? (
-                <div className="flex flex-row gap-2">
-                  <button
-                    className="button border-primary-blue text-primary-blue"
-                    onClick={() => router.push(`${PATHS.COURSE_EDIT}/${id}`)}
-                  >
-                    <EditedIcon /> Խմբագրել
-                  </button>
-                  <button className="button border-error text-error" onClick={openModal}>
-                    <DeletedIcon />
-                    Ջնջել
-                  </button>
+                <div className="flex flex-row flex-wrap gap-2">
+                  {status === 'ACTIVE' ? (
+                    <>
+                      <button
+                        className="button border-primary-blue text-primary-blue"
+                        onClick={() => router.push(`${PATHS.COURSE_EDIT}/${id}`)}
+                      >
+                        <EditedIcon /> Խմբագրել
+                      </button>
+                      <button className="button border-error text-error" onClick={openModal}>
+                        <DeletedIcon />
+                        Ջնջել
+                      </button>
+                    </>
+                  ) : null}
+                  {status === 'ACTIVE' || status === 'INACTIVE' ? (
+                    <Button value={'Ավարտել'} onClick={() => setOpenParticipantsCount(true)} />
+                  ) : null}
                 </div>
               ) : null}
               {role === 'SUPER_ADMIN' ? (
@@ -84,6 +127,12 @@ const Details: React.FC<IDetails> = ({ formData, company, role, openModal }) => 
           </div>
         </div>
       </div>
+      <Modal width={'50%'} isOpen={openParticipantsCount} onClose={onCloseParticipantsCount} footer={false}>
+        <ParticipantsCount onSubmit={onSubmit} onClose={onCloseParticipantsCount} />
+      </Modal>
+      <Modal width={'50%'} isOpen={openSuccessModal} onClose={onCloseParticipantsCount} footer={false}>
+        <SuccessModalFinish onGoBack={onGoBack} />
+      </Modal>
     </>
   );
 };

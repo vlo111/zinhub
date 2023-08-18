@@ -290,4 +290,10 @@ export const registers: Registers = {
       message: 'Դասավանդողի աշխատանքային փորձ դաշտը պետք է ունենա առավելագույնը 500 նիշ',
     },
   },
+  participants: {
+    required: 'Դաշտը պարտադիր է',
+  },
+  completedCourses: {
+    required: 'Դաշտը պարտադիր է',
+  },
 };

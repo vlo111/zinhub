@@ -11,7 +11,7 @@ export default () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const { data } = useGetCompanyPosts({ limit: 10, offset: currentPage });
-
+  
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };

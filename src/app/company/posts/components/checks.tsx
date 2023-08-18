@@ -38,7 +38,7 @@ const PostType = () => {
   }, []);
 
   return (
-    <div className="flex flex-col border gap-6 border-primary-blue-light rounded-xl items-center content-center p-10 mb-14 ">
+    <div className="flex flex-col border gap-6 border-primary-blue-light rounded-xl items-center content-center p-10 mb-14 w-full ">
       <p className=" text-lg font-bold ">Տեղադրել հայտարարություն</p>
       <div className="grid grid-cols-3 gap-4 xl:grid-flow-col rounded-xl items-center content-center">
         <div

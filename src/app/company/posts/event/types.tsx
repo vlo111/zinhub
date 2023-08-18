@@ -1,13 +1,14 @@
 interface IOptions {
-    value: string
-    label: string
+  value: string;
+  label: string;
 }
 interface IGetOptions {
-    id: string
-    title: string
+  id: string;
+  title: string;
 }
 
 export interface IFormData {
+  id?: string;
   applicationDeadline?: string;
   location?: string;
   phone?: string;
@@ -18,12 +19,13 @@ export interface IFormData {
   startDate?: string;
   courseName?: string;
   whatWeOffer?: string;
-  title?: string 
+  title?: string;
+  status?: string;
 }
 export interface ICompany {
-  id:string
-  name: string
-  photo: string
+  id: string;
+  name: string;
+  photo: string;
 }
 
 export type OpenModalType = (data: IFormData) => void;

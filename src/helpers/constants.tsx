@@ -25,9 +25,10 @@ export const PATHS = {
 };
 
 export const navigationItems = [
-  { label: 'Ուսուցում', href: '/' },
-  { label: 'Աշխատանք', href: '/work' },
-  { label: 'Ընկերություններ', href: '/company/create' },
+  { label: 'ՈՒՍՈՒՑՈՒՄ', href: '/course' },
+  { label: 'ԱՇԽԱՏԱՆՔ', href: '/work' },
+  { label: 'ԱՅԼ', href: '/event' },
+  { label: 'ԸՆԿԵՐՈՒԹՅՈՒՆՆԵՐ', href: '/company' },
 ];
 export const navigationItemsPosts = [
   { label: 'ԲՈԼՈՐԸ', href: '/company/posts' },
