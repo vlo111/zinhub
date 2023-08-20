@@ -1,13 +1,9 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { ErrorOption, useFormContext } from 'react-hook-form';
 import { Input } from '@/components/input';
 
 const PhoneNumberInput: React.FC = () => {
-  const {
-    // register,
-    setValue,
-    // formState: { errors },
-  } = useFormContext();
+  const { setValue, setError } = useFormContext();
 
   const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let input = e.target.value;
@@ -21,9 +17,16 @@ const PhoneNumberInput: React.FC = () => {
     // Format the cleaned input
     const formattedPhoneNumber = formatPhoneNumber(input);
 
-    // Update the form value using setValue
-    // register('phone').onChange({ target: { value: formattedPhoneNumber } });
     setValue('phone', formattedPhoneNumber);
+
+    if (formattedPhoneNumber.length !== 18) {
+      setError('phone', {
+        type: 'manual',
+        message: 'Հեռախոսահամարի անվավեր ձևաչափ',
+      } as ErrorOption);
+    } else {
+      setError('phone', '' as ErrorOption);
+    }
   };
 
   const formatPhoneNumber = (phoneNumber: string) => {
@@ -33,11 +36,7 @@ const PhoneNumberInput: React.FC = () => {
     let formattedPhoneNumber = '';
 
     if (formattedNumber.length > 0) {
-      formattedPhoneNumber += `+${formattedNumber.slice(0, 3)}`;
-    }
-
-    if (formattedNumber.length > 3) {
-      formattedPhoneNumber += ` (${formattedNumber.slice(3, 5)}`;
+      formattedPhoneNumber += `+374 (${formattedNumber.slice(3, 5)}`;
     }
 
     if (formattedNumber.length > 5) {
@@ -55,20 +54,7 @@ const PhoneNumberInput: React.FC = () => {
     return formattedPhoneNumber;
   };
 
-  return (
-    <Input
-      onChange={handlePhoneNumberChange}
-      name="phone"
-      // register={register('phone', {
-      //   required: 'Phone number is required',
-      //   pattern: {
-      //     value: /^[+]\d{3} [(]\d{2}[)] \d{2}-\d{2}-\d{2}$/,
-      //     message: 'Invalid phone number format',
-      //   },
-      // })}
-      // errors={errors}
-    />
-  );
+  return <Input name="phone" onChange={handlePhoneNumberChange} />;
 };
 
 export default PhoneNumberInput;

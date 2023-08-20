@@ -1,6 +1,13 @@
 import { Registers } from '@/types/registers';
 
 export const registers: Registers = {
+  phone: {
+    required: 'Հեռախոսահամարը պարտադիր է',
+    pattern: {
+      value: /^[+]\d{3} [(]\d{2}[)] \d{2}-\d{2}-\d{2}$/,
+      message: 'Հեռախոսահամարի անվավեր ձևաչափ',
+    },
+  },
   email: {
     required: 'էլ․ հասցեն պարտադիր է',
     pattern: {
