@@ -4,6 +4,7 @@ import FormItem from '@/components/form/item';
 import { Input } from '@/components/input';
 import PhoneNumberInput from '@/components/input/phone-number-input';
 import Button from '@/components/button';
+import PasswordInput from '@/components/input/password-input';
 
 export default () => {
   const { register, getValues } = useFormContext();
@@ -28,14 +29,10 @@ export default () => {
         <PhoneNumberInput />
       </FormItem>
       <FormItem label="Գաղտնաբառ" name="password">
-        <Input type="password" name="password" />
+        <PasswordInput name="password" />
       </FormItem>
       <FormItem label="Կրկնել գաղտնաբառը" name="repeatPassword">
-        <Input
-          type="password"
-          name="repeatPassword"
-          validation={register('repeatPassword', registerRepeatPasswordField)}
-        />
+        <PasswordInput name="repeatPassword" validation={register('repeatPassword', registerRepeatPasswordField)} />
       </FormItem>
       <Button value="Գրանցվել" className="w-[9rem] ml-[calc(100%-9rem)]" />
     </>
