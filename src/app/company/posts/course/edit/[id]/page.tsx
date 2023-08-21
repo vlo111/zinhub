@@ -10,13 +10,13 @@ import GetSelectData from '@/api/statics';
 import useGetPostById from '@/api/get-post';
 import AboutCourse from '../../components/about_course';
 import GradientLine from '../../../components/gradientLines';
-import Teacher from '../../components/teacher';
 import Contacts from '../../components/contacts';
 import Information from '../../components/Information';
 import Modal from '@/components/modal';
 import CourseDetails from '../../components/course_details';
 import useUpdateSinglePost from '@/api/posts/update';
 import Button from '@/components/button';
+import Teacher from '@/app/company/posts/course/components/teacher';
 import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
 
 export default () => {

@@ -2,22 +2,22 @@
 import { useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { Form } from '@/components/form';
+import { useRouter } from 'next/navigation';
+import { PATHS } from '@/helpers/constants';
+import { SubmitButton } from '../components/SubmitButton';
+import { OpenModalType } from '../types';
+import { IOptions } from '@/types/global';
 import GradientLine from '../../components/gradientLines';
 import Information from '../components/Information';
-import Teacher from '../components/teacher';
 import Modal from '@/components/modal';
-import { SubmitButton } from '../components/SubmitButton';
 import AboutCourse from '../components/about_course';
 import CourseDetails from '../components/course_details';
-import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
 import CreatePosts from '@/api/posts/create';
-import { IOptions } from '@/types/global';
 import Contacts from '../components/contacts';
 import PostType from '../../components/checks';
 import SuccessModalContent from '../../components/success-modal-content';
-import { useRouter } from 'next/navigation';
-import { PATHS } from '@/helpers/constants';
+import Teacher from '@/app/company/posts/course/components/teacher';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);

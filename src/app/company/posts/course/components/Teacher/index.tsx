@@ -1,10 +1,10 @@
-import FormItem from '@/components/form/item';
+import { useEffect } from 'react';
 import { Select } from '@/components/select';
 import { useFieldArray, useFormContext } from 'react-hook-form';
-import { default as DeleteIcon } from '@/components/icons/delete.svg';
-import Button from '@/components/button';
-import { useEffect } from 'react';
 import { ITeacher } from '../../types';
+import FormItem from '@/components/form/item';
+import Button from '@/components/button';
+import { default as DeleteIcon } from '@/components/icons/delete.svg';
 
 const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
   const { control, setValue } = useFormContext();
