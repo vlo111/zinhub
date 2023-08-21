@@ -17,10 +17,13 @@ type FormData = {
 
 export default () => {
   const router = useRouter();
-  const { mutate } = useSignUp();
+  const { mutate } = useSignUp({
+    onSuccess: () => {
+      router.push(PATHS.SIGN_IN);
+    },
+  });
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     mutate(data);
-    router.push(PATHS.SIGN_IN);
   };
 
   return (

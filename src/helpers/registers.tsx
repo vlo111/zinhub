@@ -1,6 +1,13 @@
 import { Registers } from '@/types/registers';
 
 export const registers: Registers = {
+  phone: {
+    required: 'Հեռախոսահամարը պարտադիր է',
+    pattern: {
+      value: /^[+]\d{3} [(]\d{2}[)] \d{2}-\d{2}-\d{2}$/,
+      message: 'Հեռախոսահամարի անվավեր ձևաչափ',
+    },
+  },
   email: {
     required: 'էլ․ հասցեն պարտադիր է',
     pattern: {
@@ -88,7 +95,7 @@ export const registers: Registers = {
       message: 'Գաղտնաբառը չպետք է գերազանցի 60 նիշը',
     },
     pattern: {
-      value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\S]{8,}$/,
+      value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=\S+$).{8,}$/,
       message: 'Գաղտնաբառը պետք է պարունակի առնվազն մեկ տառ, մեկ թիվ և չի կարող պարունակել բացատներ',
     },
   },
