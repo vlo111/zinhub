@@ -3,26 +3,28 @@ import { useState } from 'react';
 import { useAuth } from '@/providers/auth';
 import { useParams, useRouter } from 'next/navigation';
 import { ICompany, IFormData } from '../../types';
+import { IFormDAtaModal, IRejectionModalData } from '../../../course/types';
+import { useQueryClient } from '@tanstack/react-query';
+import { PATHS, STATUS } from '@/helpers/constants';
+import { SubmitHandler } from 'react-hook-form';
 import Modal from '@/components/modal';
 import GradientLine from '../../../components/gradientLines';
 import InfoItem from '../../../components/items';
 import TextContent from '../../../components/text-content';
 import Button from '@/components/button';
 import useDeletePost from '@/api/company/use-delete-post';
-import { default as EditedIcon } from '@/components/icons/edite.svg';
-import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
-import { default as SuccessIcon } from '@/components/icons/success.svg';
-import { PATHS } from '@/helpers/constants';
-import { SubmitHandler } from 'react-hook-form';
 import ApplicantsCount from '../applicants-count';
 import SuccessModalFinish from '../../../components/success-finish-modal';
 import useFinishedPost from '@/api/posts/finish';
-import { IFormDAtaModal } from '../../../course/types';
-import { useQueryClient } from '@tanstack/react-query';
+import BlockModalContent from '@/app/admin/post/components/block-modal-content';
+import useBlockPost from '@/api/posts/block';
+import { default as EditedIcon } from '@/components/icons/edite.svg';
+import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
+import { default as SuccessIcon } from '@/components/icons/success.svg';
 
 const button = 'border py-2 px-4 flex flex-row items-center gap-2 rounded-md text-sm';
 
-const EventPreview: React.FC<{eventId?: string; status?: string; formData: IFormData; company?: ICompany }> = ({
+const EventPreview: React.FC<{ eventId?: string; status?: string; formData: IFormData; company?: ICompany }> = ({
   status,
   formData,
   company,
@@ -32,6 +34,7 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
   const [openConfirmDeleteModal, setOpenConfirmDeleteModal] = useState(false);
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [openBlockModal, setOpenBlockModal] = useState(false);
   const queryClient = useQueryClient();
   const { role } = useAuth();
   const { id } = useParams();
@@ -41,8 +44,7 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
     onSuccess: () => {
       setOpenSuccessModal(true);
       setOpenParticipantsCount(false);
-        void queryClient.invalidateQueries(['api/statements/all']);        
-
+      void queryClient.invalidateQueries(['api/statements/all']);
     },
   });
 
@@ -71,15 +73,36 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
 
   const onGoBack = () => {
     setOpenSuccessModal(false);
-    router.push('/company/posts/event')
+    router.push('/company/posts/event');
   };
 
-  const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {    
+  const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {
     finishedPostById({
       id: eventId,
       formData: {
         participants: +data.participants,
         completedCourses: +data.completedCourses,
+      },
+    });
+  };
+
+  const { mutate: blockPostById } = useBlockPost({
+    onSuccess: () => {
+      setOpenBlockModal(false);
+      router.push('/admin/announcements');
+      void queryClient.invalidateQueries(['api/statements/all']);
+    },
+  });
+
+  const onGoBackBlock = () => {
+    setOpenBlockModal(false);
+  };
+
+  const onSubmitBlock: SubmitHandler<IRejectionModalData> = (data) => {
+    blockPostById({
+      id: id,
+      formData: {
+        ...data,
       },
     });
   };
@@ -97,7 +120,7 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
               <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
               {role === 'COMPANY' ? (
                 <div className="flex flex-row gap-2 flex-wrap">
-                  {status === 'ACTIVE' ? (
+                  {status === STATUS.ACTIVE ? (
                     <>
                       <button
                         className={`${button} border-primary-blue text-primary-blue`}
@@ -111,9 +134,19 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
                       </button>
                     </>
                   ) : null}
-                  {status === 'ACTIVE' || status === 'INACTIVE' ? (
+                  {status === STATUS.ACTIVE || status === STATUS.INACTIVE ? (
                     <Button value={'Ավարտել'} onClick={() => setOpenParticipantsCount(true)} />
                   ) : null}
+                </div>
+              ) : null}
+              {role === 'SUPER_ADMIN' ? (
+                <div className="flex flex-row gap-4 items-center">
+                  {status !== STATUS.BLOCKED ? (
+                    <Button type="primary" value={'Արգելափակել'} onClick={() => setOpenBlockModal(true)} />
+                  ) : null}
+                  <p className="text-davy-gray text-xs">{`Ստեղծված՝ ${new Date(
+                    formData?.createdAt ?? ''
+                  ).toLocaleDateString()}`}</p>
                 </div>
               ) : null}
             </div>
@@ -181,6 +214,9 @@ const EventPreview: React.FC<{eventId?: string; status?: string; formData: IForm
       </Modal>
       <Modal width={'50%'} isOpen={openSuccessModal} onClose={onCloseSuccessModalFinish} footer={false}>
         <SuccessModalFinish onGoBack={onGoBack} />
+      </Modal>
+      <Modal width={'50%'} isOpen={openBlockModal} onClose={onGoBackBlock} footer={false}>
+        <BlockModalContent onGoBack={onGoBackBlock} onSubmit={onSubmitBlock} />
       </Modal>
     </div>
   );

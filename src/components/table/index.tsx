@@ -4,7 +4,7 @@ import Thead from '@/components/table/thead';
 import Tbody from '@/components/table/tbody';
 import { DataTableGenericProps, IDataTableProps, CellRenderer } from '@/components/table/types';
 
-const DataTable = <T extends DataTableGenericProps>({ data, column }: IDataTableProps<T>) => {
+const DataTable = <T extends DataTableGenericProps>({ data, column, onRowClick }: IDataTableProps<T>) => {
   const columns: Column<T>[] = React.useMemo(
     () =>
       column.map((col) => ({
@@ -22,7 +22,7 @@ const DataTable = <T extends DataTableGenericProps>({ data, column }: IDataTable
     <>
       <table {...getTableProps()} className="w-full">
         <Thead headerGroups={headerGroups} />
-        <Tbody getTableBodyProps={getTableBodyProps} rows={rows} prepareRow={prepareRow} />
+        <Tbody getTableBodyProps={getTableBodyProps} rows={rows} prepareRow={prepareRow} onRowClick={onRowClick} />
       </table>
     </>
   );

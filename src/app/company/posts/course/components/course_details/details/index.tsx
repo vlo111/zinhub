@@ -1,23 +1,26 @@
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { PATHS } from '@/helpers/constants';
-import { IDetails, IFormDAtaModal } from '../../../types';
+import { PATHS, STATUS } from '@/helpers/constants';
+import { SubmitHandler } from 'react-hook-form';
+import { useQueryClient } from '@tanstack/react-query';
+import { IDetails, IFormDAtaModal, IRejectionModalData } from '../../../types';
+import Button from '@/components/button';
 import InfoItem from './item';
 import GradientLine from '@/app/company/posts/components/gradientLines';
-import Button from '@/components/button';
 import Modal from '@/components/modal';
 import ParticipantsCount from '../../participants-count';
 import SuccessModalFinish from '@/app/company/posts/components/success-finish-modal';
 import { default as EditedIcon } from '@/components/icons/edite.svg';
 import { default as DeletedIcon } from '@/components/icons/deleted-red.svg';
-import './index.css';
-import { SubmitHandler } from 'react-hook-form';
 import useFinishedPost from '@/api/posts/finish';
-import { useQueryClient } from '@tanstack/react-query';
+import BlockModalContent from '@/app/admin/post/components/block-modal-content';
+import useBlockPost from '@/api/posts/block';
+import './index.css';
 
 const Details: React.FC<IDetails> = ({ status, formData, company, role, openModal }) => {
   const [openParticipantsCount, setOpenParticipantsCount] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  const [openBlockModal, setOpenBlockModal] = useState(false);
   const router = useRouter();
   const { id } = useParams();
   const queryClient = useQueryClient();
@@ -30,19 +33,41 @@ const Details: React.FC<IDetails> = ({ status, formData, company, role, openModa
     },
   });
 
-  const onCloseParticipantsCount = () => {
-    setOpenParticipantsCount(false);
-  };
   const onGoBack = () => {
     setOpenSuccessModal(false);
   };
 
+  const onCloseParticipantsCount = () => {
+    setOpenParticipantsCount(false);
+  };
+
   const onSubmit: SubmitHandler<IFormDAtaModal> = (data) => {
     finishedPostById({
-      id: formData?.id,
+      id: id,
       formData: {
         participants: +data.participants,
         completedCourses: +data.completedCourses,
+      },
+    });
+  };
+
+  const { mutate: blockPostById } = useBlockPost({
+    onSuccess: () => {
+      setOpenBlockModal(false);
+      router.push('/admin/announcements');
+      void queryClient.invalidateQueries(['api/statements/all']);
+    },
+  });
+
+  const onGoBackBlock = () => {
+    setOpenBlockModal(false);
+  };
+
+  const onSubmitBlock: SubmitHandler<IRejectionModalData> = (data) => {
+    blockPostById({
+      id: id,
+      formData: {
+        ...data,
       },
     });
   };
@@ -60,7 +85,7 @@ const Details: React.FC<IDetails> = ({ status, formData, company, role, openModa
               <p className="text-xs font-normal first-letter text-primary-blue">{company?.name}</p>
               {role === 'COMPANY' ? (
                 <div className="flex flex-row flex-wrap gap-2">
-                  {status === 'ACTIVE' ? (
+                  {status === STATUS.ACTIVE ? (
                     <>
                       <button
                         className="button border-primary-blue text-primary-blue"
@@ -74,9 +99,19 @@ const Details: React.FC<IDetails> = ({ status, formData, company, role, openModa
                       </button>
                     </>
                   ) : null}
-                  {status === 'ACTIVE' || status === 'INACTIVE' ? (
+                  {status === STATUS.ACTIVE || status === STATUS.INACTIVE ? (
                     <Button value={'Ավարտել'} onClick={() => setOpenParticipantsCount(true)} />
                   ) : null}
+                </div>
+              ) : null}
+              {role === 'SUPER_ADMIN' ? (
+                <div className="flex flex-row gap-4 items-center">
+                  {status !== STATUS.BLOCKED ? (
+                    <Button type="primary" value={'Արգելափակել'} onClick={() => setOpenBlockModal(true)} />
+                  ) : null}
+                  <p className="text-davy-gray text-xs">{`Ստեղծված՝ ${new Date(
+                    formData?.createdAt ?? ''
+                  ).toLocaleDateString()}`}</p>
                 </div>
               ) : null}
             </div>
@@ -122,8 +157,11 @@ const Details: React.FC<IDetails> = ({ status, formData, company, role, openModa
       <Modal width={'50%'} isOpen={openParticipantsCount} onClose={onCloseParticipantsCount} footer={false}>
         <ParticipantsCount onSubmit={onSubmit} onClose={onCloseParticipantsCount} />
       </Modal>
-      <Modal width={'50%'} isOpen={openSuccessModal} onClose={onCloseParticipantsCount} footer={false}>
+      <Modal width={'50%'} isOpen={openSuccessModal} onClose={onGoBack} footer={false}>
         <SuccessModalFinish onGoBack={onGoBack} />
+      </Modal>
+      <Modal width={'50%'} isOpen={openBlockModal} onClose={onGoBackBlock} footer={false}>
+        <BlockModalContent onGoBack={onGoBackBlock} onSubmit={onSubmitBlock} />
       </Modal>
     </>
   );

@@ -11,7 +11,7 @@ import { DatePickerYear } from '@/components/datepicker/year-picker';
 
 export const Items = () => {
   return (
-    <div className="2xl:px-40 xl:px-32 lg:px-28 md:px-16 sm:px-14 xs:px-3">
+    <div className="2xl:px-40 xl:px-32 lg:px-28 md:px-16 sm:px-14 xs:px-3 w-full">
       <div className="flex flex-row gap-20 xs:flex-col xs:gap-4">
         <div className="w-full">
           <FormItem label="Հեռախոսահամար" name="phone">
