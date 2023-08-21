@@ -46,5 +46,5 @@ export type TbodyProps<T extends object> = {
   getTableBodyProps: (propGetter?: TableBodyPropGetter<T> | undefined) => TableBodyProps;
   rows: Row<T>[];
   prepareRow: (row: Row<T>) => void;
-  onRowClick?: (row: Row<T>) => void;
+  onRowClick?: (row: T) => void;
 };

@@ -25,6 +25,8 @@ export const PATHS = {
   ADMIN_POST_COURSE: '/admin/post/course',
   ADMIN_POST_OTHER: '/admin/post/other',
   ADMIN_POST_WORK: '/admin/post/work',
+  ADMIN_STORIES_EDIT: '/admin/stories/edit',
+  ADMIN_STORIES_CREATE: '/admin/stories/create',
 };
 
 export const navigationItems = [

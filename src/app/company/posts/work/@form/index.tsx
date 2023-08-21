@@ -1,20 +1,20 @@
 'use client';
-import { FieldValues, SubmitHandler } from 'react-hook-form';
-import GradientLine from '../../components/gradientLines';
-import { Form } from '@/components/form';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { PATHS } from '@/helpers/constants';
+import { SubmitButton } from '../components/SubmitButton';
+import { OpenModalType } from '../types';
+import { Form } from '@/components/form';
+import GradientLine from '../../components/gradientLines';
 import JobDetails from '../components/jobDetails';
 import JobDescription from '../components/jobDesctiption';
 import Modal from '@/components/modal';
 import JobPreview from '../components/job_details';
-import { SubmitButton } from '../components/SubmitButton';
-import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
 import CreatePosts from '@/api/posts/create';
 import PostType from '../../components/checks';
-import { useRouter } from 'next/navigation';
 import SuccessModalContent from '../../components/success-modal-content';
-import { PATHS } from '@/helpers/constants';
 
 export type FormItems = {
   phone: string;
