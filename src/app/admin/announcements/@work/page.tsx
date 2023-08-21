@@ -1,10 +1,10 @@
 'use client';
 import React, { useState } from 'react';
 import { useGetCompanyPosts } from '@/api/company/use-get-company-posts';
-import { IColumns } from '@/components/table/types';
 import { IDataTablePostsAdmin } from '../@all/page';
 import { useRouter } from 'next/navigation';
 import { PATHS } from '@/helpers/constants';
+import { columns } from '../../components/announcements-columns';
 import Pagination from '@/components/pagination';
 import DataTable from '@/components/table';
 
@@ -17,26 +17,6 @@ export default () => {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-  const columns: IColumns<IDataTablePostsAdmin>[] = [
-    { Header: 'Ընկերության անվանում', accessor: 'companyName', sortType: '' },
-    {
-      Header: 'Հայտարարության անվանում',
-      accessor: 'statementTitle',
-      sortType: '',
-    },
-    {
-      Header: 'Ստատուս',
-      accessor: 'status',
-      sortType: 'alphanumeric',
-      renderRow: (row) => <div>{row?.status} </div>,
-    },
-    {
-      Header: 'Ստեղծման ամսաթիվ',
-      accessor: 'createdAt',
-      sortType: 'alphanumeric',
-      renderRow: (row) => <div>{new Date(row.createdAt ?? '').toLocaleDateString()}</div>,
-    },
-  ];
 
   const onRowClick = (row: IDataTablePostsAdmin) => {
     router.push(`${PATHS.ADMIN_POST_WORK}/${row?.id}`);
