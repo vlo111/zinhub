@@ -20,7 +20,7 @@ const PasswordInput: React.FC<Props> = ({ name, validation }) => {
     <div className="flex items-center relative">
       <Input type={isPasswordVisible ? 'text' : 'password'} validation={validation} name={name} />
       <span className="absolute right-5 cursor-pointer" role="presentation" onClick={handleTogglePasswordVisibility}>
-        {isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon />}
+        {!isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon />}
       </span>
     </div>
   );
