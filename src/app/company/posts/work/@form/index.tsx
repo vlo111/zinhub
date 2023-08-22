@@ -37,7 +37,7 @@ export default () => {
   const { mutate: createPostsFn } = CreatePosts({
     onSuccess: () => {
       setIsOpenCreateModal(true);
-    }
+    },
   });
 
   const openModal: OpenModalType = (data) => {
@@ -81,7 +81,7 @@ export default () => {
         filedWorkId: data.filedWorkId?.value,
         levelId: data.levelId?.value,
         regionId: data.regionId?.value,
-        responsibilities: data.responsibilities ,
+        responsibilities: data.responsibilities,
         skills: data.skills,
       },
     });
@@ -96,7 +96,7 @@ export default () => {
       <JobDescription />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-        <JobPreview formData={formData} company={result?.company}/>
+        <JobPreview formData={formData} company={result?.company} />
       </Modal>
       <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
         <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />

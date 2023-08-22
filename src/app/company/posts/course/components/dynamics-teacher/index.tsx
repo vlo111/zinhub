@@ -7,7 +7,7 @@ import FormItem from '@/components/form/item';
 import Button from '@/components/button';
 import { default as DeleteIcon } from '@/components/icons/delete.svg';
 
-const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
+const DynamicsTeacher: React.FC<ITeacher> = ({ options, edit = false }) => {
   const { control, setValue } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
@@ -60,4 +60,4 @@ const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
   );
 };
 
-export default Teacher;
+export default DynamicsTeacher;

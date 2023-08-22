@@ -10,6 +10,7 @@ import Button from '@/components/button';
 import useDeleteStories from '@/api/success-stories/use-delete-stories';
 import Modal from '@/components/modal';
 import { default as SuccessIcon } from '@/components/icons/success.svg';
+import useUpdateStatusStory from '@/api/success-stories/use-update-status';
 
 export interface IDataTableStories {
   id: string;
@@ -19,6 +20,7 @@ export interface IDataTableStories {
   updatedAt: string;
   adminName: string;
   event?: string;
+  event1?: string;
 }
 
 export default () => {
@@ -36,6 +38,8 @@ export default () => {
       setIsSuccessDeleted(true);
     },
   });
+
+  const { mutate: updateStatusStoryById } = useUpdateStatusStory();
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -60,13 +64,21 @@ export default () => {
     router.push(`${PATHS.ADMIN_STORIES}/${row?.id}`);
   };
 
+  const onChangeStatus = (id: string) => {
+    updateStatusStoryById({ id });
+  };
+
   return (
     <div className="flex flex-col gap-6">
       <div className="w-full flex justify-end">
         <Button type="secondary" value={'Ստեղծել նոր'} onClick={() => router.push(PATHS.ADMIN_STORIES_CREATE)} />
       </div>
       {!isLoading && (
-        <DataTable<IDataTableStories> column={columns(onDelete, onEdit)} data={data?.result} onRowClick={onRowClick} />
+        <DataTable<IDataTableStories>
+          column={columns(onDelete, onEdit, onChangeStatus)}
+          data={data?.result}
+          onRowClick={onRowClick}
+        />
       )}
       <Pagination offset={currentPage} count={data.count} onPageChange={handlePageChange} />
       <Modal isOpen={!!deleteId} onClose={closeDeleteModal} width={'40%'} footer={false}>

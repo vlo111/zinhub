@@ -14,7 +14,13 @@ const Tbody = <T extends DataTableGenericProps>({ getTableBodyProps, rows, prepa
                 {...cell.getCellProps()}
                 className="p-4 max-w-[40px] overflow-hidden overflow-ellipsis"
                 key={cell.row.id + cell.column.id}
-                onClick={() => onRowClick && onRowClick(row?.original as T)}
+                onClick={() => {
+                  if (cell.column.id === 'event') {
+                    return;
+                  } else {
+                    return onRowClick && onRowClick(row?.original as T);
+                  }
+                }}
               >
                 {cell.render('Cell')}
               </td>

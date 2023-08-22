@@ -8,12 +8,14 @@ type Props = {
 };
 
 const FormItem: React.FC<Props> = ({ name, label, children }) => {
-  const { formState: { errors } } = useFormContext();
-  
+  const {
+    formState: { errors },
+  } = useFormContext();
+
   const error = errors?.[name]?.message as string;
 
   return (
-    <div className="mb-3 w-full ">
+    <div className="mb-3 w-full">
       <label className="block mb-1 text-item text-davy-gray" htmlFor={label}>
         {label}
       </label>

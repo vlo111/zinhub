@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { SubmitButton } from './SubmitButton';
+import { convertFileToBase64 } from '@/helpers/utils';
 import { useParams, useRouter } from 'next/navigation';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { SubmitButton } from './SubmitButton';
 import { Form } from '@/components/form';
 import { Input } from '@/components/input';
 import { Textarea } from '@/components/texarea';
@@ -12,9 +13,8 @@ import Grid from '@/app/company/posts/course/components/flex/grid';
 import Row from '@/app/company/posts/course/components/flex/row';
 import useGetStoriesById from '@/api/success-stories/use-get-stories-by-id';
 import Modal from '@/components/modal';
-import { default as SuccessIcon } from '@/components/icons/success.svg';
 import useUpdateStories from '@/api/success-stories/use-edite-stories';
-import { convertFileToBase64 } from '@/helpers/utils';
+import { default as SuccessIcon } from '@/components/icons/success.svg';
 
 export default () => {
   const [isOpenSuccessModal, setIsOpenSuccessModal] = useState(false);
@@ -36,7 +36,6 @@ export default () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const photoBase64 = await convertToBase64(data.photoItem?.[0]);
-
     updateStoriesById({
       id: id,
       storiesData: {
@@ -69,7 +68,7 @@ export default () => {
             </Row>
             <Row>
               <FormItem label="Կցել լուսանկարը" name="photo">
-                <UploadImage defaultImage={result?.photo} />
+                <UploadImage defaultImage={result?.photo}/>
               </FormItem>
             </Row>
           </Grid>

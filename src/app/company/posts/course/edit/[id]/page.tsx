@@ -16,7 +16,7 @@ import Modal from '@/components/modal';
 import CourseDetails from '../../components/course_details';
 import useUpdateSinglePost from '@/api/posts/update';
 import Button from '@/components/button';
-import Teacher from '@/app/company/posts/course/components/teacher';
+import DynamicsTeacher from '../../components/dynamics-teacher';
 import { default as EditBlackIcon } from '@/components/icons/edit-black.svg';
 
 export default () => {
@@ -108,7 +108,8 @@ export default () => {
           <GradientLine />
           <Information edit={true} />
           <GradientLine />
-          <Teacher options={result?.teachers} edit={true} />
+          <DynamicsTeacher
+           options={result?.teachers} edit={true} />
           <SubmitButton openModal={openModal} />
           <Modal isOpen={isOpen} onClose={closeModal} width="95%">
             <CourseDetails formData={formData} company={data.company} />

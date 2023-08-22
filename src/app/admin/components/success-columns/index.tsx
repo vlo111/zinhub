@@ -2,10 +2,12 @@ import { IColumns } from '@/components/table/types';
 import { IDataTableStories } from '../../stories/page';
 import { default as EditIcon } from '@/components/icons/edit-black.svg';
 import { default as DeleteIcon } from '@/components/icons/delete-black.svg';
+import { default as RejectSvg } from '../icons/reject.svg';
+import { default as SuccessSvg } from '../icons/succiess.svg';
 
-type ColumnsType = (onDelete: (id: string) => void, onEdit: (id: string) => void) => IColumns<IDataTableStories>[];
+type ColumnsType = (onDelete: (id: string) => void, onEdit: (id: string) => void, onChangeStatus: (id: string) => void ) => IColumns<IDataTableStories>[];
 
-export const columns: ColumnsType = (onDelete, onEdit) => {
+export const columns: ColumnsType = (onDelete, onEdit, onChangeStatus) => {
   return [
     { Header: 'Վերնագիր', accessor: 'successTitle', sortType: '' },
     {
@@ -35,27 +37,24 @@ export const columns: ColumnsType = (onDelete, onEdit) => {
       accessor: 'event',
       sortType: '',
       renderRow: (row) => (
-        <div className="flex flex-row gap-3 justify-center relative bottom-3 left-3">
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              return onEdit(row?.id);
-            }}
-            className="absolute z-100 left-16 w-[25px] h-[24px]"
-          >
+        <div className="flex flex-row gap-3 justify-center">
+          <button onClick={() => onEdit(row?.id)} className="w-[25px] h-[24px]">
             <EditIcon />
           </button>
-          <button
-            className="absolute z-100 left-5 top-0"
-            onClick={(e) => {
-              e.preventDefault();
-              return onDelete(row?.id);
-            }}
-          >
+          <button onClick={() => onDelete(row?.id)}>
             <DeleteIcon />
           </button>
+          {row.status === 'ACTIVE' ? (
+            <button onClick={() => onChangeStatus(row?.id)}>
+              <RejectSvg />
+            </button>
+          ) : (
+            <button onClick={() => onChangeStatus(row?.id)}>
+              <SuccessSvg />
+            </button>
+          )}
         </div>
-      ),
-    },
+      )
+    }
   ];
 };
