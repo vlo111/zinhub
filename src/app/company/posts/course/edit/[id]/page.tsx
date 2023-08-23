@@ -52,6 +52,7 @@ export default () => {
       levelId,
       topics,
       teacherIds,
+      createdAt,
       ...rest
     } = data;
     const teachersArr = teacherIds.map((item: IOptions) => item.value);
@@ -61,6 +62,7 @@ export default () => {
       statementData: {
         title: courseName,
         applicationDeadline: endDate,
+        startDate: createdAt,
         description: courseDescription,
         registrationLink: email,
         filedStudyId: filedStudyId?.value,
