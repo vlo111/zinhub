@@ -20,6 +20,10 @@ interface ICompany {
   location: string;
   website: string;
   companyValues: string;
+  region: {
+    id: string;
+    title: string;
+  };
   regionId: string;
   user: {
     emailVerified: boolean;
@@ -47,7 +51,7 @@ export const useGetCompanyProfile = (id?: string, options?: Options): { company:
   const returnData: ICompanyForm = {
     ...company,
     email: company?.user.email,
-    regionId: company?.regionId,
+    regionId: { label: company?.region?.title, value: company?.region?.id },
     phone: formatPhoneNumber(company?.phone),
     creationDate: new Date(company?.creationDate),
   };
