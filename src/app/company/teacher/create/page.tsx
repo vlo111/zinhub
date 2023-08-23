@@ -1,17 +1,17 @@
 'use client';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Form } from '@/components/form';
-import Grid from '../../posts/course/components/flex/grid';
-import Row from '../../posts/course/components/flex/row';
-import FormItem from '@/components/form/item';
+import { useRouter } from 'next/navigation';
 import { Input } from '@/components/input';
 import { Textarea } from '@/components/texarea';
 import { SubmitButton } from '../components/SubmitButton';
 import { UploadImage } from '../components/upload-image';
 import { convertFileToBase64 } from '@/helpers/utils';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { Form } from '@/components/form';
+import Grid from '../../posts/course/components/flex/grid';
+import Row from '../../posts/course/components/flex/row';
+import FormItem from '@/components/form/item';
 import useCreateTeacher from '@/api/teacher';
 import DynamicFils from './dynamic-filds';
-import { useRouter } from 'next/navigation';
 
 export default () => {
   const { watch } = useForm();
@@ -24,7 +24,7 @@ export default () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const photoBase64 = await convertToBase64(data.photoItem?.[0]);    
+    const photoBase64 = await convertToBase64(data.photoItem?.[0]);
     createTeacherFn({
       fullName: data.fullName,
       profession: data.profession,

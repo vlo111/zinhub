@@ -1,20 +1,20 @@
 'use client';
-import { FieldValues, SubmitHandler } from 'react-hook-form';
-import GradientLine from '../../components/gradientLines';
-import { Form } from '@/components/form';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { PATHS } from '@/helpers/constants';
+import { SubmitButton } from '../components/SubmitButton';
+import { OpenModalType } from '../types';
+import { Form } from '@/components/form';
+import GradientLine from '../../components/gradientLines';
 import JobDetails from '../components/jobDetails';
 import JobDescription from '../components/jobDesctiption';
 import Modal from '@/components/modal';
 import JobPreview from '../components/job_details';
-import { SubmitButton } from '../components/SubmitButton';
-import { OpenModalType } from '../types';
 import GetSelectData from '@/api/statics';
 import CreatePosts from '@/api/posts/create';
 import PostType from '../../components/checks';
-import { useRouter } from 'next/navigation';
 import SuccessModalContent from '../../components/success-modal-content';
-import { PATHS } from '@/helpers/constants';
 
 export type FormItems = {
   phone: string;
@@ -37,7 +37,7 @@ export default () => {
   const { mutate: createPostsFn } = CreatePosts({
     onSuccess: () => {
       setIsOpenCreateModal(true);
-    }
+    },
   });
 
   const openModal: OpenModalType = (data) => {
@@ -81,7 +81,7 @@ export default () => {
         filedWorkId: data.filedWorkId?.value,
         levelId: data.levelId?.value,
         regionId: data.regionId?.value,
-        responsibilities: data.responsibilities ,
+        responsibilities: data.responsibilities,
         skills: data.skills,
       },
     });
@@ -96,7 +96,7 @@ export default () => {
       <JobDescription />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-        <JobPreview formData={formData} company={result?.company}/>
+        <JobPreview formData={formData} company={result?.company} />
       </Modal>
       <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
         <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />

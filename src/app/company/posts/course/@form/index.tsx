@@ -17,7 +17,7 @@ import CreatePosts from '@/api/posts/create';
 import Contacts from '../components/contacts';
 import PostType from '../../components/checks';
 import SuccessModalContent from '../../components/success-modal-content';
-import Teacher from '@/app/company/posts/course/components/teacher';
+import DynamicsTeacher from '../components/dynamics-teacher';
 
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,10 +32,10 @@ export default () => {
   const { mutate: createPostsFn } = CreatePosts({
     onSuccess: () => {
       setIsOpenCreateModal(true);
-    }
+    },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {    
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const teachersArr = data.teacherIds.map((item: IOptions) => item.value);
     const topicsArr = data.topics.map((item: { name: string }) => item.name);
 
@@ -63,7 +63,7 @@ export default () => {
     });
   };
 
-  const openModal: OpenModalType = (data) => {    
+  const openModal: OpenModalType = (data) => {
     setFormData({ ...data });
     setIsOpen(true);
   };
@@ -95,10 +95,10 @@ export default () => {
       <GradientLine />
       <Information />
       <GradientLine />
-      <Teacher options={result?.teachers} />
+      <DynamicsTeacher options={result?.teachers} />
       <SubmitButton openModal={openModal} />
       <Modal isOpen={isOpen} onClose={closeModal} width="95%">
-        <CourseDetails formData={formData} company={result?.company}/>
+        <CourseDetails formData={formData} company={result?.company} />
       </Modal>
       <Modal isOpen={isOpenCreateModal} onClose={closeCreateModal} width="40%" footer={false}>
         <SuccessModalContent onGoBack={onGoBack} onAddNewPost={onAddNewPost} />

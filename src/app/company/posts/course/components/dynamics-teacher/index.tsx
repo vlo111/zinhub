@@ -1,3 +1,4 @@
+'use client';
 import { useEffect } from 'react';
 import { Select } from '@/components/select';
 import { useFieldArray, useFormContext } from 'react-hook-form';
@@ -6,7 +7,7 @@ import FormItem from '@/components/form/item';
 import Button from '@/components/button';
 import { default as DeleteIcon } from '@/components/icons/delete.svg';
 
-const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
+const DynamicsTeacher: React.FC<ITeacher> = ({ options, edit = false }) => {
   const { control, setValue } = useFormContext();
   const { fields, remove, append } = useFieldArray({
     control,
@@ -26,7 +27,7 @@ const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
     if (!edit) {
       setValue('teacherIds', [{}]);
     }
-  }, [setValue]);
+  }, [edit, setValue]);
 
   return (
     <div className="grid grid-cols-3 gap-4 gap-x-10 mt-8 w-full">
@@ -52,11 +53,11 @@ const Teacher: React.FC<ITeacher> = ({ options, edit = false }) => {
           );
         })}
         {fields.length < 5 ? (
-          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" submit={false}/>
+          <Button type="secondary" value="+ Ավելացնել դաշտ" onClick={onAddField} className="w-[35%]" submit={false} />
         ) : null}
       </div>
     </div>
   );
 };
 
-export default Teacher;
+export default DynamicsTeacher;
