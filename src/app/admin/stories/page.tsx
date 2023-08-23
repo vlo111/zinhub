@@ -11,6 +11,7 @@ import useDeleteStories from '@/api/success-stories/use-delete-stories';
 import Modal from '@/components/modal';
 import { default as SuccessIcon } from '@/components/icons/success.svg';
 import useUpdateStatusStory from '@/api/success-stories/use-update-status';
+import { useQueryClient } from '@tanstack/react-query';
 
 export interface IDataTableStories {
   id: string;
@@ -25,9 +26,15 @@ export interface IDataTableStories {
 
 export default () => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [currentPage, setCurrentPage] = useState(0);
   const [deleteId, setDeleteId] = useState('');
   const [isSuccessDeleted, setIsSuccessDeleted] = useState(false);
+  const [isChangedStatus, setIsChangedStatus] = useState(false);
+  const [isActivateStatus, setIsActivateStatus] = useState({
+    id: '',
+    funcStatus: '',
+  });
 
   const { data, isLoading, refetch } = useGetAllSuccessStories(10, currentPage);
 
@@ -39,7 +46,16 @@ export default () => {
     },
   });
 
-  const { mutate: updateStatusStoryById } = useUpdateStatusStory();
+  const { mutate: updateStatusStoryById } = useUpdateStatusStory({
+    onSuccess: () => {
+      setIsChangedStatus(true);
+      setIsActivateStatus({
+        ...isActivateStatus,
+        id: '',
+      });
+      void queryClient.invalidateQueries(['api/admin/success-stories/all']);
+    },
+  });
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -64,8 +80,25 @@ export default () => {
     router.push(`${PATHS.ADMIN_STORIES}/${row?.id}`);
   };
 
-  const onChangeStatus = (id: string) => {
-    updateStatusStoryById({ id });
+  const onChangeStatus = (id: string, funcStatus: string) => {
+    setIsActivateStatus({
+      id,
+      funcStatus,
+    });
+  };
+
+  const onCloseChangeStatus = () => {
+    setIsActivateStatus({
+      id: '',
+      funcStatus: '',
+    });
+  };
+  const closeIsChangedStatus = () => {
+    setIsChangedStatus(false);
+    setIsActivateStatus({
+      id: '',
+      funcStatus: '',
+    });
   };
 
   return (
@@ -102,6 +135,40 @@ export default () => {
           <SuccessIcon />
           <p className="w-[80%] text-lg font-medium text-davy-gray flex text-center">
             Ձեր պատմությունը հաջողությամբ հեռացվել է
+          </p>
+        </div>
+      </Modal>
+      <Modal isOpen={isActivateStatus?.id !== ''} onClose={onCloseChangeStatus} width={'40%'} footer={false}>
+        <div className="flex items-center flex-col gap-11">
+          <SuccessIcon />
+          <p className="w-[80%] text-lg font-medium text-davy-gray flex text-center">
+            {isActivateStatus?.funcStatus === 'activate'
+              ? 'Համոզվա՞ծ եք, որ ցանկանում եք հեռացնել հրապարակված պատմությունը'
+              : 'Համոզվա՞ծ եք, որ ցանկանում եք հրապարակել պատմությունը'}
+          </p>
+          <div className="flex flex-row gap-4">
+            <Button
+              value="Չեղարկել"
+              type="secondary"
+              onClick={() =>
+                setIsActivateStatus({
+                  id: '',
+                  funcStatus: '',
+                })
+              }
+            />
+            <Button value="Հաստատել" onClick={() => updateStatusStoryById({ id: isActivateStatus?.id })} />
+          </div>
+        </div>
+      </Modal>
+
+      <Modal isOpen={isChangedStatus} onClose={closeIsChangedStatus} width={'40%'} footer={false}>
+        <div className="flex items-center flex-col gap-11">
+          <SuccessIcon />
+          <p className="w-[80%] text-lg font-medium text-davy-gray flex text-center">
+            {isActivateStatus?.funcStatus === 'activate'
+              ? 'Ձեր պատմությունը հաջողությամբ հեռացվել է 222222222222222222222222222'
+              : 'Ձեր պատմությունը հաջողությամբ հրապարակվել է111111111111111111111'}
           </p>
         </div>
       </Modal>

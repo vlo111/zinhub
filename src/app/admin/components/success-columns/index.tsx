@@ -5,7 +5,7 @@ import { default as DeleteIcon } from '@/components/icons/delete-black.svg';
 import { default as RejectSvg } from '../icons/reject.svg';
 import { default as SuccessSvg } from '../icons/succiess.svg';
 
-type ColumnsType = (onDelete: (id: string) => void, onEdit: (id: string) => void, onChangeStatus: (id: string) => void ) => IColumns<IDataTableStories>[];
+type ColumnsType = (onDelete: (id: string) => void, onEdit: (id: string) => void, onChangeStatus: (id: string, funcStatus: string) => void ) => IColumns<IDataTableStories>[];
 
 export const columns: ColumnsType = (onDelete, onEdit, onChangeStatus) => {
   return [
@@ -45,11 +45,11 @@ export const columns: ColumnsType = (onDelete, onEdit, onChangeStatus) => {
             <DeleteIcon />
           </button>
           {row.status === 'ACTIVE' ? (
-            <button onClick={() => onChangeStatus(row?.id)}>
+            <button onClick={() => onChangeStatus(row?.id, 'activate')}>
               <RejectSvg />
             </button>
           ) : (
-            <button onClick={() => onChangeStatus(row?.id)}>
+            <button onClick={() => onChangeStatus(row?.id, 'passivate')}>
               <SuccessSvg />
             </button>
           )}
